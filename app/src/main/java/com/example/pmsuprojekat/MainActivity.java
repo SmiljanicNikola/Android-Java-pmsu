@@ -1,12 +1,11 @@
 package com.example.pmsuprojekat;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.pmsuprojekat.activities.LoginActivity;
-import com.example.pmsuprojekat.activities.SplashScreenActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;

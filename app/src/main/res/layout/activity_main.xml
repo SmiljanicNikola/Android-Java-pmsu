@@ -10,13 +10,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingTop="8dp"
         >
+
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorBlue" />
+            android:layout_height="50dp"
+            android:background="@color/purple_700" />
 
 
 
@@ -48,7 +49,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pocetak aplikacijeee!"
+                android:text="@string/dobrodosli"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
