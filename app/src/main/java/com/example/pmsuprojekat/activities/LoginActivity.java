@@ -13,7 +13,7 @@ import com.example.pmsuprojekat.activities.RegisterActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

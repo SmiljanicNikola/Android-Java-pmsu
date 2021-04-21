@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme.NoActionBar"
+    >
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -12,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="8dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
         >
 
         <View
@@ -19,44 +22,84 @@
             android:layout_height="50dp"
             android:background="@color/purple_700" />
 
-
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-
-            app:toolbarId="@+id/toolbar">
+        <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
+            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:layout_scrollFlags="scroll|enterAlways">
+        </androidx.appcompat.widget.Toolbar>
 
 
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
-        >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!-- The main content view -->
+        <RelativeLayout
+            android:id="@+id/mainContent"
             android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- The navigation drawer -->
+        <RelativeLayout
+            android:layout_width="280dp"
             android:layout_height="match_parent"
-            tools:context=".MainActivity">
+            android:id="@+id/drawerPane"
+            android:layout_gravity="start">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dobrodosli"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!-- Profile Box -->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <RelativeLayout
+                android:id="@+id/profileBox"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/material_blue_grey_800"
+                android:padding="8dp" >
 
-    </androidx.core.widget.NestedScrollView>
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_action_username"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/avatar"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User"
+                        android:textColor="#fff"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- List of Actions (pages) -->
+            <ListView
+                android:id="@+id/navList"
+                android:layout_width="280dp"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/profileBox"
+                android:choiceMode="singleChoice"
+                android:background="#ffffffff" />
+
+        </RelativeLayout>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </LinearLayout>

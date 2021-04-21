@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/gradient"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme"
+    >
 
     <ImageView
         android:id="@+id/imageView"
@@ -33,7 +35,7 @@
         />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/txtPassword"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtIme"
@@ -49,7 +51,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/editTextPassword"
+        android:layout_below="@id/txtPassword"
         app:cardElevation="10dp"
         android:layout_marginTop="40dp"
         app:cardBackgroundColor="@color/purple_500">
@@ -63,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Login"
+                android:text="@string/login"
                 android:textColor="#fff" />
 
 
@@ -77,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="445dp"
         android:layout_centerHorizontal="true"
-        android:text="Register" />
+        android:text="@string/register" />
 
 
 </RelativeLayout>

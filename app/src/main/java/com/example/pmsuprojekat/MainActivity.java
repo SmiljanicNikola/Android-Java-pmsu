@@ -17,6 +17,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
+
+
+
         int SPLASH_TIME_OUT = 5000;
         new Timer().schedule(new TimerTask() {
             @Override

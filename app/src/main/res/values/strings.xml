@@ -2,4 +2,10 @@
     <string name="app_name">PMSUProjekat</string>
     <string name="splash_screen">Splash Screen</string>
     <string name="dobrodosli">Dobrodosli</string>
+    <string-array name="Spinner_items">
+        <item>Kupac</item>
+        <item>Prodavac</item>
+    </string-array>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>
