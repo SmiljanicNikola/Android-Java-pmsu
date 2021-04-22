@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/AppTheme.NoActionBar"
-    >
+    android:orientation="vertical">
 
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        >
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="0dp"
             android:background="@color/purple_700" />
 
-        <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
-            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:layout_scrollFlags="scroll|enterAlways">
-        </androidx.appcompat.widget.Toolbar>
-
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -38,36 +35,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <!-- The main content view -->
         <RelativeLayout
             android:id="@+id/mainContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+             />
 
-        <!-- The navigation drawer -->
         <RelativeLayout
+            android:id="@+id/drawerPane"
             android:layout_width="280dp"
             android:layout_height="match_parent"
-            android:id="@+id/drawerPane"
             android:layout_gravity="start">
-
-            <!-- Profile Box -->
 
             <RelativeLayout
                 android:id="@+id/profileBox"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@color/material_blue_grey_800"
-                android:padding="8dp" >
+                android:background="@color/purple_200"
+                android:padding="8dp">
 
                 <ImageView
                     android:id="@+id/avatar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_action_username"
                     android:layout_marginTop="15dp"
+                    android:src="@drawable/ic_action_person"
                     />
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -75,7 +69,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:layout_toRightOf="@+id/avatar"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/userName"
@@ -96,9 +90,10 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/profileBox"
                 android:choiceMode="singleChoice"
-                android:background="#ffffffff" />
+                android:background="#ffffffff"/>
 
         </RelativeLayout>
+
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
