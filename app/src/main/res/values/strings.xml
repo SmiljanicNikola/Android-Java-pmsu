@@ -26,6 +26,7 @@
     <string name="preferences">Preferences</string>
     <string name="about">About</string>
     <string name="title_activity_detail">Detail</string>
+    <string name="blokiraj">Blokiraj</string>
 
 
 </resources>

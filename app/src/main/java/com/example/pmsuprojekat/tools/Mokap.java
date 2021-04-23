@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.pmsuprojekat.R;
 
+import model.Artikal;
 import model.Cinema;
 import model.Korisnik;
 
@@ -38,4 +39,18 @@ public class Mokap {
     }
 
 
-}
+    public static List<Artikal> getArtikle(){
+        ArrayList<Artikal> artikli = new ArrayList<Artikal>();
+            Artikal a1 = new Artikal("Monitor","Monitor za racunar",14900,"@R.Drawable/ic_action_username");
+            Artikal a2 = new Artikal("Telefon","Mobilni telefon Samsung",24999,"@R.Drawable/ic_action_username");
+            Artikal a3 = new Artikal("Zvucnik","Zvucnik ORGO",3500,"@R.Drawable/ic_action_username");
+
+
+            artikli.add(a1);
+            artikli.add(a2);
+            artikli.add(a3);
+
+            return artikli;
+        }
+    }
+
