@@ -18,7 +18,7 @@ public class FragmentTransitionKor {
         FragmentTransaction transaction = activity.getSupportFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .replace(R.id.mainContentKor, newFragment);
+                .replace(R.id.mainContent, newFragment);
         if(addToBackstack) transaction.addToBackStack(null);
         transaction.commit();
     }

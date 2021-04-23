@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        int SPLASH_TIME_OUT = 10000;
+        int SPLASH_TIME_OUT = 30000;
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {

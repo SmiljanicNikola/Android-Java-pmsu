@@ -16,11 +16,13 @@ public class DetailActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView tvName = findViewById(R.id.tvName);
-        TextView tvDescr = findViewById(R.id.tvDescr);
+        TextView Ime = findViewById(R.id.tvIme);
+        TextView prezime = findViewById(R.id.tvPrezime);
+        TextView Username = findViewById(R.id.tvUsername);
 
-        tvName.setText(getIntent().getStringExtra("name"));
-        tvDescr.setText(getIntent().getStringExtra("descr"));
+        Ime.setText(getIntent().getStringExtra("Ime"));
+        prezime.setText(getIntent().getStringExtra("Prezime"));
+        Username.setText(getIntent().getStringExtra("Username"));
     }
 
 }

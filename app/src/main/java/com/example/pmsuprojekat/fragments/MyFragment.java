@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
 
 import model.Cinema;
+import model.Korisnik;
 
 public class MyFragment extends ListFragment {
 
@@ -39,7 +40,7 @@ public class MyFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Cinema cinema = Mokap.getCinemas().get(position);
+        Korisnik korisnik = Mokap.getKorisnici().get(position);
 
         /*
          * Ako nasoj aktivnosti zelimo da posaljemo nekakve podatke
@@ -50,8 +51,9 @@ public class MyFragment extends ListFragment {
          * odgovarajucu putExtra metodu.
          * */
         Intent intent = new Intent(getActivity(), DetailActivity.class);
-        intent.putExtra("name", cinema.getName());
-        intent.putExtra("descr", cinema.getDescription());
+        intent.putExtra("ime", korisnik.getIme());
+        intent.putExtra("prezime",korisnik.getPrezime());
+        intent.putExtra("username", korisnik.getUsername());
         startActivity(intent);
     }
 
@@ -60,11 +62,11 @@ public class MyFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         Toast.makeText(getActivity(), "onActivityCreated()", Toast.LENGTH_SHORT).show();
 
-        CinemaAdapter adapter = new CinemaAdapter(getActivity());
-        setListAdapter(adapter);
-
-        /*KorisniciAdapter adapter = new KorisniciAdapter(getActivity());
+        /*CinemaAdapter adapter = new CinemaAdapter(getActivity());
         setListAdapter(adapter);*/
+
+        KorisniciAdapter adapter = new KorisniciAdapter(getActivity());
+        setListAdapter(adapter);
     }
 
     @SuppressLint("ResourceType")

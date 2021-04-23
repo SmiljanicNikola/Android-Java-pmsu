@@ -37,12 +37,14 @@ public class KorisniciAdapter extends BaseAdapter {
         Korisnik korisnik = Mokap.getKorisnici().get(position);
 
         if(convertView==null)
-            vi = activity.getLayoutInflater().inflate(R.layout.korisnici_list, null);
+            vi = activity.getLayoutInflater().inflate(R.layout.cinema_list, null);
 
-        //TextView prezime = (TextView)vi.findViewById(R.id.prezime);
-        TextView username = (TextView)vi.findViewById(R.id.userName);
+        TextView ime = (TextView)vi.findViewById(R.id.ime);
+        TextView prezime = (TextView)vi.findViewById(R.id.prezime);
+        TextView username = (TextView)vi.findViewById(R.id.username);
 
-        //prezime.setText(korisnik.getPrezime());
+        ime.setText(korisnik.getIme());
+        prezime.setText(korisnik.getPrezime());
         username.setText(korisnik.getUsername());
 
         return vi;

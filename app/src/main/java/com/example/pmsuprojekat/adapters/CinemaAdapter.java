@@ -45,11 +45,11 @@ public class CinemaAdapter extends BaseAdapter {
             vi = activity.getLayoutInflater().inflate(R.layout.cinema_list, null);
 
         TextView name = (TextView)vi.findViewById(R.id.name);
-        TextView description = (TextView)vi.findViewById(R.id.description);
+        //TextView description = (TextView)vi.findViewById(R.id.description);
         ImageView image = (ImageView)vi.findViewById(R.id.item_icon);
 
         name.setText(cinema.getName());
-        description.setText(cinema.getDescription());
+        //description.setText(cinema.getDescription());
 
         if (cinema.getAvatar() != -1){
             image.setImageResource(cinema.getAvatar());

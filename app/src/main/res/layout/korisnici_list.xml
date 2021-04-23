@@ -6,12 +6,6 @@
     android:orientation="vertical">
 
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
 
         <View
             android:layout_width="match_parent"
@@ -29,54 +23,68 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-    </com.google.android.material.appbar.AppBarLayout>
 
 
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/mainContentKor"
+            android:id="@+id/mainContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
 
+        <RelativeLayout
+            android:id="@+id/drawerPane"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start">
 
-
-            <Button
-                android:id="@+id/btnPojedinacniKorisnik1"
+            <RelativeLayout
+                android:id="@+id/profileBox"
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_centerHorizontal="false"
-                android:text="PojedinacniKorisnik1" />
-            <Button
-                android:id="@+id/btnPojedinacniKorisnik2"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_below="@id/btnPojedinacniKorisnik1"
-                android:layout_centerHorizontal="false"
-                android:text="PojedinacniKorisnik2" />
+                android:layout_height="100dp"
+                android:background="@color/purple_200"
+                android:padding="8dp">
 
-            <Button
-                android:id="@+id/btnPojedinacniKorisnik3"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_below="@id/btnPojedinacniKorisnik2"
-                android:layout_centerHorizontal="false"
-                android:text="PojedinacniKorisnik3" />
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/ic_action_person"
+                    />
 
-        <!-- List of Actions (pages) -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/avatar"
+                    android:orientation="vertical">
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- List of Actions (pages) -->
             <ListView
                 android:id="@+id/navList"
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/profileBox"
-                android:background="#ffffffff"
-                android:choiceMode="singleChoice" />
-
-
-
-
-
+                android:choiceMode="singleChoice"
+                android:background="#ffffffff"/>
 
         </RelativeLayout>
 
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </LinearLayout>
