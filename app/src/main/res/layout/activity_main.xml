@@ -24,7 +24,19 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+            <Spinner
+            android:id="@+id/aSpinnerToolBar"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:layout_centerHorizontal="true"
+
+            android:ems="10"
+            android:textColor="@color/black"/>
+        </androidx.appcompat.widget.Toolbar>
+
+
 
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -38,8 +50,7 @@
         <RelativeLayout
             android:id="@+id/mainContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-             />
+            android:layout_height="match_parent" />
 
         <RelativeLayout
             android:id="@+id/drawerPane"

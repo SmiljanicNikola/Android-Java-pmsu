@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.pmsuprojekat.R;
 
 import model.Cinema;
+import model.Korisnik;
 
 public class Mokap {
 
@@ -21,4 +22,20 @@ public class Mokap {
         return cinemas;
 
     }
+
+
+    public static List<Korisnik> getKorisnici(){
+        ArrayList<Korisnik> korisnici = new ArrayList<Korisnik>();
+        Korisnik k1 = new Korisnik("Marko","Markovic","markom","123",false);
+        Korisnik k2 = new Korisnik("Ivan","Ivanovic","ivani","321",false);
+        Korisnik k3 = new Korisnik("Milana","Milanovic","milanam","12345", false);
+
+        korisnici.add(k1);
+        korisnici.add(k2);
+        korisnici.add(k3);
+
+        return korisnici;
+    }
+
+
 }

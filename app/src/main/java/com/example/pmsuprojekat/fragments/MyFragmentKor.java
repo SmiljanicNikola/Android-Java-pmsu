@@ -6,24 +6,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.ListFragment;
+
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DetailActivity;
+import com.example.pmsuprojekat.activities.KorisnikDetailActivity;
 import com.example.pmsuprojekat.adapters.CinemaAdapter;
 import com.example.pmsuprojekat.adapters.KorisniciAdapter;
 import com.example.pmsuprojekat.tools.Mokap;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.ListFragment;
-
 import model.Cinema;
+import model.Korisnik;
 
-public class MyFragment extends ListFragment {
+public class MyFragmentKor extends ListFragment {
 
     public static MyFragment newInstance() {
         return new MyFragment();
@@ -32,14 +33,15 @@ public class MyFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup vg, Bundle data) {
         setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.map_layout, vg, false);
+        return inflater.inflate(R.layout.map_layout_korisnik, vg, false);
     }
+
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Cinema cinema = Mokap.getCinemas().get(position);
+        Korisnik korisnik = Mokap.getKorisnici().get(position);
 
         /*
          * Ako nasoj aktivnosti zelimo da posaljemo nekakve podatke
@@ -49,9 +51,9 @@ public class MyFragment extends ListFragment {
          * intent ce formirati Bundle za nas, ali mi treba da pozovemo
          * odgovarajucu putExtra metodu.
          * */
-        Intent intent = new Intent(getActivity(), DetailActivity.class);
-        intent.putExtra("name", cinema.getName());
-        intent.putExtra("descr", cinema.getDescription());
+        Intent intent = new Intent(getActivity(), KorisnikDetailActivity.class);
+        intent.putExtra("prezime", korisnik.getPrezime());
+        intent.putExtra("username", korisnik.getUsername());
         startActivity(intent);
     }
 
@@ -60,12 +62,11 @@ public class MyFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         Toast.makeText(getActivity(), "onActivityCreated()", Toast.LENGTH_SHORT).show();
 
-        CinemaAdapter adapter = new CinemaAdapter(getActivity());
-        setListAdapter(adapter);
-
-        /*KorisniciAdapter adapter = new KorisniciAdapter(getActivity());
-        setListAdapter(adapter);*/
+        //Dodaje se adapter
+        KorisniciAdapter korisnikAdapter = new KorisniciAdapter(getActivity());
+        setListAdapter(korisnikAdapter);
     }
+
 
     @SuppressLint("ResourceType")
     @Override
@@ -76,23 +77,6 @@ public class MyFragment extends ListFragment {
         // i vise fragmentaa gde svaki od njih ima svoj menu unutar toolbar-a
         menu.clear();
         inflater.inflate(R.layout.activity_itemdetail, menu);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if(id == R.id.action_refresh){
-            Toast.makeText(getActivity(), "Refresh App", Toast.LENGTH_SHORT).show();
-        }
-        if(id == R.id.action_new){
-            Toast.makeText(getActivity(), "Create Text", Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 }

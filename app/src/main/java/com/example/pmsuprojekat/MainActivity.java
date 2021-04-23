@@ -8,8 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +21,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.pmsuprojekat.activities.KorisniciActivity;
+import com.example.pmsuprojekat.activities.KorisnikDetailActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
 import com.example.pmsuprojekat.fragments.MyFragment;
 import com.example.pmsuprojekat.tools.FragmentTransition;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout mDrawerPane;
     private CharSequence mTitle;
     private ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
+
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         int SPLASH_TIME_OUT = 10000;
         new Timer().schedule(new TimerTask() {
             @Override
@@ -106,6 +114,65 @@ public class MainActivity extends AppCompatActivity {
             selectItemFromDrawer(0);
         }
 
+
+
+
+        spinner = findViewById(R.id.aSpinnerToolBar);
+
+        List<String> categories = new ArrayList<>();
+        categories.add(0, "Izaberi");
+        categories.add("Korisnici");
+        categories.add("Akcije");
+        categories.add("Porudzbine");
+        categories.add("Login");
+
+        ArrayAdapter<String> dataAdapter;
+        dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,categories);
+
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(dataAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (parent.getItemAtPosition(position).equals("Izaberi")) {
+                    //Nista
+                } else {
+                    String item = parent.getItemAtPosition(position).toString();
+
+                    Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
+
+
+                    if(parent.getItemAtPosition(position).equals("Korisnici"))
+                    {
+                        Intent intent = new Intent(MainActivity.this, KorisniciActivity.class);
+                        startActivity(intent);
+                    }
+                    if(parent.getItemAtPosition(position).equals("Login"))
+                    {
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+
+        });
+
+
+
+
+
+
     }
 
 
@@ -114,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         super.onResume();
     }
-
 
 
     private void prepareMenu(ArrayList<NavItem> mNavItems) {
@@ -152,30 +218,29 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void selectItemFromDrawer(int position) {
-        if(position == 0){
+        if (position == 0) {
             FragmentTransition.to(MyFragment.newInstance(), this, false);
-        }else if(position == 1){
+        } else if (position == 1) {
             //..
-        }else if(position == 2){
+        } else if (position == 2) {
             //..
-        }else if(position == 3){
+        } else if (position == 3) {
             //..
-        }else if(position == 4){
+        } else if (position == 4) {
             //..
-        }else if(position == 5){
+        } else if (position == 5) {
             //...
-        }else{
+        } else {
             Log.e("DRAWER", "Nesto van opsega!");
         }
 
         mDrawerList.setItemChecked(position, true);
-        if(position != 5) // za sve osim za sync
+        if (position != 5) // za sve osim za sync
         {
             setTitle(mNavItems.get(position).getmTitle());
         }
         mDrawerLayout.closeDrawer(mDrawerPane);
     }
-
 
 
     @Override
