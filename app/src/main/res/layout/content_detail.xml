@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/tvIme"
+        android:id="@+id/ime"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -42,7 +42,7 @@
         android:text="Prezime"
         android:id="@+id/textView2"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/tvIme"
+        android:layout_below="@+id/ime"
         />
 
     <TextView
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/tvPrezime"
+        android:id="@+id/prezime"
         android:layout_below="@id/textView2"
         />
 
@@ -63,7 +63,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Username"
         android:id="@+id/textView3"
-        android:layout_below="@+id/tvPrezime"
+        android:layout_below="@+id/prezime"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp" />
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/tvUsername"
+        android:id="@+id/username"
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

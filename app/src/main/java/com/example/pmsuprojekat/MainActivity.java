@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.KorisniciActivity;
 import com.example.pmsuprojekat.activities.KorisnikDetailActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
@@ -124,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
         categories.add("Korisnici");
         categories.add("Akcije");
         categories.add("Porudzbine");
+        categories.add("Artikli");
+
         categories.add("Login");
 
         ArrayAdapter<String> dataAdapter;
@@ -154,6 +157,11 @@ public class MainActivity extends AppCompatActivity {
                     if(parent.getItemAtPosition(position).equals("Login"))
                     {
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                    if(parent.getItemAtPosition(position).equals("Artikli"))
+                    {
+                        Intent intent = new Intent(MainActivity.this, ArtikalActivity.class);
                         startActivity(intent);
                     }
                 }

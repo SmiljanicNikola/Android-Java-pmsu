@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.tools.Mokap;
 
 import model.Artikal;
@@ -34,6 +36,17 @@ public class ArtikalAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         Artikal artikal = Mokap.getArtikle().get(position);
+
+        if(convertView==null)
+            vi = activity.getLayoutInflater().inflate(R.layout.prikaz_artikli_list, null);
+
+        TextView naziv = (TextView)vi.findViewById(R.id.naziv);
+        TextView opis = (TextView)vi.findViewById(R.id.opis);
+       // TextView cena = (TextView)vi.findViewById(R.id.cena);
+
+        naziv.setText(artikal.getNaziv());
+        opis.setText(artikal.getOpis());
+        //cena.setText(Double.valueOf( artikal.getCena()));
 
         return vi;
     }

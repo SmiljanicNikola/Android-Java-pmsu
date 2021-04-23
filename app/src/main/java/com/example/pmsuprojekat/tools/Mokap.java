@@ -41,14 +41,17 @@ public class Mokap {
 
     public static List<Artikal> getArtikle(){
         ArrayList<Artikal> artikli = new ArrayList<Artikal>();
-            Artikal a1 = new Artikal("Monitor","Monitor za racunar",14900,"@R.Drawable/ic_action_username");
-            Artikal a2 = new Artikal("Telefon","Mobilni telefon Samsung",24999,"@R.Drawable/ic_action_username");
-            Artikal a3 = new Artikal("Zvucnik","Zvucnik ORGO",3500,"@R.Drawable/ic_action_username");
+            Artikal a1 = new Artikal("Monitor","Dell 32 inch professional",32900,"@R.Drawable/ic_action_username");
+            Artikal a2 = new Artikal("Telefon","Samsung J3 2018",24999,"@R.Drawable/ic_action_username");
+            Artikal a3 = new Artikal("Monitor","LG Full HD 24 Inch",15000,"@R.Drawable/ic_action_username");
+            Artikal a4 = new Artikal("Wide-Monitor","Ultra-Wide 36 inch",42000,"@R.Drawable/ic_action_username");
+
 
 
             artikli.add(a1);
             artikli.add(a2);
             artikli.add(a3);
+            artikli.add(a4);
 
             return artikli;
         }

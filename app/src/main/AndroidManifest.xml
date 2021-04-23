@@ -50,6 +50,11 @@
             android:name=".activities.KorisniciActivity"
             >
         </activity>
+        <activity
+            android:name=".activities.ArtikalActivity"
+            >
+        </activity>
+
 
 
 
