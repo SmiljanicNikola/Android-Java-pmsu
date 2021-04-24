@@ -38,24 +38,24 @@
 
 
         <activity
-            android:name=".activities.RegisterActivity"
-            >
+            android:name=".activities.RegisterActivity">
+        </activity>
+        <activity
+            android:name=".activities.KorisnikDetailActivity">
+        </activity>
+        <activity
+            android:name=".activities.KorisniciActivity">
+        </activity>
+        <activity
+            android:name=".activities.ArtikalActivity">
+        </activity>
+        <activity
+            android:name=".activities.NoviArtikalActivity">
         </activity>
 
         <activity
-            android:name=".activities.KorisnikDetailActivity"
-            >
+            android:name=".activities.KomentarActivity">
         </activity>
-        <activity
-            android:name=".activities.KorisniciActivity"
-            >
-        </activity>
-        <activity
-            android:name=".activities.ArtikalActivity"
-            >
-        </activity>
-
-
 
 
 

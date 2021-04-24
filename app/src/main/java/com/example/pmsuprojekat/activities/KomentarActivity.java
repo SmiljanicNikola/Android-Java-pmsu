@@ -1,4 +1,4 @@
-package com.example.pmsuprojekat;
+package com.example.pmsuprojekat.activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -8,35 +8,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.pmsuprojekat.activities.ArtikalActivity;
-import com.example.pmsuprojekat.activities.KorisniciActivity;
-import com.example.pmsuprojekat.activities.KorisnikDetailActivity;
-import com.example.pmsuprojekat.activities.LoginActivity;
-import com.example.pmsuprojekat.adapters.DrawerListAdapter;
-import com.example.pmsuprojekat.fragments.MyFragment;
-import com.example.pmsuprojekat.tools.FragmentTransition;
+import com.example.pmsuprojekat.R;
+import com.example.pmsuprojekat.fragments.MyFragmentArtikal;
+import com.example.pmsuprojekat.fragments.MyFragmentKomentar;
+import com.example.pmsuprojekat.tools.FragmentTransitionArtikli;
+import com.example.pmsuprojekat.tools.FragmentTransitionKomentari;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
+import model.Komentar;
 import model.NavItem;
 
-public class MainActivity extends AppCompatActivity {
+public class KomentarActivity extends AppCompatActivity {
+
+    private TextView novi;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -44,12 +40,11 @@ public class MainActivity extends AppCompatActivity {
     private CharSequence mTitle;
     private ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
 
-    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.komentari_list);
 
         prepareMenu(mNavItems);
 
@@ -58,18 +53,8 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList = findViewById(R.id.navList);
 
         mDrawerPane = findViewById(R.id.drawerPane);
-        DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
+        // DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
 
-        // postavljamo senku koja preklama glavni sadrzaj
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        // dodajemo listener koji ce reagovati na klik pojedinacnog elementa u listi
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        // drawer-u postavljamo unapred definisan adapter
-        mDrawerList.setAdapter(adapter);
-
-        // Specificiramo da kada se drawer zatvori prikazujemo jednu ikonu
-        // kada se drawer otvori drugu. Za to je potrebo da ispranvo povezemo
-        // Toolbar i ActionBar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
@@ -77,20 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setIcon(R.drawable.ic_launcher);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
+            /*actionBar.setIcon(R.drawable.ic_launcher);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);*/
             actionBar.setHomeButtonEnabled(true);
         }
 
 
-        /*int SPLASH_TIME_OUT = 30000;
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                // finish(); // da nebi mogao da ode back na splash
-            }
-        }, SPLASH_TIME_OUT);*/
+
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
@@ -117,71 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-        spinner = findViewById(R.id.aSpinnerToolBar);
-
-        List<String> categories = new ArrayList<>();
-        categories.add(0, "Izaberi");
-        categories.add("Korisnici");
-        categories.add("Akcije");
-        categories.add("Porudzbine");
-        categories.add("Artikli");
-
-        categories.add("Login");
-
-        ArrayAdapter<String> dataAdapter;
-        dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,categories);
-
-
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(dataAdapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (parent.getItemAtPosition(position).equals("Izaberi")) {
-                    //Nista
-                } else {
-                    String item = parent.getItemAtPosition(position).toString();
-
-                    Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
-
-
-                    if(parent.getItemAtPosition(position).equals("Korisnici"))
-                    {
-                        Intent intent = new Intent(MainActivity.this, KorisniciActivity.class);
-                        startActivity(intent);
-                    }
-                    if(parent.getItemAtPosition(position).equals("Login"))
-                    {
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
-                    if(parent.getItemAtPosition(position).equals("Artikli"))
-                    {
-                        Intent intent = new Intent(MainActivity.this, ArtikalActivity.class);
-                        startActivity(intent);
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-
-
-
-        });
-
-
-
-
-
-
     }
+
+
 
 
     @Override
@@ -227,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectItemFromDrawer(int position) {
         if (position == 0) {
-            FragmentTransition.to(MyFragment.newInstance(), this, false);
+            FragmentTransitionKomentari.to(MyFragmentKomentar.newInstance(), this, false);
         } else if (position == 1) {
             //..
         } else if (position == 2) {
@@ -280,3 +196,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+

@@ -6,7 +6,6 @@
         <item>Kupac</item>
         <item>Prodavac</item>
     </string-array>
-
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="drawer_open">Open navigation drawer</string>
@@ -27,6 +26,9 @@
     <string name="about">About</string>
     <string name="title_activity_detail">Detail</string>
     <string name="blokiraj">Blokiraj</string>
+    <string name="dodajArtikal">Dodaj artikal</string>
+    <string name="arhiviraj">arhiviraj</string>
+
 
 
 </resources>

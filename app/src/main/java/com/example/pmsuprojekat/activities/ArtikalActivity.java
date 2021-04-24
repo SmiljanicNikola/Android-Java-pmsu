@@ -1,5 +1,6 @@
 package com.example.pmsuprojekat.activities;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,8 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.fragments.MyFragment;
 import com.example.pmsuprojekat.fragments.MyFragmentArtikal;
@@ -28,6 +32,8 @@ import model.NavItem;
 
 public class ArtikalActivity extends AppCompatActivity {
 
+    private Button button;
+    private TextView novi;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -88,8 +94,19 @@ public class ArtikalActivity extends AppCompatActivity {
             selectItemFromDrawer(0);
         }
 
+        button = findViewById(R.id.btnNovi);
+
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArtikalActivity.this, NoviArtikalActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
+
 
 
     @Override

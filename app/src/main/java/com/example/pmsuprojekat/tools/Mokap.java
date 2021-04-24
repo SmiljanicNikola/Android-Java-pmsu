@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.pmsuprojekat.R;
 
+import model.Akcija;
 import model.Artikal;
 import model.Cinema;
+import model.Komentar;
 import model.Korisnik;
 
 public class Mokap {
@@ -55,5 +57,24 @@ public class Mokap {
 
             return artikli;
         }
-    }
+
+
+     public static List<Komentar> getKomentare(){
+        ArrayList<Komentar> komentari = new ArrayList<Komentar>();
+        Komentar k1 = new Komentar("Petar Petrovic", "Sto se tice kupca, korektan i posten!");
+        Komentar k2 = new Komentar("Mirko Mirkovic", "Sve odlicno, svaka preporuka!");
+        Komentar k3 = new Komentar("Petar Petrovic", "Tacan, usluzan i dosao na vreme!");
+
+        komentari.add(k1);
+        komentari.add(k2);
+        komentari.add(k3);
+
+         return komentari;
+
+     }
+
+
+
+
+}
 

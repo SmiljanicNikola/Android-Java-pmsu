@@ -43,6 +43,7 @@ public class DetailActivity extends AppCompatActivity {
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
         categories.add("Artikli");
+        categories.add("Komentari");
 
 
         ArrayAdapter<String> dataAdapter;
@@ -67,6 +68,10 @@ public class DetailActivity extends AppCompatActivity {
 
                     if (parent.getItemAtPosition(position).equals("Artikli")) {
                         Intent intent = new Intent(DetailActivity.this, ArtikalActivity.class);
+                        startActivity(intent);
+                    }
+                    if (parent.getItemAtPosition(position).equals("Komentari")) {
+                        Intent intent = new Intent(DetailActivity.this, KomentarActivity.class);
                         startActivity(intent);
                     }
 

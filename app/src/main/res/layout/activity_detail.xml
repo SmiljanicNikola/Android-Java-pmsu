@@ -20,12 +20,13 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
             <Spinner
                 android:id="@+id/aSpinnerToolBarKorisnik"
-                android:layout_width="140dp"
+                android:layout_width="180dp"
                 android:layout_height="30dp"
                 android:layout_margin="5dp"
                 android:layout_centerHorizontal="true"
-                android:ems="10"
-                android:textColor="@color/black"/>
+                android:layout_marginLeft="400dp"
+                android:ems="14"
+                android:textColor="@color/white"/>
 
         </androidx.appcompat.widget.Toolbar>
 

@@ -35,7 +35,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/mainContentArtikal"
+            android:id="@+id/mainContentKomentari"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -87,17 +87,7 @@
 
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/btnNovi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:text="@string/dodajArtikal"
-            android:layout_marginTop="560dp"
-            tools:ignore="RtlCompat" />
+        
     </androidx.drawerlayout.widget.DrawerLayout>
 
 

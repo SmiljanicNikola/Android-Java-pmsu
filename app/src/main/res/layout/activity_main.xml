@@ -31,9 +31,8 @@
             android:layout_height="30dp"
             android:layout_margin="5dp"
             android:layout_centerHorizontal="true"
-
             android:ems="10"
-            android:textColor="@color/black"/>
+            android:textColor="@color/white"/>
         </androidx.appcompat.widget.Toolbar>
 
 
@@ -62,7 +61,7 @@
                 android:id="@+id/profileBox"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@color/purple_200"
+                android:background="@color/colorPrimaryDark"
                 android:padding="8dp">
 
                 <ImageView
@@ -70,8 +69,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_action_person"
-                    />
+                    android:src="@drawable/ic_action_person" />
 
 
                 <LinearLayout
@@ -81,7 +79,6 @@
                     android:layout_marginLeft="15dp"
                     android:layout_toRightOf="@+id/avatar"
                     android:orientation="vertical">
-
 
 
                 </LinearLayout>
