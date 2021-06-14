@@ -32,10 +32,16 @@ public class Mokap {
         Korisnik k1 = new Korisnik("Marko","Markovic","markom","123",false);
         Korisnik k2 = new Korisnik("Ivan","Ivanovic","ivani","321",false);
         Korisnik k3 = new Korisnik("Milana","Milanovic","milanam","12345", false);
+        Korisnik k4 = new Korisnik("Milorad","Miloradovic","miloradm","12345", false);
+        Korisnik k5 = new Korisnik("Stefan","Stefanovic","stefans","12345", false);
+
+
 
         korisnici.add(k1);
         korisnici.add(k2);
         korisnici.add(k3);
+        korisnici.add(k4);
+        korisnici.add(k5);
 
         return korisnici;
     }

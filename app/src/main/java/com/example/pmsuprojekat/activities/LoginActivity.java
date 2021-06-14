@@ -35,7 +35,7 @@ public class LoginActivity extends Activity {
             }
         }, SPLASH_TIME_OUT);*/
 
-        back = findViewById(R.id.btnBack);
+        /*back = findViewById(R.id.btnBack);
 
         back.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -43,7 +43,7 @@ public class LoginActivity extends Activity {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
         register = findViewById(R.id.textView2);

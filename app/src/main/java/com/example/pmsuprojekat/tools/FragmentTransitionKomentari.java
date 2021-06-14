@@ -25,7 +25,7 @@ public class FragmentTransitionKomentari
         transaction.commit();
     }
 
-    public static void remove(Fragment fragment, FragmentActivity activity) // TODO izbaciti fragment parametar
+    public static void remove(Fragment fragment, FragmentActivity activity)
     {
         activity.getSupportFragmentManager().popBackStack();
     }
