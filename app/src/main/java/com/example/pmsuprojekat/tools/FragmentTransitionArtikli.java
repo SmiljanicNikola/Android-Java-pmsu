@@ -8,7 +8,7 @@ import com.example.pmsuprojekat.R;
 
 public class FragmentTransitionArtikli {
 
-    public static void to(Fragment newFragment, FragmentActivity activity)
+   /* public static void to(Fragment newFragment, FragmentActivity activity)
     {
         to(newFragment, activity, true);
     }
@@ -27,6 +27,6 @@ public class FragmentTransitionArtikli {
     {
         activity.getSupportFragmentManager().popBackStack();
     }
-
+*/
 
 }

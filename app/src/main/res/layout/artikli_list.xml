@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/gradient"
+
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:focusableInTouchMode="true"
+    tools:context=".activities.ArtikalActivity"
+    >
 
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/purple_700" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -20,16 +16,19 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        tools:ignore="MissingConstraints">
 
     </androidx.appcompat.widget.Toolbar>
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
-
-
-    <androidx.drawerlayout.widget.DrawerLayout
+    <!-- <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -75,7 +74,7 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <!-- List of Actions (pages) -->
+             List of Actions (pages)
             <ListView
                 android:id="@+id/navList"
                 android:layout_width="280dp"
@@ -99,10 +98,10 @@
             android:text="@string/dodajArtikal"
             android:layout_marginTop="560dp"
             tools:ignore="RtlCompat" />
-    </androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.drawerlayout.widget.DrawerLayout> -->
 
 
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,8 +23,10 @@ public class LoginActivity extends AppCompatActivity {
     Button back;
     TextView register;
     TextView login;
+    TextView registerAsSalesman;
     EditText username, password;
     DBHelper DB;
+    private SharedPreferenceConfig sharedPreferenceConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +51,35 @@ public class LoginActivity extends AppCompatActivity {
             }
         });*/
 
+        sharedPreferenceConfig = new SharedPreferenceConfig(getApplicationContext());
+        if(sharedPreferenceConfig.read_login_status()){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+
+
         username = (EditText) findViewById(R.id.username1);
         password = (EditText) findViewById(R.id.password1);
         login = findViewById(R.id.textView1);
         register = findViewById(R.id.textView2);
+        registerAsSalesman = findViewById(R.id.textView3);
+
         DB=new DBHelper(this);
+
+
 
         register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        registerAsSalesman.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivityProdavac.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +98,10 @@ public class LoginActivity extends AppCompatActivity {
                     if(checkuserpass == true){
                         Toast.makeText(LoginActivity.this, "Uspesno ste se ulogovali", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("user",user);
                         startActivity(intent);
+                        sharedPreferenceConfig.login_status(true);
+                        finish();
                     }else{
                         Toast.makeText(LoginActivity.this, "Unesite prave kredencijale!", Toast.LENGTH_SHORT).show();
 

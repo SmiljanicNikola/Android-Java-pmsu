@@ -7,6 +7,8 @@
         <item>Prodavac</item>
     </string-array>
     <string name="login">Login</string>
+    <string name="registerBuyer">Register as Buyer</string>
+    <string name="registerSalesman">Register as Salesman</string>
     <string name="register">Register</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
@@ -28,7 +30,8 @@
     <string name="blokiraj">Blokiraj</string>
     <string name="dodajArtikal">Dodaj artikal</string>
     <string name="arhiviraj">arhiviraj</string>
-
-
+    <string name="login_status_shared_preference">com.SharedPreferences_login_status</string>
+    <string name="login_shared_preference">Login shared preferences</string>
+    <string name="logOut">Log out</string>
 
 </resources>

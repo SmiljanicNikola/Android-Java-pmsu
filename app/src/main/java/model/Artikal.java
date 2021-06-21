@@ -2,6 +2,7 @@ package model;
 
 public class Artikal {
 
+    private Integer id;
     private String naziv;
     private String opis;
     private double cena;
@@ -11,12 +12,41 @@ public class Artikal {
     public Artikal(){
 
     }
+    public Artikal(Integer id,String naziv, String opis, double cena, String putanjaSlike) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.cena = cena;
+        this.putanjaSlike = putanjaSlike;
+    }
 
     public Artikal(String naziv, String opis, double cena, String putanjaSlike) {
         this.naziv = naziv;
         this.opis = opis;
         this.cena = cena;
         this.putanjaSlike = putanjaSlike;
+    }
+
+    public Artikal(String naziv, String opis, double cena) {
+        this.naziv = naziv;
+        this.opis = opis;
+        this.cena = cena;
+    }
+
+
+    public Artikal(Integer id, String naziv, String opis, double cena) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.cena = cena;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNaziv() {

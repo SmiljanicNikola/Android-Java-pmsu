@@ -21,7 +21,7 @@ public class SplashScreenActivity extends Activity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
                 finish(); // da nebi mogao da ode back na splash
             }
         }, SPLASH_TIME_OUT);

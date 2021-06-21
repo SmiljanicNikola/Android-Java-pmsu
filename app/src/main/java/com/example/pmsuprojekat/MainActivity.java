@@ -22,9 +22,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.pmsuprojekat.activities.ArtikalActivity;
+import com.example.pmsuprojekat.activities.DBHelper;
 import com.example.pmsuprojekat.activities.KorisniciActivity;
 import com.example.pmsuprojekat.activities.KorisnikDetailActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
+import com.example.pmsuprojekat.activities.NoviArtikalActivity;
+import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
 import com.example.pmsuprojekat.fragments.MyFragment;
 import com.example.pmsuprojekat.tools.FragmentTransition;
@@ -34,22 +37,32 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import model.Korisnik;
 import model.NavItem;
 
 public class MainActivity extends AppCompatActivity {
+
+    private SharedPreferenceConfig sharedPreferenceConfig;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private RelativeLayout mDrawerPane;
     private CharSequence mTitle;
     private ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
-
     private Spinner spinner;
+    DBHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferenceConfig = new SharedPreferenceConfig(getApplicationContext());
+        DB = new DBHelper(this);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("user");
+        //Korisnik korisnik = DB.findKorisnik(username);
+
 
         prepareMenu(mNavItems);
 
@@ -126,8 +139,7 @@ public class MainActivity extends AppCompatActivity {
         categories.add("Akcije");
         categories.add("Porudzbine");
         categories.add("Artikli");
-
-        categories.add("Login");
+        categories.add("Dodaj artikal");
 
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,categories);
@@ -149,19 +161,18 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
 
 
-                    if(parent.getItemAtPosition(position).equals("Korisnici"))
-                    {
+                    if(parent.getItemAtPosition(position).equals("Korisnici")) {
                         Intent intent = new Intent(MainActivity.this, KorisniciActivity.class);
-                        startActivity(intent);
-                    }
-                    if(parent.getItemAtPosition(position).equals("Login"))
-                    {
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }
                     if(parent.getItemAtPosition(position).equals("Artikli"))
                     {
                         Intent intent = new Intent(MainActivity.this, ArtikalActivity.class);
+                        startActivity(intent);
+                    }
+                    if(parent.getItemAtPosition(position).equals("Dodaj artikal"))
+                    {
+                        Intent intent = new Intent(MainActivity.this, NoviArtikalActivity.class);
                         startActivity(intent);
                     }
                 }
@@ -192,8 +203,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void prepareMenu(ArrayList<NavItem> mNavItems) {
-        mNavItems.add(new NavItem(getString(R.string.home), getString(R.string.home_long), R.drawable.ic_action_username));
-        mNavItems.add(new NavItem(getString(R.string.places), getString(R.string.places_long), R.drawable.ic_action_username));
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("user");
+        mNavItems.add(new NavItem(username, getString(R.string.home_long), R.drawable.ic_action_username));
+        mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.preferences), getString(R.string.preferences_long), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.about), getString(R.string.about_long), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.sync_data), getString(R.string.sync_data_long), R.drawable.ic_action_username));
@@ -229,7 +242,9 @@ public class MainActivity extends AppCompatActivity {
         if (position == 0) {
             FragmentTransition.to(MyFragment.newInstance(), this, false);
         } else if (position == 1) {
-            //..
+            sharedPreferenceConfig.login_status(false);
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         } else if (position == 2) {
             //..
         } else if (position == 3) {
