@@ -31,6 +31,8 @@ public class NoviArtikalActivity extends AppCompatActivity {
 
         textViewDodaj = findViewById(R.id.textViewDodaj);
         textViewPregledaj = findViewById(R.id.textViewPregledaj);
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("id",0);
 
 
         textViewDodaj.setOnClickListener(new View.OnClickListener() {
@@ -40,12 +42,14 @@ public class NoviArtikalActivity extends AppCompatActivity {
                 String opis = txtOpis.getText().toString();
                 Double cena = Double.valueOf(txtCena.getText().toString());
                 String putanja = txtPutanja.getText().toString();
+                Integer prodavac_id = id;
+
 
                 if (naziv.equals("") || opis.equals("") || cena.equals("") || putanja.equals("")) {
                     Toast.makeText(NoviArtikalActivity.this, "Unesite sva polja!", Toast.LENGTH_SHORT).show();
                 } else {
                     DBHelper DB = new DBHelper(NoviArtikalActivity.this);
-                    Artikal artikal = new Artikal(naziv,opis,cena,putanja);
+                    Artikal artikal = new Artikal(naziv,opis,cena,putanja,prodavac_id);
                     DB.insertArtikal(artikal);
                     Toast.makeText(NoviArtikalActivity.this, "Uspesno ste dodali artikal", Toast.LENGTH_SHORT).show();
                     finish();

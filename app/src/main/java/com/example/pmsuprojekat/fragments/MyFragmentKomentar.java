@@ -1,4 +1,4 @@
-package com.example.pmsuprojekat.fragments;
+/*package com.example.pmsuprojekat.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,9 +17,8 @@ import androidx.fragment.app.ListFragment;
 
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DetailActivity;
-import com.example.pmsuprojekat.adapters.KomentarAdapter;
+//import com.example.pmsuprojekat.adapters.KomentarAdapter;
 import com.example.pmsuprojekat.adapters.KorisniciAdapter;
-import com.example.pmsuprojekat.tools.Mokap;
 
 import model.Komentar;
 import model.Korisnik;
@@ -47,7 +46,7 @@ public class MyFragmentKomentar extends ListFragment {
          * fragmentima! Koristicemo Bundle za slanje podataka. Tacnije
          * intent ce formirati Bundle za nas, ali mi treba da pozovemo
          * odgovarajucu putExtra metodu.
-         * */
+         *
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("autor", komentar.getAutor());
         intent.putExtra("tekst",komentar.getTekst());
@@ -59,8 +58,7 @@ public class MyFragmentKomentar extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         Toast.makeText(getActivity(), "onActivityCreated()", Toast.LENGTH_SHORT).show();
 
-        /*CinemaAdapter adapter = new CinemaAdapter(getActivity());
-        setListAdapter(adapter);*/
+
 
         KomentarAdapter adapter = new KomentarAdapter(getActivity());
         setListAdapter(adapter);
@@ -71,17 +69,14 @@ public class MyFragmentKomentar extends ListFragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        // ovo korostimo ako je nasa arhitekrura takva da imamo jednu aktivnost
-        // i vise fragmentaa gde svaki od njih ima svoj menu unutar toolbar-a
+
         menu.clear();
         inflater.inflate(R.layout.activity_itemdetail, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         if(id == R.id.action_refresh){
@@ -94,3 +89,4 @@ public class MyFragmentKomentar extends ListFragment {
     }
 
 }
+*/

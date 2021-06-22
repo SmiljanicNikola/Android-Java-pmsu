@@ -7,13 +7,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.pmsuprojekat.R;
-import com.example.pmsuprojekat.tools.Mokap;
 
-import model.Cinema;
 import model.Korisnik;
 
-public class KorisniciAdapter extends BaseAdapter {
-    private Activity activity;
+    /*private Activity activity;
 
     public KorisniciAdapter(Activity activity){ this.activity=activity;}
     @Override
@@ -51,3 +48,4 @@ public class KorisniciAdapter extends BaseAdapter {
 
     }
 }
+*/

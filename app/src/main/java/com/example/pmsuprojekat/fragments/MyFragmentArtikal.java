@@ -1,4 +1,4 @@
-package com.example.pmsuprojekat.fragments;
+/*package com.example.pmsuprojekat.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,8 +18,7 @@ import androidx.fragment.app.ListFragment;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DetailActivity;
-import com.example.pmsuprojekat.adapters.ArtikalAdapter;
-import com.example.pmsuprojekat.tools.Mokap;
+//import com.example.pmsuprojekat.adapters.ArtikalAdapter;
 
 import model.Artikal;
 
@@ -42,14 +41,7 @@ public class MyFragmentArtikal extends ListFragment {
 
         Artikal artikal = Mokap.getArtikle().get(position);
 
-        /*
-         * Ako nasoj aktivnosti zelimo da posaljemo nekakve podatke
-         * za to ne treba da koristimo konstruktor. Treba da iskoristimo
-         * identicnu strategiju koju smo koristili kda smo radili sa
-         * fragmentima! Koristicemo Bundle za slanje podataka. Tacnije
-         * intent ce formirati Bundle za nas, ali mi treba da pozovemo
-         * odgovarajucu putExtra metodu.
-         * */
+
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("naziv", artikal.getNaziv());
         intent.putExtra("opis",artikal.getOpis());
@@ -63,8 +55,7 @@ public class MyFragmentArtikal extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         Toast.makeText(getActivity(), "onActivityCreated()", Toast.LENGTH_SHORT).show();
 
-        /*CinemaAdapter adapter = new CinemaAdapter(getActivity());
-        setListAdapter(adapter);*/
+
 
         ArtikalAdapter adapter = new ArtikalAdapter(getActivity());
         setListAdapter(adapter);
@@ -97,3 +88,4 @@ public class MyFragmentArtikal extends ListFragment {
     }
 
 }
+*/

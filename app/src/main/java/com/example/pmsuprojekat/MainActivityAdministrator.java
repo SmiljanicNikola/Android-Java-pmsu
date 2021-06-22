@@ -24,24 +24,22 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
 import com.example.pmsuprojekat.activities.KorisniciActivity;
-import com.example.pmsuprojekat.activities.KorisnikDetailActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
 import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 import com.example.pmsuprojekat.activities.SviKorisniciActivity;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
-/*import com.example.pmsuprojekat.fragments.MyFragment;*/
+//import com.example.pmsuprojekat.fragments.MyFragment;
 import com.example.pmsuprojekat.tools.FragmentTransition;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import model.Korisnik;
 import model.NavItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityAdministrator extends AppCompatActivity {
+
 
     private SharedPreferenceConfig sharedPreferenceConfig;
     private DrawerLayout mDrawerLayout;
@@ -56,13 +54,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_administrator);
 
         sharedPreferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         DB = new DBHelper(this);
         Intent intent = getIntent();
         String username = intent.getStringExtra("user");
         //Korisnik korisnik = DB.findKorisnik(username);
+
 
         prepareMenu(mNavItems);
 
@@ -74,12 +73,9 @@ public class MainActivity extends AppCompatActivity {
         DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        mDrawerList.setOnItemClickListener(new MainActivityAdministrator.DrawerItemClickListener());
         mDrawerList.setAdapter(adapter);
 
-        // Specificiramo da kada se drawer zatvori prikazujemo jednu ikonu
-        // kada se drawer otvori drugu. Za to je potrebo da ispranvo povezemo
-        // Toolbar i ActionBar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
@@ -109,19 +105,15 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        // Izborom na neki element iz liste, pokrecemo akciju
         if (savedInstanceState == null) {
             selectItemFromDrawer(0);
         }
-
 
         spinner = findViewById(R.id.aSpinnerToolBar);
 
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
-        categories.add("Login");
-        categories.add("Korisnici");
-        categories.add("Akcije");
-        categories.add("Porudzbine");
         categories.add("Artikli");
         categories.add("Dodaj artikal");
         categories.add("Svi korisnici");
@@ -139,44 +131,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Izaberi")) {
-                    //Nista
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
-
                     Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
-
-
-                    if(parent.getItemAtPosition(position).equals("Korisnici")) {
-                        Intent intent = new Intent(MainActivity.this, KorisniciActivity.class);
-                        startActivity(intent);
-                    }
-                    if(parent.getItemAtPosition(position).equals("Login")) {
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
                     if(parent.getItemAtPosition(position).equals("Artikli"))
                     {
-                        Intent intent1 = getIntent();
-                        String username = intent1.getStringExtra("user");
-                        Korisnik korisnik = DB.findKorisnik(username);
-                        Intent intent = new Intent(MainActivity.this, ArtikalActivity.class);
-                        intent.putExtra("id", korisnik.getId());
+                        Intent intent = new Intent(MainActivityAdministrator.this, ArtikalActivity.class);
                         startActivity(intent);
                     }
                     if(parent.getItemAtPosition(position).equals("Dodaj artikal"))
                     {
-                        Intent intent1 = getIntent();
-                        String username = intent1.getStringExtra("user");
-                        Intent intent = new Intent(MainActivity.this, NoviArtikalActivity.class);
-
-                        Korisnik korisnik = DB.findKorisnik(username);
-                        int idProdavca = korisnik.getId();
-                        intent.putExtra("id", idProdavca);
+                        Intent intent = new Intent(MainActivityAdministrator.this, NoviArtikalActivity.class);
                         startActivity(intent);
                     }
                     if(parent.getItemAtPosition(position).equals("Svi korisnici"))
                     {
-                        Intent intent = new Intent(MainActivity.this, SviKorisniciActivity.class);
+                        Intent intent = new Intent(MainActivityAdministrator.this, SviKorisniciActivity.class);
                         startActivity(intent);
                     }
                 }
@@ -186,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
+
         });
 
     }
@@ -195,26 +166,22 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-
     private void prepareMenu(ArrayList<NavItem> mNavItems) {
         Intent intent = getIntent();
         String username = intent.getStringExtra("user");
-        if(username != null) {
-            Korisnik korisnik = DB.findKorisnik(username);
-            mNavItems.add(new NavItem(username, korisnik.getUloga(), R.drawable.ic_action_username));
-        }
+        Korisnik korisnik = DB.findKorisnik(username);
+        mNavItems.add(new NavItem(username,korisnik.getUloga(), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.Empty),getString(R.string.Empty), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.about), getString(R.string.about_long), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
     }
 
-   /* @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
@@ -222,10 +189,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 
-
-    /* The click listner for ListView in the navigation drawer */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -233,14 +198,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void selectItemFromDrawer(int position) {
         if (position == 0) {
             //FragmentTransition.to(MyFragment.newInstance(), this, false);
         } else if (position == 1) {
-            sharedPreferenceConfig.login_status(false);
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
+            //..
         } else if (position == 2) {
             //..
         } else if (position == 3) {
@@ -250,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (position == 4) {
             //..
         } else if (position == 5) {
-            //..
+            //...
         } else {
             Log.e("DRAWER", "Nesto van opsega!");
         }
@@ -263,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.closeDrawer(mDrawerPane);
     }
 
-
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
@@ -273,14 +234,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 

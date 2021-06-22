@@ -1,12 +1,10 @@
-package com.example.pmsuprojekat.tools;
+/*package com.example.pmsuprojekat.tools;
 
 import java.util.ArrayList;
 import java.util.List;
 import com.example.pmsuprojekat.R;
 
-import model.Akcija;
 import model.Artikal;
-import model.Cinema;
 import model.Komentar;
 import model.Korisnik;
 
@@ -84,3 +82,4 @@ public class Mokap {
 
 }
 
+*/

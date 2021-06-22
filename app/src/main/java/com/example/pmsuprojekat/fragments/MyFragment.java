@@ -1,4 +1,4 @@
-package com.example.pmsuprojekat.fragments;
+/*package com.example.pmsuprojekat.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,14 +14,11 @@ import android.widget.Toast;
 
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DetailActivity;
-import com.example.pmsuprojekat.adapters.CinemaAdapter;
 import com.example.pmsuprojekat.adapters.KorisniciAdapter;
-import com.example.pmsuprojekat.tools.Mokap;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
 
-import model.Cinema;
 import model.Korisnik;
 
 public class MyFragment extends ListFragment {
@@ -40,16 +37,7 @@ public class MyFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Korisnik korisnik = Mokap.getKorisnici().get(position);
 
-        /*
-         * Ako nasoj aktivnosti zelimo da posaljemo nekakve podatke
-         * za to ne treba da koristimo konstruktor. Treba da iskoristimo
-         * identicnu strategiju koju smo koristili kda smo radili sa
-         * fragmentima! Koristicemo Bundle za slanje podataka. Tacnije
-         * intent ce formirati Bundle za nas, ali mi treba da pozovemo
-         * odgovarajucu putExtra metodu.
-         * */
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("ime", korisnik.getIme());
         intent.putExtra("prezime",korisnik.getPrezime());
@@ -62,8 +50,8 @@ public class MyFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         Toast.makeText(getActivity(), "onActivityCreated()", Toast.LENGTH_SHORT).show();
 
-        /*CinemaAdapter adapter = new CinemaAdapter(getActivity());
-        setListAdapter(adapter);*/
+        CinemaAdapter adapter = new CinemaAdapter(getActivity());
+        setListAdapter(adapter);
 
         KorisniciAdapter adapter = new KorisniciAdapter(getActivity());
         setListAdapter(adapter);
@@ -98,3 +86,4 @@ public class MyFragment extends ListFragment {
     }
 
 }
+*/

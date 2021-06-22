@@ -97,8 +97,8 @@ import com.example.pmsuprojekat.activities.KorisniciActivity;
 import com.example.pmsuprojekat.activities.KorisnikDetailActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
-import com.example.pmsuprojekat.adapters.KorisniciAdapter;
-import com.example.pmsuprojekat.fragments.MyFragment;
+/*import com.example.pmsuprojekat.adapters.KorisniciAdapter;
+import com.example.pmsuprojekat.fragments.MyFragment;*/
 import com.example.pmsuprojekat.tools.FragmentTransition;
 
 import java.util.ArrayList;
@@ -216,7 +216,7 @@ public class KorisniciActivity extends AppCompatActivity {
 
     private void selectItemFromDrawer(int position) {
         if (position == 0) {
-            FragmentTransition.to(MyFragment.newInstance(), this, false);
+            //FragmentTransition.to(MyFragment.newInstance(), this, false);
         } else if (position == 1) {
             //..
         } else if (position == 2) {

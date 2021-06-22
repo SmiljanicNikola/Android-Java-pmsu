@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:text="Id"
+        android:textStyle="bold"
+        android:id="@+id/text_id"
+        android:textSize="16dp"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Korisnicko Ime"
+        android:layout_margin="5dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:id="@+id/editText_korisnickoIme"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Blokiraj"
+            android:layout_weight="2"
+            android:background="#E85252"
+            android:id="@+id/btn_blokiraj"
+            android:layout_margin="4dp"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C5C5C5"
+        android:layout_margin="5dp"/>
+
+</LinearLayout>

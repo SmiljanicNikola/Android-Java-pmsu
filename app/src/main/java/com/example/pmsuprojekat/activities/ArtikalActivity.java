@@ -25,8 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.adapters.ArtikalAdapterClass;
-import com.example.pmsuprojekat.fragments.MyFragment;
-import com.example.pmsuprojekat.fragments.MyFragmentArtikal;
+/*import com.example.pmsuprojekat.fragments.MyFragment;
+import com.example.pmsuprojekat.fragments.MyFragmentArtikal;*/
 import com.example.pmsuprojekat.tools.FragmentTransition;
 import com.example.pmsuprojekat.tools.FragmentTransitionArtikli;
 
@@ -59,10 +59,6 @@ public class ArtikalActivity extends AppCompatActivity {
 
         }
 
-
-
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
@@ -75,24 +71,12 @@ public class ArtikalActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
         }
 
-
-
-
-
-
     }
-
-
-
-
     @Override
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
     }
-
-
-
 
 }
 

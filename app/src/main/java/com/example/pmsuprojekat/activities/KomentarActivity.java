@@ -20,8 +20,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.pmsuprojekat.R;
-import com.example.pmsuprojekat.fragments.MyFragmentArtikal;
-import com.example.pmsuprojekat.fragments.MyFragmentKomentar;
+/*import com.example.pmsuprojekat.fragments.MyFragmentArtikal;
+import com.example.pmsuprojekat.fragments.MyFragmentKomentar;*/
 import com.example.pmsuprojekat.tools.FragmentTransitionArtikli;
 import com.example.pmsuprojekat.tools.FragmentTransitionKomentari;
 
@@ -143,7 +143,7 @@ public class KomentarActivity extends AppCompatActivity {
 
     private void selectItemFromDrawer(int position) {
         if (position == 0) {
-            FragmentTransitionKomentari.to(MyFragmentKomentar.newInstance(), this, false);
+            //FragmentTransitionKomentari.to(MyFragmentKomentar.newInstance(), this, false);
         } else if (position == 1) {
             //..
         } else if (position == 2) {

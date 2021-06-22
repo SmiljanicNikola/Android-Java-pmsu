@@ -6,12 +6,16 @@
 
     <ImageView
         android:id="@+id/splashImage"
-        android:layout_width="408dp"
+        android:layout_width="800dp"
         android:layout_height="740dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="0dp"
         android:contentDescription="@string/splash_screen"
-        android:src="@drawable/splash" />
+        android:src="@drawable/th" />
 </RelativeLayout>

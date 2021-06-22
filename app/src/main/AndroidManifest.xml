@@ -52,6 +52,15 @@
         <activity
             android:name=".activities.NoviArtikalActivity">
         </activity>
+        <activity
+            android:name=".MainActivityAdministrator">
+        </activity>
+        <activity
+            android:name=".MainActivityKupac">
+        </activity>
+        <activity
+            android:name=".activities.SviKorisniciActivity">
+        </activity>
 
         <activity
             android:name=".activities.KomentarActivity">

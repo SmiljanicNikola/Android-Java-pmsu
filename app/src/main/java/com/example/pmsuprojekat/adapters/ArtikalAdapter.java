@@ -1,4 +1,4 @@
-package com.example.pmsuprojekat.adapters;
+/*package com.example.pmsuprojekat.adapters;
 
 import android.app.Activity;
 import android.view.View;
@@ -7,7 +7,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.pmsuprojekat.R;
-import com.example.pmsuprojekat.tools.Mokap;
 
 import model.Artikal;
 
@@ -51,3 +50,4 @@ public class ArtikalAdapter extends BaseAdapter {
         return vi;
     }
 }
+*/

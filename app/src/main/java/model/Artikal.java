@@ -7,6 +7,7 @@ public class Artikal {
     private String opis;
     private double cena;
     private String putanjaSlike;
+    private int prodavac_id;
 
 
     public Artikal(){
@@ -33,6 +34,13 @@ public class Artikal {
         this.cena = cena;
     }
 
+    public Artikal(String naziv, String opis, double cena, String putanjaSlike, int prodavac_id) {
+        this.naziv = naziv;
+        this.opis = opis;
+        this.cena = cena;
+        this.putanjaSlike = putanjaSlike;
+        this.prodavac_id = prodavac_id;
+    }
 
     public Artikal(Integer id, String naziv, String opis, double cena) {
         this.id = id;
@@ -79,6 +87,14 @@ public class Artikal {
 
     public void setPutanjaSlike(String putanjaSlike) {
         this.putanjaSlike = putanjaSlike;
+    }
+
+    public int getProdavac_id() {
+        return prodavac_id;
+    }
+
+    public void setProdavac_id(int prodavac_id) {
+        this.prodavac_id = prodavac_id;
     }
 
     @Override

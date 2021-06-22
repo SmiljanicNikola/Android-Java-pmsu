@@ -21,7 +21,7 @@
     <string name="sync_data_long">Sync data from the repo</string>
     <string name="home">Home</string>
     <string name="places">Places</string>
-    <string name="action_settings">Logout</string>
+    <string name="action_settings">L</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_new">New</string>
     <string name="preferences">Preferences</string>
@@ -33,5 +33,7 @@
     <string name="login_status_shared_preference">com.SharedPreferences_login_status</string>
     <string name="login_shared_preference">Login shared preferences</string>
     <string name="logOut">Log out</string>
+    <string name="Empty"> </string>
+
 
 </resources>

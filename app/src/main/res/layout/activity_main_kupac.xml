@@ -24,23 +24,26 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:visibility="visible"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
-
             <Spinner
                 android:id="@+id/aSpinnerToolBar"
                 android:layout_width="140dp"
                 android:layout_height="30dp"
-                android:layout_centerHorizontal="true"
                 android:layout_margin="5dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="70dp"
+                android:layout_centerHorizontal="true"
                 android:ems="10"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"/>
         </androidx.appcompat.widget.Toolbar>
 
-
     </com.google.android.material.appbar.AppBarLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/prodavciListView"
+        android:text="40sp"/>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
@@ -99,5 +102,7 @@
 
 
     </androidx.drawerlayout.widget.DrawerLayout>
+
+
 
 </LinearLayout>

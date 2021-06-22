@@ -32,6 +32,11 @@ public class Korisnik {
         this.blokiran = blokiran;
     }
 
+    public Korisnik(Integer id, boolean blokiran) {
+        this.id = id;
+        this.blokiran = blokiran;
+    }
+
     public Korisnik(Integer id, String ime, String prezime, String username, String password, String uloga, boolean blokiran) {
         this.id = id;
         this.ime = ime;
