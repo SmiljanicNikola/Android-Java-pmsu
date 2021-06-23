@@ -1,23 +1,24 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Porudzbina {
 
     private Integer id;
-    private Date satnica;
+    private LocalDate satnica;
     private boolean dostavljeno;
     private int ocena;
     private String komentar;
     private boolean anonimanKomentar;
     private boolean arhiviranKomentar;
-    private Kupac kupac;
+    private int kupac_id;
 
     public Porudzbina(){
 
     }
 
-    public Porudzbina(Integer id, Date satnica, boolean dostavljeno, int ocena, String komentar, boolean anonimanKomentar, boolean arhiviranKomentar, Kupac kupac) {
+    public Porudzbina(Integer id, LocalDate satnica, boolean dostavljeno, int ocena, String komentar, boolean anonimanKomentar, boolean arhiviranKomentar, int kupac_id) {
         this.id = id;
         this.satnica = satnica;
         this.dostavljeno = dostavljeno;
@@ -25,17 +26,17 @@ public class Porudzbina {
         this.komentar = komentar;
         this.anonimanKomentar = anonimanKomentar;
         this.arhiviranKomentar = arhiviranKomentar;
-        this.kupac = kupac;
+        this.kupac_id = kupac_id;
     }
 
-    public Porudzbina(Date satnica, boolean dostavljeno, int ocena, String komentar, boolean anonimanKomentar, boolean arhiviranKomentar, Kupac kupac) {
+    public Porudzbina(LocalDate satnica, boolean dostavljeno, int ocena, String komentar, boolean anonimanKomentar, boolean arhiviranKomentar, int kupac_id) {
         this.satnica = satnica;
         this.dostavljeno = dostavljeno;
         this.ocena = ocena;
         this.komentar = komentar;
         this.anonimanKomentar = anonimanKomentar;
         this.arhiviranKomentar = arhiviranKomentar;
-        this.kupac = kupac;
+        this.kupac_id = kupac_id;
     }
 
     public Integer getId() {
@@ -46,11 +47,11 @@ public class Porudzbina {
         this.id = id;
     }
 
-    public Date getSatnica() {
+    public LocalDate getSatnica() {
         return satnica;
     }
 
-    public void setSatnica(Date satnica) {
+    public void setSatnica(LocalDate satnica) {
         this.satnica = satnica;
     }
 
@@ -94,11 +95,11 @@ public class Porudzbina {
         this.arhiviranKomentar = arhiviranKomentar;
     }
 
-    public Kupac getKupac() {
-        return kupac;
+    public int getKupac_id() {
+        return kupac_id;
     }
 
-    public void setKupac(Kupac kupac) {
-        this.kupac = kupac;
+    public void setKupac_id(int kupac_id) {
+        this.kupac_id = kupac_id;
     }
 }

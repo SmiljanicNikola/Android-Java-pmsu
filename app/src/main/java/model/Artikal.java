@@ -49,6 +49,15 @@ public class Artikal {
         this.cena = cena;
     }
 
+    public Artikal(Integer id, String naziv, String opis, double cena, String putanjaSlike, int prodavac_id) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.cena = cena;
+        this.putanjaSlike = putanjaSlike;
+        this.prodavac_id = prodavac_id;
+    }
+
     public Integer getId() {
         return id;
     }

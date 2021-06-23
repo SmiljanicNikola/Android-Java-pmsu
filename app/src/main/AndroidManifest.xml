@@ -47,6 +47,9 @@
             android:name=".activities.KorisniciActivity">
         </activity>
         <activity
+            android:name=".activities.IzabraniProdavacActivity">
+        </activity>
+        <activity
             android:name=".activities.ArtikalActivity">
         </activity>
         <activity

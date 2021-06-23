@@ -2,6 +2,7 @@ package com.example.pmsuprojekat.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,32 +11,36 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import model.Artikal;
+import model.Porudzbina;
+import model.Stavka;
 
-public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClass.ViewHolder>{
+public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterClass2.ViewHolder>{
 
     List<Artikal> artikli;
     Context context;
     DBHelper dbHelper;
 
-    public ArtikalAdapterClass(List<Artikal> artikli, Context context) {
+    public ArtikalAdapterClass2(List<Artikal> artikli, Context context) {
         this.artikli = artikli;
         this.context = context;
         dbHelper = new DBHelper(context);
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.artikal_item_list, parent,false);
+        View view = layoutInflater.inflate(R.layout.artikal_item_list2, parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -48,39 +53,33 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
         holder.editText_naziv.setText(artikal.getNaziv());
         holder.editText_opis.setText(artikal.getOpis());
         holder.editText_cena.setText(Double.toString(artikal.getCena()));
-        holder.editText_putanja.setText(artikal.getPutanjaSlike());
+        //holder.editText_putanja.setText(artikal.getPutanjaSlike());
         //holder.editText_prodavacId.setText(artikal.getProdavac_id());
 
 
-        //Izmena
-        holder.btn_edit.setOnClickListener(new View.OnClickListener() {
+        holder.btn_poruci.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
+                int artikal_id = Integer.valueOf(holder.textViewID.getText().toString());
                 String naziv = holder.editText_naziv.getText().toString();
                 String opis = holder.editText_opis.getText().toString();
                 Double cena = Double.valueOf(holder.editText_cena.getText().toString());
-                String putanja = holder.editText_putanja.getText().toString();
                 //int prodavac_id = Integer.valueOf(holder.editText_prodavacId.getText().toString());
+                int kolicina = Integer.valueOf(holder.editText_kolicina.getText().toString());
 
-                dbHelper.updateArtikal(new Artikal(artikal.getId(),naziv,opis,cena,putanja));
+                Stavka stavka = new Stavka(kolicina,artikal_id);
+                dbHelper.insertStavke(stavka);
+                Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-04-04"),false,4,"teksttekst",false,false, 1);
+                dbHelper.insertPorudzbinu(porudzbina);
+
                 notifyDataSetChanged();
                 ((Activity) context).finish();
                 context.startActivity(((Activity) context).getIntent());
 
             }
         });
-
-        //Brisanje
-        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dbHelper.deleteArtikal(artikal.getId());
-                artikli.remove(position);
-                notifyDataSetChanged();
-            }
-        });
-
     }
 
     @Override
@@ -93,10 +92,10 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
         EditText editText_naziv;
         EditText editText_opis;
         EditText editText_cena;
-        EditText editText_putanja;
-        EditText editText_prodavacId;
-        Button btn_edit;
-        Button btn_delete;
+        EditText editText_kolicina;
+        //EditText editText_putanja;
+        //EditText editText_prodavacId;
+        Button btn_poruci;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -105,10 +104,10 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
             editText_naziv = itemView.findViewById(R.id.editText_naziv);
             editText_opis = itemView.findViewById(R.id.editText_opis);
             editText_cena = itemView.findViewById(R.id.editText_cena);
-            editText_putanja = itemView.findViewById(R.id.editText_putanja);
+            editText_kolicina = itemView.findViewById(R.id.editText_kolicina);
+            //editText_putanja = itemView.findViewById(R.id.editText_putanja);
             //editText_prodavacId = itemView.findViewById(R.id.editText_prodavacId);
-            btn_delete = itemView.findViewById(R.id.btn_delete);
-            btn_edit = itemView.findViewById(R.id.btn_edit);
+            btn_poruci = itemView.findViewById(R.id.btn_poruci);
 
 
         }

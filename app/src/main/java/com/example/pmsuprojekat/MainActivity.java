@@ -2,6 +2,7 @@ package com.example.pmsuprojekat;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +42,7 @@ import java.util.TimerTask;
 
 import model.Korisnik;
 import model.NavItem;
+import model.Prodavac;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String username = intent.getStringExtra("user");
         //Korisnik korisnik = DB.findKorisnik(username);
+        //Prodavac prodavac = DB.findProdavac(username);
 
         prepareMenu(mNavItems);
 
@@ -136,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Izaberi")) {
@@ -156,21 +161,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if(parent.getItemAtPosition(position).equals("Artikli"))
                     {
+
+                        Intent intent = new Intent(MainActivity.this, ArtikalActivity.class);
                         Intent intent1 = getIntent();
                         String username = intent1.getStringExtra("user");
-                        Korisnik korisnik = DB.findKorisnik(username);
-                        Intent intent = new Intent(MainActivity.this, ArtikalActivity.class);
-                        intent.putExtra("id", korisnik.getId());
+                        //Korisnik korisnik = DB.findKorisnik(username);
+                        Prodavac prodavac = DB.findProdavac(username);
+                        int idProdavca = prodavac.getId();
+                        intent.putExtra("idProdavca", idProdavca);
+                        intent.putExtra("user", username);
                         startActivity(intent);
                     }
                     if(parent.getItemAtPosition(position).equals("Dodaj artikal"))
                     {
                         Intent intent1 = getIntent();
                         String username = intent1.getStringExtra("user");
-                        Intent intent = new Intent(MainActivity.this, NoviArtikalActivity.class);
 
-                        Korisnik korisnik = DB.findKorisnik(username);
-                        int idProdavca = korisnik.getId();
+                        Intent intent = new Intent(MainActivity.this, NoviArtikalActivity.class);
+                        //Korisnik korisnik = DB.findKorisnik(username);
+                        Prodavac prodavac = DB.findProdavac(username);
+                        int idProdavca = prodavac.getId();
                         intent.putExtra("id", idProdavca);
                         startActivity(intent);
                     }

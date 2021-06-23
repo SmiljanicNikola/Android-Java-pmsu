@@ -3,6 +3,7 @@ package com.example.pmsuprojekat;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
+import com.example.pmsuprojekat.activities.IzabraniProdavacActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
 import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
@@ -35,7 +38,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Korisnik;
+import model.Kupac;
 import model.NavItem;
+import model.Prodavac;
 
 public class MainActivityKupac extends AppCompatActivity {
     private SharedPreferenceConfig sharedPreferenceConfig;
@@ -66,10 +71,25 @@ public class MainActivityKupac extends AppCompatActivity {
         listItem = new ArrayList<>();
         userList = findViewById(R.id.prodavciListView);
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //String text = userList.getItemAtPosition(3).toString();
-                Toast.makeText(MainActivityKupac.this,"Prodavac: ",Toast.LENGTH_SHORT).show();
+                String username = userList.getItemAtPosition(position).toString();
+                Toast.makeText(MainActivityKupac.this,"Prodavac: "+username,Toast.LENGTH_SHORT).show();
+
+                Intent intent1 = new Intent(MainActivityKupac.this, IzabraniProdavacActivity.class);
+
+                Intent intent = getIntent();
+                String usernameKupca = intent.getStringExtra("user");
+                Kupac kupac = DB.findKupca(usernameKupca);
+                int idKupca = kupac.getId();
+                Prodavac prodavac = DB.findProdavac(username);
+                int idProdavca = prodavac.getId();
+                intent1.putExtra("id", idProdavca);
+                intent1.putExtra("usernameKupca", usernameKupca);
+                intent1.putExtra("idKupca", idKupca);
+                intent1.putExtra("username",username);
+                startActivity(intent1);
             }
         });
         viewData();
@@ -182,7 +202,7 @@ public class MainActivityKupac extends AppCompatActivity {
 
         } else{
             while(cursor.moveToNext()){
-                listItem.add(cursor.getString(1));
+                listItem.add(cursor.getString(3));
             }
             adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItem);
             userList.setAdapter(adapter);
