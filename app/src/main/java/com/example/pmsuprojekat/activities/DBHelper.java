@@ -67,7 +67,7 @@ public class  DBHelper extends SQLiteOpenHelper {
                 "       REFERENCES prodavci (id) )");
 
         MyDB.execSQL("create Table porudzbine(id INTEGER PRIMARY KEY AUTOINCREMENT, satnica LocaleDate, dostavljeno boolean, ocena INTEGER, komentar TEXT, anonimanKomentar boolean, arhiviranKomentar boolean, " +
-                "kupac_id INTEGER, FOREIGN KEY(kupac_id) REFERENCES kupci(id))");
+                "kupac_id INTEGER NOT NULL ,stavka_id INTEGER NOT NULL, FOREIGN KEY(kupac_id) REFERENCES kupci(id),FOREIGN KEY(stavka_id) REFERENCES stavke(id))");
 
     }
 

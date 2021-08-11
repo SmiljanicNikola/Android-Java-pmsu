@@ -1,6 +1,8 @@
 package com.example.pmsuprojekat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Build;
@@ -62,6 +64,9 @@ public class MainActivityKupac extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_kupac);
 
+        SharedPreferences sharedPref = MainActivityKupac.this.getPreferences(Context.MODE_PRIVATE);
+        String userName = sharedPref.getString("userName", null);
+
         sharedPreferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         DB = new DBHelper(this);
         Intent intent = getIntent();
@@ -78,9 +83,12 @@ public class MainActivityKupac extends AppCompatActivity {
                 Toast.makeText(MainActivityKupac.this,"Prodavac: "+username,Toast.LENGTH_SHORT).show();
 
                 Intent intent1 = new Intent(MainActivityKupac.this, IzabraniProdavacActivity.class);
-
                 Intent intent = getIntent();
-                String usernameKupca = intent.getStringExtra("user");
+
+                SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+                String usernameKupca = prefs.getString("userName", "No name defined");
+
+                //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
                 Kupac kupac = DB.findKupca(usernameKupca);
                 int idKupca = kupac.getId();
                 Prodavac prodavac = DB.findProdavac(username);
@@ -216,10 +224,20 @@ public class MainActivityKupac extends AppCompatActivity {
     }
 
     private void prepareMenu(ArrayList<NavItem> mNavItems) {
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("user");
-        Korisnik korisnik = DB.findKorisnik(username);
-        mNavItems.add(new NavItem(username,korisnik.getUloga(), R.drawable.ic_action_username));
+        /*Intent intent = getIntent();
+        String username = intent.getStringExtra("user");*/
+        /*SharedPreferences sharedPref = MainActivityKupac.this.getPreferences(Context.MODE_PRIVATE);
+        String userName = sharedPref.getString("userName", "");*/
+        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+        String userName = prefs.getString("userName", "No name defined");//"No name defined" is the default value.
+        Korisnik korisnik = DB.findKorisnik(userName);
+        if(userName != null) {
+            mNavItems.add(new NavItem(userName, korisnik.getUloga(), R.drawable.ic_action_username));
+        }
+        else{
+            mNavItems.add(new NavItem("You are logged out", "Logged out", R.drawable.ic_action_username));
+
+        }
         mNavItems.add(new NavItem(getString(R.string.Empty),getString(R.string.Empty), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.about), getString(R.string.about_long), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));

@@ -40,13 +40,18 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:id="@+id/prodavciListView"
-        android:text="40sp"/>
+        android:layout_alignRight="@+id/drawerLayout"
+
+        >
+
+        <ListView
+            android:id="@+id/prodavciListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200px"
+            android:text="40sp" />
 
     </RelativeLayout>
 

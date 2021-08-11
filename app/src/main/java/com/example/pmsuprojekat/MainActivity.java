@@ -182,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                         Prodavac prodavac = DB.findProdavac(username);
                         int idProdavca = prodavac.getId();
                         intent.putExtra("id", idProdavca);
+                        intent.putExtra("user", username);
                         startActivity(intent);
                     }
                     if(parent.getItemAtPosition(position).equals("Svi korisnici"))
@@ -212,6 +213,10 @@ public class MainActivity extends AppCompatActivity {
         if(username != null) {
             Korisnik korisnik = DB.findKorisnik(username);
             mNavItems.add(new NavItem(username, korisnik.getUloga(), R.drawable.ic_action_username));
+        }
+        else{
+            mNavItems.add(new NavItem("You are logged out", "Logged out", R.drawable.ic_action_username));
+
         }
         mNavItems.add(new NavItem(getString(R.string.Empty),getString(R.string.Empty), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.about), getString(R.string.about_long), R.drawable.ic_action_username));

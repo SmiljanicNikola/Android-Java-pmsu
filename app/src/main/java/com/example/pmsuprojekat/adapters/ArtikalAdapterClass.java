@@ -106,7 +106,7 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
             editText_opis = itemView.findViewById(R.id.editText_opis);
             editText_cena = itemView.findViewById(R.id.editText_cena);
             editText_putanja = itemView.findViewById(R.id.editText_putanja);
-            //editText_prodavacId = itemView.findViewById(R.id.editText_prodavacId);
+            editText_prodavacId = itemView.findViewById(R.id.editText_prodavacId);
             btn_delete = itemView.findViewById(R.id.btn_delete);
             btn_edit = itemView.findViewById(R.id.btn_edit);
 

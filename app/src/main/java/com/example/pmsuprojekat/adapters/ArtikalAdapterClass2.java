@@ -68,10 +68,12 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                 Double cena = Double.valueOf(holder.editText_cena.getText().toString());
                 //int prodavac_id = Integer.valueOf(holder.editText_prodavacId.getText().toString());
                 int kolicina = Integer.valueOf(holder.editText_kolicina.getText().toString());
+                int id = hashCode();
 
-                Stavka stavka = new Stavka(kolicina,artikal_id);
+                Stavka stavka = new Stavka(id,kolicina,artikal_id);
+                int stavkaId = stavka.getId();
                 dbHelper.insertStavke(stavka);
-                Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-04-04"),false,4,"teksttekst",false,false, 1);
+                Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-04-04"),false,4,"teksttekst",false,false, 1, 2);
                 dbHelper.insertPorudzbinu(porudzbina);
 
                 notifyDataSetChanged();

@@ -2,22 +2,27 @@ package com.example.pmsuprojekat.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 
 import model.Artikal;
+import model.Prodavac;
 
 public class NoviArtikalActivity extends AppCompatActivity {
 
     EditText txtNaziv, txtOpis, txtCena, txtPutanja;
     TextView textViewDodaj, textViewPregledaj;
+    DBHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +36,12 @@ public class NoviArtikalActivity extends AppCompatActivity {
 
         textViewDodaj = findViewById(R.id.textViewDodaj);
         textViewPregledaj = findViewById(R.id.textViewPregledaj);
+        /*Intent intent = getIntent();
+        int id = intent.getIntExtra("id",0);*/
         Intent intent = getIntent();
-        int id = intent.getIntExtra("id",0);
-
+       // String username = intent.getStringExtra("user");
+        //String prodavacId = String.valueOf(intent.getIntExtra("idProdavca",0));
+        Integer prodavacid = intent.getIntExtra("id",0);
 
         textViewDodaj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +50,7 @@ public class NoviArtikalActivity extends AppCompatActivity {
                 String opis = txtOpis.getText().toString();
                 Double cena = Double.valueOf(txtCena.getText().toString());
                 String putanja = txtPutanja.getText().toString();
-                Integer prodavac_id = id;
+                Integer prodavac_id = prodavacid;
 
 
                 if (naziv.equals("") || opis.equals("") || cena.equals("") || putanja.equals("")) {
@@ -59,10 +67,20 @@ public class NoviArtikalActivity extends AppCompatActivity {
         });
 
         textViewPregledaj.setOnClickListener(new View.OnClickListener(){
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
             Intent intent = new Intent(NoviArtikalActivity.this, ArtikalActivity.class);
             startActivity(intent);
+                /*Intent intent = new Intent(NoviArtikalActivity.this, ArtikalActivity.class);
+                Intent intent1 = getIntent();
+                String username = intent1.getStringExtra("user");
+                //Korisnik korisnik = DB.findKorisnik(username);
+                Prodavac prodavac = DB.findProdavac(username);
+                int idProdavca = prodavac.getId();
+                intent.putExtra("idProdavca", idProdavca);
+                intent.putExtra("user", username);
+                startActivity(intent);*/
             }
         });
 

@@ -13,12 +13,13 @@ public class Porudzbina {
     private boolean anonimanKomentar;
     private boolean arhiviranKomentar;
     private int kupac_id;
+    private int stavka_id;
 
     public Porudzbina(){
 
     }
 
-    public Porudzbina(Integer id, LocalDate satnica, boolean dostavljeno, int ocena, String komentar, boolean anonimanKomentar, boolean arhiviranKomentar, int kupac_id) {
+    public Porudzbina(Integer id, LocalDate satnica, boolean dostavljeno, int ocena, String komentar, boolean anonimanKomentar, boolean arhiviranKomentar, int kupac_id, int stavka_id) {
         this.id = id;
         this.satnica = satnica;
         this.dostavljeno = dostavljeno;
@@ -27,9 +28,10 @@ public class Porudzbina {
         this.anonimanKomentar = anonimanKomentar;
         this.arhiviranKomentar = arhiviranKomentar;
         this.kupac_id = kupac_id;
+        this.stavka_id = stavka_id;
     }
 
-    public Porudzbina(LocalDate satnica, boolean dostavljeno, int ocena, String komentar, boolean anonimanKomentar, boolean arhiviranKomentar, int kupac_id) {
+    public Porudzbina(LocalDate satnica, boolean dostavljeno, int ocena, String komentar, boolean anonimanKomentar, boolean arhiviranKomentar, int kupac_id, int stavka_id) {
         this.satnica = satnica;
         this.dostavljeno = dostavljeno;
         this.ocena = ocena;
@@ -37,6 +39,7 @@ public class Porudzbina {
         this.anonimanKomentar = anonimanKomentar;
         this.arhiviranKomentar = arhiviranKomentar;
         this.kupac_id = kupac_id;
+        this.stavka_id = stavka_id;
     }
 
     public Integer getId() {
@@ -101,5 +104,13 @@ public class Porudzbina {
 
     public void setKupac_id(int kupac_id) {
         this.kupac_id = kupac_id;
+    }
+
+    public int getStavka_id() {
+        return stavka_id;
+    }
+
+    public void setStavka_id(int stavka_id) {
+        this.stavka_id = stavka_id;
     }
 }

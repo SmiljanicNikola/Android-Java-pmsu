@@ -1,7 +1,9 @@
 package com.example.pmsuprojekat.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -86,8 +88,11 @@ public class LoginActivity extends AppCompatActivity {
                             if(korisnik.getUloga().equals("kupac")) {
                                 Toast.makeText(LoginActivity.this, "Uspesno ste se ulogovali kao kupac", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivityKupac.class);
-                                intent.putExtra("user", user);
-                                intent.putExtra("id", id);
+                                /*intent.putExtra("user", user);
+                                intent.putExtra("id", id);*/
+                                SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                                editor.putString("userName", user);
+                                editor.apply();
                                 startActivity(intent);
                                 sharedPreferenceConfig.login_status(true);
                                 finish();
@@ -122,6 +127,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
             }
+
+
         });
 
 
