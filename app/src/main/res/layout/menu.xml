@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="NamespaceTypo"
+    android:layout_width="wrap_content">
+    <item
+        android:title="Share"
+        android:id="@+id/share"/>
+
+    <item
+        android:title="About"
+        android:id="@+id/about"/>
+
+    <item
+        android:title="Exit"
+        android:id="@+id/exit"/>
+
+     <item
+       android:id="@+id/search"
+       app:showAsAction="always"
+       android:icon="@drawable/ic_search"
+       />
+
+   <item
+       android:id="@+id/settings"
+       android:icon="@drawable/ic_settings"
+
+       app:showAsAction="always"/>
+</menu>

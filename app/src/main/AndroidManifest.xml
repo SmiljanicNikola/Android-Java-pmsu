@@ -25,6 +25,14 @@
         </activity>
 
         <activity
+            android:name=".activities.PorucivanjeWindowActivity"
+            android:label="@string/Empty">
+
+
+
+        </activity>
+
+        <activity
             android:name=".activities.DetailActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar"/>
@@ -47,7 +55,8 @@
             android:name=".activities.KorisniciActivity">
         </activity>
         <activity
-            android:name=".activities.IzabraniProdavacActivity">
+            android:name=".activities.IzabraniProdavacActivity"
+            android:label="@string/Empty">
         </activity>
         <activity
             android:name=".activities.ArtikalActivity">

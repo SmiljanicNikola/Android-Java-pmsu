@@ -34,6 +34,7 @@
     <string name="login_shared_preference">Login shared preferences</string>
     <string name="logOut">Log out</string>
     <string name="Empty"> </string>
+    <string name="Demo">DEMO</string>
 
 
 </resources>

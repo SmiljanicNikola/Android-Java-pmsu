@@ -12,4 +12,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="holo_blue">#FF33B5E5</color>
+    <color name="orange">#FF6411</color>
 </resources>

@@ -49,7 +49,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("create Table kupci(id INTEGER PRIMARY KEY AUTOINCREMENT ,ime TEXT, prezime TEXT, username TEXT NOT NULL, password TEXT, adresa TEXT)");
         MyDB.execSQL("create Table prodavci(id INTEGER PRIMARY KEY AUTOINCREMENT ,ime TEXT, prezime TEXT, username TEXT NOT NULL, password TEXT, poslujeOd LocaleDate, email TEXT, adresa TEXT, naziv TEXT )");
         MyDB.execSQL("create Table akcije(id INTEGER PRIMARY KEY AUTOINCREMENT, procenat INTEGER, odKad LocaleDate, doKad LocaleDate, tekst TEXT, prodavac_id INTEGER, FOREIGN KEY(prodavac_id) REFERENCES prodavci(id))");
-        MyDB.execSQL("create Table stavke(id INTEGER PRIMARY KEY AUTOINCREMENT, int kolicina, artikal_id INTEGER, FOREIGN KEY(artikal_id) REFERENCES artikli(id))");
+        MyDB.execSQL("create Table stavke(id INTEGER PRIMARY KEY AUTOINCREMENT, kolicina INTEGER, artikal_id INTEGER, FOREIGN KEY(artikal_id) REFERENCES artikli(id))");
 
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (1,'milorad','miloradovic','miloradm','321','administrator',0)");
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (2,'milan','milanovic','milanm','321','administrator',0)");
@@ -66,8 +66,8 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("create Table artikli(id INTEGER PRIMARY KEY AUTOINCREMENT, naziv TEXT, opis TEXT, cena DOUBLE, putanja TEXT,prodavac_id INTEGER, FOREIGN KEY (prodavac_id)\n" +
                 "       REFERENCES prodavci (id) )");
 
-        MyDB.execSQL("create Table porudzbine(id INTEGER PRIMARY KEY AUTOINCREMENT, satnica LocaleDate, dostavljeno boolean, ocena INTEGER, komentar TEXT, anonimanKomentar boolean, arhiviranKomentar boolean, " +
-                "kupac_id INTEGER NOT NULL ,stavka_id INTEGER NOT NULL, FOREIGN KEY(kupac_id) REFERENCES kupci(id),FOREIGN KEY(stavka_id) REFERENCES stavke(id))");
+        MyDB.execSQL("create Table porudzbine(id INTEGER PRIMARY KEY AUTOINCREMENT, satnica LocalDate, dostavljeno boolean, ocena INTEGER, komentar TEXT, anonimanKomentar boolean, arhiviranKomentar boolean, " +
+                "kupac_id INTEGER NOT NULL, stavka_id INTEGER NOT NULL, FOREIGN KEY(kupac_id) REFERENCES kupci(id),FOREIGN KEY(stavka_id) REFERENCES stavke(id))");
 
     }
 
@@ -80,6 +80,8 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("drop Table if exists artikli");
         MyDB.execSQL("drop Table if exists akcije");
         MyDB.execSQL("drop Table if exists stavke");
+        MyDB.execSQL("drop Table if exists porudzbine");
+
 
 
         //MyDB.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
@@ -126,7 +128,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         contentValues.put("kolicina", stavka.getKolicina());
         contentValues.put("artikal_id", stavka.getArtikal_id());
 
-        MyDB.insert("artikli", null, contentValues);
+        MyDB.insert("stavke", null, contentValues);
     }
 
     public void insertPorudzbinu(Porudzbina porudzbina){
@@ -139,6 +141,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         contentValues.put("anonimanKomentar", porudzbina.isAnonimanKomentar());
         contentValues.put("arhiviranKomentar", porudzbina.isArhiviranKomentar());
         contentValues.put("kupac_id", porudzbina.getKupac_id());
+        contentValues.put("stavka_id", porudzbina.getStavka_id());
 
 
         MyDB.insert("porudzbine", null, contentValues);

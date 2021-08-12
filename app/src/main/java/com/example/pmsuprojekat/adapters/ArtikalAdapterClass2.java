@@ -2,34 +2,53 @@ package com.example.pmsuprojekat.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
+import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import model.Artikal;
+import model.Kupac;
+import model.NavItem;
 import model.Porudzbina;
 import model.Stavka;
 
-public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterClass2.ViewHolder>{
+import static android.content.Context.MODE_PRIVATE;
+
+public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterClass2.ViewHolder> {
 
     List<Artikal> artikli;
     Context context;
     DBHelper dbHelper;
+
+    private SharedPreferenceConfig sharedPreferenceConfig;
+
 
     public ArtikalAdapterClass2(List<Artikal> artikli, Context context) {
         this.artikli = artikli;
@@ -43,6 +62,8 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
         View view = layoutInflater.inflate(R.layout.artikal_item_list2, parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
+
+
     }
 
     @Override
@@ -68,12 +89,22 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                 Double cena = Double.valueOf(holder.editText_cena.getText().toString());
                 //int prodavac_id = Integer.valueOf(holder.editText_prodavacId.getText().toString());
                 int kolicina = Integer.valueOf(holder.editText_kolicina.getText().toString());
-                int id = hashCode();
+                //int id = hashCode();
 
-                Stavka stavka = new Stavka(id,kolicina,artikal_id);
+                Stavka stavka = new Stavka(kolicina,artikal_id);
                 int stavkaId = stavka.getId();
                 dbHelper.insertStavke(stavka);
-                Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-04-04"),false,4,"teksttekst",false,false, 1, 2);
+                SharedPreferences sharedPref = context.getSharedPreferences("My pref",Context.MODE_PRIVATE);
+                String usernameKupca = sharedPref.getString("userName", "No name defined");
+
+                //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
+                Kupac kupac = dbHelper.findKupca(usernameKupca);
+                int idKupca = kupac.getId();
+
+                //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
+
+
+                Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-04-04"),false,4,"teksttekst",false,false, idKupca, stavkaId);
                 dbHelper.insertPorudzbinu(porudzbina);
 
                 notifyDataSetChanged();
@@ -81,6 +112,8 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                 context.startActivity(((Activity) context).getIntent());
 
             }
+
+
         });
     }
 
