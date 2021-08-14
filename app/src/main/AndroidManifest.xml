@@ -19,7 +19,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:label="@string/home"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
@@ -46,13 +46,13 @@
             android:name=".activities.RegisterActivity">
         </activity>
         <activity
+            android:name=".activities.PotvrdaPorudzbineActivity">
+        </activity>
+        <activity
             android:name=".activities.RegisterActivityProdavac">
         </activity>
         <activity
             android:name=".activities.KorisnikDetailActivity">
-        </activity>
-        <activity
-            android:name=".activities.KorisniciActivity">
         </activity>
         <activity
             android:name=".activities.IzabraniProdavacActivity"
@@ -65,10 +65,14 @@
             android:name=".activities.NoviArtikalActivity">
         </activity>
         <activity
-            android:name=".MainActivityAdministrator">
+            android:name=".MainActivityAdministrator"
+            android:label="@string/home">
+
         </activity>
         <activity
-            android:name=".MainActivityKupac">
+            android:name=".MainActivityKupac"
+            android:label="@string/home">
+
         </activity>
         <activity
             android:name=".activities.SviKorisniciActivity">

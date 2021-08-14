@@ -23,14 +23,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
-import com.example.pmsuprojekat.activities.KorisniciActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
 import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 import com.example.pmsuprojekat.activities.SviKorisniciActivity;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
 //import com.example.pmsuprojekat.fragments.MyFragment;
-import com.example.pmsuprojekat.tools.FragmentTransition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -171,7 +169,7 @@ public class MainActivityAdministrator extends AppCompatActivity {
         String username = intent.getStringExtra("user");
         Korisnik korisnik = DB.findKorisnik(username);
         mNavItems.add(new NavItem(username,korisnik.getUloga(), R.drawable.ic_action_username));
-        mNavItems.add(new NavItem(getString(R.string.Empty),getString(R.string.Empty), R.drawable.ic_action_username));
+        mNavItems.add(new NavItem(getString(R.string.Location),getString(R.string.FindUs), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.about), getString(R.string.about_long), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));
     }
@@ -227,8 +225,8 @@ public class MainActivityAdministrator extends AppCompatActivity {
 
     @Override
     public void setTitle(CharSequence title) {
-        mTitle = title;
-        getSupportActionBar().setTitle(mTitle);
+        /*mTitle = title;
+        getSupportActionBar().setTitle(mTitle);*/
     }
 
     @Override

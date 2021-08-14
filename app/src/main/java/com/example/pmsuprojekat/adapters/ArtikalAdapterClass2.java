@@ -2,6 +2,7 @@ package com.example.pmsuprojekat.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -23,9 +24,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
+import com.example.pmsuprojekat.activities.NoviArtikalActivity;
+import com.example.pmsuprojekat.activities.PotvrdaPorudzbineActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 
 import java.time.LocalDate;
@@ -37,6 +41,7 @@ import model.Artikal;
 import model.Kupac;
 import model.NavItem;
 import model.Porudzbina;
+import model.Prodavac;
 import model.Stavka;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -90,19 +95,23 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                 //int prodavac_id = Integer.valueOf(holder.editText_prodavacId.getText().toString());
                 int kolicina = Integer.valueOf(holder.editText_kolicina.getText().toString());
                 //int id = hashCode();
-
-                Stavka stavka = new Stavka(kolicina,artikal_id);
+                int idStavke = hashCode();
+                Stavka stavka = new Stavka(idStavke,kolicina,artikal_id);
                 int stavkaId = stavka.getId();
                 dbHelper.insertStavke(stavka);
+
                 SharedPreferences sharedPref = context.getSharedPreferences("My pref",Context.MODE_PRIVATE);
                 String usernameKupca = sharedPref.getString("userName", "No name defined");
-
                 //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
+
                 Kupac kupac = dbHelper.findKupca(usernameKupca);
                 int idKupca = kupac.getId();
 
                 //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
 
+                    /*Intent intent= new Intent(context, MainActivityKupac.class);
+                    //intent.putExtra("your_extra","your_class_value");
+                    context.startActivity(intent);*/
 
                 Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-04-04"),false,4,"teksttekst",false,false, idKupca, stavkaId);
                 dbHelper.insertPorudzbinu(porudzbina);
@@ -110,6 +119,14 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                 notifyDataSetChanged();
                 ((Activity) context).finish();
                 context.startActivity(((Activity) context).getIntent());
+
+                Intent myIntent = new Intent(v.getContext(), PotvrdaPorudzbineActivity.class);
+                myIntent.putExtra("idKupca", idKupca);
+                myIntent.putExtra("kolicina", kolicina);
+                myIntent.putExtra("artikalId", artikal_id);
+                myIntent.putExtra("stavkaId", stavkaId);
+
+                v.getContext().startActivity(myIntent);
 
             }
 

@@ -1,6 +1,8 @@
 package model;
 
-public class Stavka {
+import java.io.Serializable;
+
+public class Stavka implements Serializable{
 
     private int id;
     private int kolicina;

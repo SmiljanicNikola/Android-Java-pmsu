@@ -1,12 +1,12 @@
 package com.example.pmsuprojekat;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,20 +25,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
-import com.example.pmsuprojekat.activities.KorisniciActivity;
-import com.example.pmsuprojekat.activities.KorisnikDetailActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
 import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 import com.example.pmsuprojekat.activities.SviKorisniciActivity;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
 /*import com.example.pmsuprojekat.fragments.MyFragment;*/
-import com.example.pmsuprojekat.tools.FragmentTransition;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import model.Korisnik;
 import model.NavItem;
@@ -122,8 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
-        categories.add("Login");
-        categories.add("Korisnici");
         categories.add("Akcije");
         categories.add("Porudzbine");
         categories.add("Artikli");
@@ -149,16 +142,6 @@ public class MainActivity extends AppCompatActivity {
                     String item = parent.getItemAtPosition(position).toString();
 
                     Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
-
-
-                    if(parent.getItemAtPosition(position).equals("Korisnici")) {
-                        Intent intent = new Intent(MainActivity.this, KorisniciActivity.class);
-                        startActivity(intent);
-                    }
-                    if(parent.getItemAtPosition(position).equals("Login")) {
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
                     if(parent.getItemAtPosition(position).equals("Artikli"))
                     {
 
@@ -218,16 +201,16 @@ public class MainActivity extends AppCompatActivity {
             mNavItems.add(new NavItem("You are logged out", "Logged out", R.drawable.ic_action_username));
 
         }
-        mNavItems.add(new NavItem(getString(R.string.Empty),getString(R.string.Empty), R.drawable.ic_action_username));
+        mNavItems.add(new NavItem(getString(R.string.Location),getString(R.string.FindUs), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.about), getString(R.string.about_long), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));
     }
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
    /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -238,6 +221,13 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }*/
+
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
+    }
 
 
     /* The click listner for ListView in the navigation drawer */
@@ -281,8 +271,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void setTitle(CharSequence title) {
-        mTitle = title;
-        getSupportActionBar().setTitle(mTitle);
+        /*mTitle = title;
+        getSupportActionBar().setTitle(mTitle);*/
     }
 
     @Override
@@ -304,6 +294,8 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
 
     }
+
+
 
 
 

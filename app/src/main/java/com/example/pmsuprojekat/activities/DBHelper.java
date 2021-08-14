@@ -49,7 +49,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("create Table kupci(id INTEGER PRIMARY KEY AUTOINCREMENT ,ime TEXT, prezime TEXT, username TEXT NOT NULL, password TEXT, adresa TEXT)");
         MyDB.execSQL("create Table prodavci(id INTEGER PRIMARY KEY AUTOINCREMENT ,ime TEXT, prezime TEXT, username TEXT NOT NULL, password TEXT, poslujeOd LocaleDate, email TEXT, adresa TEXT, naziv TEXT )");
         MyDB.execSQL("create Table akcije(id INTEGER PRIMARY KEY AUTOINCREMENT, procenat INTEGER, odKad LocaleDate, doKad LocaleDate, tekst TEXT, prodavac_id INTEGER, FOREIGN KEY(prodavac_id) REFERENCES prodavci(id))");
-        MyDB.execSQL("create Table stavke(id INTEGER PRIMARY KEY AUTOINCREMENT, kolicina INTEGER, artikal_id INTEGER, FOREIGN KEY(artikal_id) REFERENCES artikli(id))");
+        MyDB.execSQL("create Table stavke(id INTEGER PRIMARY KEY, kolicina INTEGER, artikal_id INTEGER, FOREIGN KEY(artikal_id) REFERENCES artikli(id))");
 
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (1,'milorad','miloradovic','miloradm','321','administrator',0)");
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (2,'milan','milanovic','milanm','321','administrator',0)");
@@ -125,6 +125,7 @@ public class  DBHelper extends SQLiteOpenHelper {
     public void insertStavke(Stavka stavka){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put("id", stavka.getId());
         contentValues.put("kolicina", stavka.getKolicina());
         contentValues.put("artikal_id", stavka.getArtikal_id());
 
@@ -226,6 +227,28 @@ public class  DBHelper extends SQLiteOpenHelper {
         }
 
     }
+
+    /*public Stavka findStavka(String stavkaOznaka){
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        Cursor cursor = MyDB.rawQuery("select * from stavke where id=?", new String[] {stavkaOznaka});
+        if(cursor.getCount() == 1){
+            cursor.moveToFirst();
+            Integer id = Integer.parseInt(cursor.getString(0));
+            Integer kolicina = cursor.getInt(1);
+            Integer artikal_id = cursor.getInt(2);
+
+
+
+            Stavka stavka = new Stavka(id,kolicina,artikal_id);
+
+            return stavka;
+        }
+        else{
+            return null;
+        }
+
+    }*/
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Prodavac findProdavac(String username){

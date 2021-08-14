@@ -35,6 +35,9 @@
     <string name="logOut">Log out</string>
     <string name="Empty"> </string>
     <string name="Demo">DEMO</string>
+    <string name="Location">Location</string>
+    <string name="FindUs">Find us easy</string>
+
 
 
 </resources>

@@ -154,7 +154,7 @@ public class MainActivityKupac extends AppCompatActivity {
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
         categories.add("Artikli");
-        categories.add("Dodaj artikal");
+        //categories.add("Dodaj artikal");
         categories.add("Svi korisnici");
 
         ArrayAdapter<String> dataAdapter;
@@ -178,11 +178,11 @@ public class MainActivityKupac extends AppCompatActivity {
                         Intent intent = new Intent(MainActivityKupac.this, ArtikalActivity.class);
                         startActivity(intent);
                     }
-                    if(parent.getItemAtPosition(position).equals("Dodaj artikal"))
+                    /*if(parent.getItemAtPosition(position).equals("Dodaj artikal"))
                     {
                         Intent intent = new Intent(MainActivityKupac.this, NoviArtikalActivity.class);
                         startActivity(intent);
-                    }
+                    }*/
                     if(parent.getItemAtPosition(position).equals("Svi korisnici"))
                     {
                         Intent intent = new Intent(MainActivityKupac.this, SviKorisniciActivity.class);
@@ -238,7 +238,7 @@ public class MainActivityKupac extends AppCompatActivity {
             mNavItems.add(new NavItem("You are logged out", "Logged out", R.drawable.ic_action_username));
 
         }
-        mNavItems.add(new NavItem(getString(R.string.Empty),getString(R.string.Empty), R.drawable.ic_action_username));
+        mNavItems.add(new NavItem(getString(R.string.Location),getString(R.string.FindUs), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.about), getString(R.string.about_long), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));
     }
@@ -294,8 +294,8 @@ public class MainActivityKupac extends AppCompatActivity {
 
     @Override
     public void setTitle(CharSequence title) {
-        mTitle = title;
-        getSupportActionBar().setTitle(mTitle);
+        /*mTitle = title;
+        getSupportActionBar().setTitle(mTitle);*/
     }
 
     @Override
