@@ -8,6 +8,7 @@ public class Artikal {
     private double cena;
     private String putanjaSlike;
     private int prodavac_id;
+    private byte[] image;
 
 
     public Artikal(){
@@ -26,6 +27,16 @@ public class Artikal {
         this.opis = opis;
         this.cena = cena;
         this.putanjaSlike = putanjaSlike;
+    }
+
+    public Artikal(Integer id, String naziv, String opis, double cena, String putanjaSlike, int prodavac_id, byte[] image) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.cena = cena;
+        this.putanjaSlike = putanjaSlike;
+        this.prodavac_id = prodavac_id;
+        this.image = image;
     }
 
     public Artikal(String naziv, String opis, double cena) {
@@ -47,6 +58,15 @@ public class Artikal {
         this.naziv = naziv;
         this.opis = opis;
         this.cena = cena;
+    }
+
+    public Artikal(String naziv, String opis, double cena, String putanjaSlike, int prodavac_id, byte[] image) {
+        this.naziv = naziv;
+        this.opis = opis;
+        this.cena = cena;
+        this.putanjaSlike = putanjaSlike;
+        this.prodavac_id = prodavac_id;
+        this.image = image;
     }
 
     public Artikal(Integer id, String naziv, String opis, double cena, String putanjaSlike, int prodavac_id) {
@@ -104,6 +124,14 @@ public class Artikal {
 
     public void setProdavac_id(int prodavac_id) {
         this.prodavac_id = prodavac_id;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Override

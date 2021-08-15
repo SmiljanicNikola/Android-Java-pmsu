@@ -63,7 +63,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("Insert into prodavci(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv) VALUES (3,'ivan','ivanovic','ivani','123','2021-03-04','ivan@ivanovic.com','ivanoviceva 40','Shop&GO')");
 
         //MyDB.execSQL(CREATE_TABLEArtikli);
-        MyDB.execSQL("create Table artikli(id INTEGER PRIMARY KEY AUTOINCREMENT, naziv TEXT, opis TEXT, cena DOUBLE, putanja TEXT,prodavac_id INTEGER, FOREIGN KEY (prodavac_id)\n" +
+        MyDB.execSQL("create Table artikli(id INTEGER PRIMARY KEY AUTOINCREMENT, naziv TEXT, opis TEXT, cena DOUBLE, putanja TEXT,prodavac_id INTEGER, image BLOB, FOREIGN KEY (prodavac_id)\n" +
                 "       REFERENCES prodavci (id) )");
 
         MyDB.execSQL("create Table porudzbine(id INTEGER PRIMARY KEY AUTOINCREMENT, satnica LocalDate, dostavljeno boolean, ocena INTEGER, komentar TEXT, anonimanKomentar boolean, arhiviranKomentar boolean, " +
@@ -177,6 +177,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         contentValues.put("cena", artikal.getCena());
         contentValues.put("putanja", artikal.getPutanjaSlike());
         contentValues.put("prodavac_id", artikal.getProdavac_id());
+        contentValues.put("image", artikal.getImage());
 
         MyDB.insert("artikli", null, contentValues);
 
@@ -249,6 +250,28 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }*/
 
+    public Artikal findArtikal(Integer artikalId){
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        Cursor cursor = MyDB.rawQuery("select * from artikli where id=?", new String[] {String.valueOf(artikalId)});
+        if(cursor.getCount() == 1){
+            cursor.moveToFirst();
+            Integer id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+            String naziv = cursor.getString(1);
+            String opis = cursor.getString(2);
+            double cena = cursor.getDouble(3);
+            String putanja = cursor.getString(4);
+            Integer prodavac_id = cursor.getInt(5);
+            byte[] image = cursor.getBlob(6);
+            Artikal artikal = new Artikal(id,naziv,opis,cena,putanja,prodavac_id,image);
+
+            return artikal;
+        }
+        else{
+            return null;
+        }
+
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Prodavac findProdavac(String username){
@@ -292,7 +315,8 @@ public class  DBHelper extends SQLiteOpenHelper {
                 Double cena = Double.parseDouble(cursor.getString(3));
                 String putanja = cursor.getString(4);
                 Integer prodavac_id = cursor.getInt(5);
-                artikli.add(new Artikal(id,naziv,opis,cena,putanja,prodavac_id));
+                byte[] image = cursor.getBlob(6);
+                artikli.add(new Artikal(id,naziv,opis,cena,putanja,prodavac_id,image));
             }while(cursor.moveToNext());
         }
         cursor.close();

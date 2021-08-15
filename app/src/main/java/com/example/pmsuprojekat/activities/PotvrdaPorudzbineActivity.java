@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -20,28 +21,35 @@ import com.example.pmsuprojekat.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Artikal;
 import model.Stavka;
 
 public class PotvrdaPorudzbineActivity extends AppCompatActivity {
 
-    DBHelper dbHelper;
+    private DBHelper dbHelper;
     private SharedPreferenceConfig sharedPreferenceConfig;
     private Spinner spinner;
+    private TextView textViewId,textViewKolicina,textViewCenaPojedinacno;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.potvrda_porudzbine);
 
+        DBHelper dbHelper = new DBHelper(this);
+
         Intent intent = getIntent();
         int kupacId = intent.getIntExtra("idKupca",0);
         //int stavkaId = intent.getIntExtra("stavkaId",0);
         //String stavkaId = String.valueOf(intent.getIntExtra("stavkaId",0));
+        //String artikalId = String.valueOf(intent.getIntExtra("artikalId",0));
+
         int stavkaId = intent.getIntExtra("stavkaId",0);
         int kolicina = intent.getIntExtra("kolicina",0);
         int artikal_id = intent.getIntExtra("artikalId",0);
 
-        //String prodavacId = String.valueOf(intent.getIntExtra("id",0));
+        Artikal artikal = dbHelper.findArtikal(artikal_id);
+        Double cenaArtikla = artikal.getCena();
 
         /*Stavka stavka = dbHelper.findStavka(stavkaOznaka);
         int kolicina2 = stavka.getKolicina();*/
@@ -62,6 +70,14 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, categories);
 
+        textViewId = findViewById(R.id.textView1);
+        textViewId.setText(String.valueOf(artikal_id));
+
+        textViewKolicina = findViewById(R.id.textView2);
+        textViewKolicina.setText(String.valueOf(kolicina));
+
+        textViewCenaPojedinacno = findViewById(R.id.textView3);
+        textViewCenaPojedinacno.setText(String.valueOf(cenaArtikla));
 
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

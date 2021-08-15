@@ -2,11 +2,15 @@ package com.example.pmsuprojekat.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
 
+import java.sql.Blob;
 import java.util.List;
 
 import model.Artikal;
@@ -24,6 +29,7 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
     List<Artikal> artikli;
     Context context;
     DBHelper dbHelper;
+    ImageView imgIcon;
 
     public ArtikalAdapterClass(List<Artikal> artikli, Context context) {
         this.artikli = artikli;
@@ -51,6 +57,9 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
         holder.editText_putanja.setText(artikal.getPutanjaSlike());
         //holder.editText_prodavacId.setText(artikal.getProdavac_id());
 
+        byte[] recordImage = artikal.getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(recordImage, 0, recordImage.length);
+        holder.imgIcon.setImageBitmap(bitmap);
 
         //Izmena
         holder.btn_edit.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +104,7 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
         EditText editText_cena;
         EditText editText_putanja;
         EditText editText_prodavacId;
+        ImageView imgIcon;
         Button btn_edit;
         Button btn_delete;
 
@@ -109,6 +119,7 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
             editText_prodavacId = itemView.findViewById(R.id.editText_prodavacId);
             btn_delete = itemView.findViewById(R.id.btn_delete);
             btn_edit = itemView.findViewById(R.id.btn_edit);
+            imgIcon = itemView.findViewById(R.id.imgIcon);
 
 
         }
