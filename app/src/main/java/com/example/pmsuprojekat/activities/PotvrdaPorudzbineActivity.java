@@ -2,20 +2,24 @@ package com.example.pmsuprojekat.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 
 import java.util.ArrayList;
@@ -29,7 +33,8 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private SharedPreferenceConfig sharedPreferenceConfig;
     private Spinner spinner;
-    private TextView textViewId,textViewKolicina,textViewCenaPojedinacno;
+    private TextView textViewNaziv,textViewKolicina,textViewCenaPojedinacno,textViewCenaUkupno;
+    private Button btnPotvrdiPorudzbinu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
 
         Artikal artikal = dbHelper.findArtikal(artikal_id);
         Double cenaArtikla = artikal.getCena();
+        String naziv = artikal.getNaziv();
 
         /*Stavka stavka = dbHelper.findStavka(stavkaOznaka);
         int kolicina2 = stavka.getKolicina();*/
@@ -70,14 +76,30 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, categories);
 
-        textViewId = findViewById(R.id.textView1);
-        textViewId.setText(String.valueOf(artikal_id));
+        textViewNaziv = findViewById(R.id.textView1);
+        textViewNaziv.setText(naziv);
 
         textViewKolicina = findViewById(R.id.textView2);
         textViewKolicina.setText(String.valueOf(kolicina));
 
         textViewCenaPojedinacno = findViewById(R.id.textView3);
         textViewCenaPojedinacno.setText(String.valueOf(cenaArtikla));
+
+        textViewCenaUkupno = findViewById(R.id.textView4);
+        textViewCenaUkupno.setText(String.valueOf(cenaArtikla * kolicina));
+
+        btnPotvrdiPorudzbinu = findViewById(R.id.btnPotvrdiPorudzbinu);
+        btnPotvrdiPorudzbinu.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), MainActivityKupac.class);
+
+
+                v.getContext().startActivity(myIntent);
+
+            }
+            });
 
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

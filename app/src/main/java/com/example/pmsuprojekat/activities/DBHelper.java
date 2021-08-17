@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Akcija;
 import model.Artikal;
 import model.Korisnik;
 import model.Kupac;
@@ -180,6 +181,20 @@ public class  DBHelper extends SQLiteOpenHelper {
         contentValues.put("image", artikal.getImage());
 
         MyDB.insert("artikli", null, contentValues);
+
+    }
+
+    public void insertAkcija(Akcija akcija){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("procenat", akcija.getProcenat());
+        contentValues.put("odKad", String.valueOf(akcija.getOdKad()));
+        contentValues.put("doKad", String.valueOf(akcija.getDoKad()));
+        contentValues.put("tekst", akcija.getTekst());
+        contentValues.put("prodavac_id", akcija.getProdavac_id());
+
+
+        MyDB.insert("akcije", null, contentValues);
 
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

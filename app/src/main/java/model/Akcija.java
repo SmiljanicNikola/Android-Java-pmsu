@@ -1,23 +1,26 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Akcija {
 
     private int procenat;
-    private Date odKad;
-    private Date doKad;
+    private LocalDate odKad;
+    private LocalDate doKad;
     private String tekst;
+    private int prodavac_id;
 
     public Akcija(){
 
     }
 
-    public Akcija(int procenat, Date odKad, Date doKad, String tekst) {
+    public Akcija(int procenat, LocalDate odKad, LocalDate doKad, String tekst, int prodavac_id) {
         this.procenat = procenat;
         this.odKad = odKad;
         this.doKad = doKad;
         this.tekst = tekst;
+        this.prodavac_id = prodavac_id;
     }
 
     public int getProcenat() {
@@ -28,19 +31,19 @@ public class Akcija {
         this.procenat = procenat;
     }
 
-    public Date getOdKad() {
+    public LocalDate getOdKad() {
         return odKad;
     }
 
-    public void setOdKad(Date odKad) {
+    public void setOdKad(LocalDate odKad) {
         this.odKad = odKad;
     }
 
-    public Date getDoKad() {
+    public LocalDate getDoKad() {
         return doKad;
     }
 
-    public void setDoKad(Date doKad) {
+    public void setDoKad(LocalDate doKad) {
         this.doKad = doKad;
     }
 
@@ -50,6 +53,14 @@ public class Akcija {
 
     public void setTekst(String tekst) {
         this.tekst = tekst;
+    }
+
+    public int getProdavac_id() {
+        return prodavac_id;
+    }
+
+    public void setProdavac_id(int prodavac_id) {
+        this.prodavac_id = prodavac_id;
     }
 
     @Override

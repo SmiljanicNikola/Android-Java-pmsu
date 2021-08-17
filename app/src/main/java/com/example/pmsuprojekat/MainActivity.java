@@ -26,6 +26,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
 import com.example.pmsuprojekat.activities.LoginActivity;
+import com.example.pmsuprojekat.activities.NovaAkcijaActivity;
 import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 import com.example.pmsuprojekat.activities.SviKorisniciActivity;
@@ -118,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
         categories.add("Akcije");
+        categories.add("Dodaj akciju");
+
         categories.add("Porudzbine");
         categories.add("Artikli");
         categories.add("Dodaj artikal");
@@ -167,6 +170,20 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("id", idProdavca);
                         intent.putExtra("user", username);
                         startActivity(intent);
+                    }
+                    if(parent.getItemAtPosition(position).equals("Dodaj akciju"))
+                    {
+                        Intent intent1 = getIntent();
+                        String username = intent1.getStringExtra("user");
+
+                        Intent intent = new Intent(MainActivity.this, NovaAkcijaActivity.class);
+                        //Korisnik korisnik = DB.findKorisnik(username);
+                        Prodavac prodavac = DB.findProdavac(username);
+                        int idProdavca = prodavac.getId();
+                        intent.putExtra("id", idProdavca);
+                        intent.putExtra("user", username);
+                        startActivity(intent);
+
                     }
                     if(parent.getItemAtPosition(position).equals("Svi korisnici"))
                     {
