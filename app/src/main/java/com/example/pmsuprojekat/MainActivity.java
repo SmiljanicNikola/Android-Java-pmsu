@@ -23,6 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.pmsuprojekat.activities.AkcijeActivity;
 import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
 import com.example.pmsuprojekat.activities.LoginActivity;
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
-        categories.add("Akcije");
+        categories.add("akcije");
         categories.add("Dodaj akciju");
 
         categories.add("Porudzbine");
@@ -168,6 +169,19 @@ public class MainActivity extends AppCompatActivity {
                         Prodavac prodavac = DB.findProdavac(username);
                         int idProdavca = prodavac.getId();
                         intent.putExtra("id", idProdavca);
+                        intent.putExtra("user", username);
+                        startActivity(intent);
+                    }
+
+                    if(parent.getItemAtPosition(position).equals("akcije"))
+                    {
+                        Intent intent = new Intent(MainActivity.this, AkcijeActivity.class);
+                        Intent intent1 = getIntent();
+                        String username = intent1.getStringExtra("user");
+                        //Korisnik korisnik = DB.findKorisnik(username);
+                        Prodavac prodavac = DB.findProdavac(username);
+                        int idProdavca = prodavac.getId();
+                        intent.putExtra("idProdavca", idProdavca);
                         intent.putExtra("user", username);
                         startActivity(intent);
                     }

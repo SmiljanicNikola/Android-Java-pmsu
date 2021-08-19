@@ -1,8 +1,14 @@
 package model;
 
-import java.time.LocalDate;
+import androidx.exifinterface.media.ExifInterface;
+import androidx.room.Entity;
 
-public class Prodavac {
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Prodavac implements Serializable {
     private Integer id;
     private String ime;
     private String prezime;
@@ -12,6 +18,7 @@ public class Prodavac {
     private String email;
     private String adresa;
     private String naziv;
+    private Set<Akcija> akcije = new HashSet<Akcija>();
 
     public Prodavac(){
 

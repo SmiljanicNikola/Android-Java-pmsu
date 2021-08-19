@@ -79,12 +79,24 @@
         android:textSize="16dp"
         tools:text="" />
 
+    <EditText
+        android:id="@+id/txtArtikalId"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTekst"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Artikal Id"
+        android:textSize="16dp"
+        tools:text="" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/txtTekst"
+        android:layout_below="@id/txtArtikalId"
         android:layout_marginTop="40dp"
         app:cardBackgroundColor="@color/purple_500">
 

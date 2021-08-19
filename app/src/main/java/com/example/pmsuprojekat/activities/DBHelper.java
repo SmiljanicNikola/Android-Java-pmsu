@@ -49,7 +49,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("create Table users(id INTEGER PRIMARY KEY AUTOINCREMENT,ime TEXT, prezime TEXT, username TEXT NOT NULL, password TEXT, uloga TEXT, blokiran boolean)");
         MyDB.execSQL("create Table kupci(id INTEGER PRIMARY KEY AUTOINCREMENT ,ime TEXT, prezime TEXT, username TEXT NOT NULL, password TEXT, adresa TEXT)");
         MyDB.execSQL("create Table prodavci(id INTEGER PRIMARY KEY AUTOINCREMENT ,ime TEXT, prezime TEXT, username TEXT NOT NULL, password TEXT, poslujeOd LocaleDate, email TEXT, adresa TEXT, naziv TEXT )");
-        MyDB.execSQL("create Table akcije(id INTEGER PRIMARY KEY AUTOINCREMENT, procenat INTEGER, odKad LocaleDate, doKad LocaleDate, tekst TEXT, prodavac_id INTEGER, FOREIGN KEY(prodavac_id) REFERENCES prodavci(id))");
+        MyDB.execSQL("create Table akcije(id INTEGER PRIMARY KEY AUTOINCREMENT, procenat INTEGER, odKad LocaleDate, doKad LocaleDate, tekst TEXT, prodavac_id INTEGER, artikal_id INTEGER, FOREIGN KEY(prodavac_id) REFERENCES prodavci(id), FOREIGN KEY(artikal_id) REFERENCES artikli(id))");
         MyDB.execSQL("create Table stavke(id INTEGER PRIMARY KEY, kolicina INTEGER, artikal_id INTEGER, FOREIGN KEY(artikal_id) REFERENCES artikli(id))");
 
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (1,'milorad','miloradovic','miloradm','321','administrator',0)");
@@ -192,6 +192,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         contentValues.put("doKad", String.valueOf(akcija.getDoKad()));
         contentValues.put("tekst", akcija.getTekst());
         contentValues.put("prodavac_id", akcija.getProdavac_id());
+        contentValues.put("artikal_id", akcija.getArtikal_id());
 
 
         MyDB.insert("akcije", null, contentValues);
@@ -337,6 +338,28 @@ public class  DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return artikli;
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<Akcija> getAkcijeProdavca(String prodavacId){
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        List<Akcija> akcije = new ArrayList<>();
+        Cursor cursor = MyDB.rawQuery("select * from akcije where prodavac_id=?", new String[] {prodavacId});
+        if(cursor.moveToFirst()){
+            do{
+                int id = Integer.parseInt(cursor.getString(0));
+                Integer procenat = cursor.getInt(1);
+                LocalDate odKad = LocalDate.parse(cursor.getString(2));
+                LocalDate doKad = LocalDate.parse(cursor.getString(3));
+                String tekst = cursor.getString(4);
+                Integer prodavac_id = cursor.getInt(5);
+                Integer artikal_id = cursor.getInt(6);
+                akcije.add(new Akcija(id,procenat,odKad,doKad,tekst,prodavac_id,artikal_id));
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return akcije;
     }
 
 

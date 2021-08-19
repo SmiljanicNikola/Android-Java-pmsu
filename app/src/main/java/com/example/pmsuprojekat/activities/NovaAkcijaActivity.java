@@ -24,10 +24,11 @@ import java.time.LocalDate;
 import java.util.Calendar;
 
 import model.Akcija;
+import model.Artikal;
 
 public class NovaAkcijaActivity extends AppCompatActivity {
 
-    EditText txtProcenat, txtOdKad, txtDoKad, txtTekst;
+    EditText txtProcenat, txtOdKad, txtDoKad, txtTekst, txtArtikalId;
     TextView textViewDodaj, textViewPregledaj;
     DBHelper DB;
     private DatePickerDialog datePickerDialog;
@@ -43,6 +44,7 @@ public class NovaAkcijaActivity extends AppCompatActivity {
         //txtOdKad = findViewById(R.id.);
         txtDoKad = findViewById(R.id.txtDoKad);
         txtTekst = findViewById(R.id.txtTekst);
+        txtArtikalId = findViewById(R.id.txtArtikalId);
 
         textViewDodaj = findViewById(R.id.textViewDodaj);
 
@@ -52,7 +54,7 @@ public class NovaAkcijaActivity extends AppCompatActivity {
 
         //dateButton.setText(getTodaysDate());
         dateTextView.setText(getTodaysDate());
-
+        DB = new DBHelper(this);
         Intent intent = getIntent();
         Integer prodavacid = intent.getIntExtra("id",0);
 
@@ -60,6 +62,7 @@ public class NovaAkcijaActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+
                 Integer procenat = Integer.valueOf(txtProcenat.getText().toString());
                 String tekst = txtTekst.getText().toString();
                 //String odKad = dateButton.getText().toString();
@@ -73,13 +76,15 @@ public class NovaAkcijaActivity extends AppCompatActivity {
                 LocalDate odKad = LocalDate.parse(dateTextView.getText().toString());
                 LocalDate doKad = LocalDate.parse(txtDoKad.getText().toString());
                 Integer prodavac_id = prodavacid;
+                Integer artikal_id = Integer.valueOf(txtArtikalId.getText().toString());
+                Artikal artikal = DB.findArtikal(artikal_id);
                 // LocalDate odKad = LocalDate.parse(getTodaysDate());
 
                 if (procenat.equals("") || tekst.equals("") || doKad.equals("")) {
                     Toast.makeText(NovaAkcijaActivity.this, "Unesite sva polja!", Toast.LENGTH_SHORT).show();
                 } else {
                     DBHelper DB = new DBHelper(NovaAkcijaActivity.this);
-                    Akcija akcija = new Akcija(procenat, odKad,doKad,tekst,prodavac_id);
+                    Akcija akcija = new Akcija(procenat, odKad,doKad,tekst,prodavac_id, artikal_id);
                     DB.insertAkcija(akcija);
                     Toast.makeText(NovaAkcijaActivity.this, "Uspesno ste dodali akciju", Toast.LENGTH_SHORT).show();
                     finish();
