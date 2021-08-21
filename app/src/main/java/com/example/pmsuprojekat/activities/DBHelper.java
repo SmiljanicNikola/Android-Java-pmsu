@@ -288,6 +288,24 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public Stavka findStavka(Integer stavka_id){
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        Cursor cursor = MyDB.rawQuery("select * from stavke where id=?", new String[] {String.valueOf(stavka_id)});
+        if(cursor.getCount() == 1){
+            cursor.moveToFirst();
+            Integer id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+            Integer kolicina = cursor.getInt(1);
+            Integer artikal_id = cursor.getInt(2);
+            Stavka stavka = new Stavka(id,kolicina,artikal_id);
+
+            return stavka;
+        }
+        else{
+            return null;
+        }
+
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Prodavac findProdavac(String username){
@@ -317,6 +335,30 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<Porudzbina> getPorudzbineKupca(String kupacId){
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        List<Porudzbina> porudzbine = new ArrayList<>();
+        Cursor cursor = MyDB.rawQuery("select * from porudzbine where kupac_id=?", new String[] {kupacId});
+        if(cursor.moveToFirst()){
+            do{
+                int id = Integer.parseInt(cursor.getString(0));
+                LocalDate satnica = LocalDate.parse(cursor.getString(1));
+                boolean dostavljeno = Boolean.parseBoolean(cursor.getString(2));
+                int ocena = cursor.getInt(3);
+                String komentar = cursor.getString(4);
+                boolean anonimanKomentar = Boolean.parseBoolean(cursor.getString(5));
+                boolean arhiviranKomentar = Boolean.parseBoolean(cursor.getString(6));
+                Integer kupac_id = cursor.getInt(7);
+                Integer stavka_id = cursor.getInt(8);
+                porudzbine.add(new Porudzbina(id,satnica,dostavljeno,ocena,komentar,anonimanKomentar,arhiviranKomentar,kupac_id,stavka_id));
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return porudzbine;
+    }
+
 
     public List<Artikal> getArtikliProdavca(String prodavacId){
         //String sql = "select * from artikli where prodavac_id=?";
@@ -339,6 +381,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         return artikli;
 
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public List<Akcija> getAkcijeProdavca(String prodavacId){

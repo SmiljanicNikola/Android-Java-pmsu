@@ -52,6 +52,9 @@
             android:name=".activities.AkcijeActivity">
         </activity>
         <activity
+            android:name=".activities.PorudzbinaActivity">
+        </activity>
+        <activity
             android:name=".activities.NovaAkcijaActivity">
         </activity>
         <activity

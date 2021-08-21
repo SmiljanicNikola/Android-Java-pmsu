@@ -32,6 +32,7 @@ import com.example.pmsuprojekat.activities.DBHelper;
 import com.example.pmsuprojekat.activities.IzabraniProdavacActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
 import com.example.pmsuprojekat.activities.NoviArtikalActivity;
+import com.example.pmsuprojekat.activities.PorudzbinaActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 import com.example.pmsuprojekat.activities.SviKorisniciActivity;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
@@ -156,6 +157,8 @@ public class MainActivityKupac extends AppCompatActivity {
         categories.add("Artikli");
         //categories.add("Dodaj artikal");
         categories.add("Svi korisnici");
+        categories.add("Porudzbine");
+
 
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,categories);
@@ -167,6 +170,7 @@ public class MainActivityKupac extends AppCompatActivity {
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Izaberi")) {
@@ -186,6 +190,21 @@ public class MainActivityKupac extends AppCompatActivity {
                     if(parent.getItemAtPosition(position).equals("Svi korisnici"))
                     {
                         Intent intent = new Intent(MainActivityKupac.this, SviKorisniciActivity.class);
+                        startActivity(intent);
+                    }
+                    if(parent.getItemAtPosition(position).equals("Porudzbine"))
+                    {
+
+                        Intent intent = new Intent(MainActivityKupac.this, PorudzbinaActivity.class);
+                        Intent intent1 = getIntent();
+
+                        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+                        String usernameKupca = prefs.getString("userName", "No name defined");
+                        Kupac kupac = DB.findKupca(usernameKupca);
+                        int idKupca = kupac.getId();
+
+                        intent.putExtra("idKupca", idKupca);
+                        intent.putExtra("usernameKupca", usernameKupca);
                         startActivity(intent);
                     }
                 }
