@@ -2,6 +2,7 @@ package com.example.pmsuprojekat.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -15,13 +16,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
+import com.example.pmsuprojekat.activities.NovaAkcijaActivity;
+import com.example.pmsuprojekat.activities.PotvrdaPorudzbineActivity;
+import com.example.pmsuprojekat.activities.RecenzijaActivity;
 
 import java.util.List;
 
 import model.Artikal;
 import model.Porudzbina;
+import model.Prodavac;
 import model.Stavka;
 
 public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapterClass.ViewHolder>{
@@ -68,30 +74,28 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
         holder.btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String naziv = holder.textViewSatnica.getText().toString();
+                Integer idPorudzbine = Integer.valueOf(holder.textViewID.getText().toString());
+                Integer id_kupca = porudzbina.getKupac_id();
+                /*String naziv = holder.textViewSatnica.getText().toString();
                 String opis = holder.textViewKomentar.getText().toString();
                 Double cena = Double.valueOf(holder.editText_cena.getText().toString());
-                String putanja = holder.editText_putanja.getText().toString();
+                String putanja = holder.editText_putanja.getText().toString();*/
                 //int prodavac_id = Integer.valueOf(holder.editText_prodavacId.getText().toString());
+                Intent myIntent = new Intent(v.getContext(), RecenzijaActivity.class);
+                myIntent.putExtra("idPorudzbine", idPorudzbine);
+                myIntent.putExtra("idKupca", id_kupca);
+
+                v.getContext().startActivity(myIntent);
 
                 //dbHelper.updateArtikal(new Artikal(artikal.getId(),naziv,opis,cena,putanja));
-                notifyDataSetChanged();
+                /*notifyDataSetChanged();
                 ((Activity) context).finish();
-                context.startActivity(((Activity) context).getIntent());
+                context.startActivity(((Activity) context).getIntent());*/
 
             }
         });
 
-        //Brisanje
-        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //dbHelper.deleteArtikal(artikal.getId());
-                //artikli.remove(position);
-                notifyDataSetChanged();
-            }
-        });
+
     }
 
     @Override

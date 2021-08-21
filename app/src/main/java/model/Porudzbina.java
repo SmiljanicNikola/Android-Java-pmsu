@@ -42,6 +42,19 @@ public class Porudzbina {
         this.stavka_id = stavka_id;
     }
 
+    public Porudzbina(Integer id, int ocena, String komentar) {
+        this.id = id;
+        this.ocena = ocena;
+        this.komentar = komentar;
+    }
+
+    public Porudzbina(Integer id, int ocena, String komentar, boolean anonimanKomentar) {
+        this.id = id;
+        this.ocena = ocena;
+        this.komentar = komentar;
+        this.anonimanKomentar = anonimanKomentar;
+    }
+
     public Integer getId() {
         return id;
     }

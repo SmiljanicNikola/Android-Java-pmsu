@@ -493,6 +493,16 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
+        public void updatePorudzbinu(Porudzbina porudzbina){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("komentar", porudzbina.getKomentar());
+            contentValues.put("ocena", porudzbina.getOcena());
+            contentValues.put("anonimanKomentar", porudzbina.isAnonimanKomentar());
+            SQLiteDatabase MyDB = this.getWritableDatabase();
+            MyDB.update("porudzbine",contentValues, "id = ?", new String[] {String.valueOf(porudzbina.getId())});
+
+        }
+
 
         public void deleteArtikal(int id){
             SQLiteDatabase MyDB = this.getWritableDatabase();
