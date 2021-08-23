@@ -288,6 +288,9 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
+
+
+
     public Stavka findStavka(Integer stavka_id){
         SQLiteDatabase MyDB = this.getReadableDatabase();
         Cursor cursor = MyDB.rawQuery("select * from stavke where id=?", new String[] {String.valueOf(stavka_id)});
@@ -358,6 +361,8 @@ public class  DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return porudzbine;
     }
+
+
 
 
     public List<Artikal> getArtikliProdavca(String prodavacId){
@@ -449,10 +454,54 @@ public class  DBHelper extends SQLiteOpenHelper {
 
         }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<Porudzbina> getPorudzbine(){
+        String sql = "select * from porudzbine ";
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        List<Porudzbina> porudzbine = new ArrayList<>();
+        Cursor cursor = MyDB.rawQuery(sql,null);
+        if(cursor.moveToFirst()){
+            do{
+                int id = Integer.parseInt(cursor.getString(0));
+                LocalDate satnica = LocalDate.parse(cursor.getString(1));
+                boolean dostavljeno = Boolean.parseBoolean(cursor.getString(2));
+                int ocena = cursor.getInt(3);
+                String komentar = cursor.getString(4);
+                boolean anonimanKomentar = Boolean.parseBoolean(cursor.getString(5));
+                boolean arhiviranKomentar = Boolean.parseBoolean(cursor.getString(6));
+                Integer kupac_id = cursor.getInt(7);
+                Integer stavka_id = cursor.getInt(8);
+                porudzbine.add(new Porudzbina(id,satnica,dostavljeno,ocena,komentar,anonimanKomentar,arhiviranKomentar,kupac_id,stavka_id));
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return porudzbine;
+
+    }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<Stavka> getStavke(){
+        String sql = "select * from stavke ";
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        List<Stavka> stavke = new ArrayList<>();
+        Cursor cursor = MyDB.rawQuery(sql,null);
+        if(cursor.moveToFirst()){
+            do{
+                int id = Integer.parseInt(cursor.getString(0));
+                Integer kolicina = cursor.getInt(1);
+                Integer artikal_id = cursor.getInt(2);
 
-        public List<Korisnik> getKorisnike(){
+                stavke.add(new Stavka(id,kolicina,artikal_id));
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return stavke;
+
+    }
+
+
+    public List<Korisnik> getKorisnike(){
             String sql = "select * from users";
             SQLiteDatabase MyDB = this.getReadableDatabase();
             List<Korisnik> korisnici = new ArrayList<>();

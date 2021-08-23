@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.pmsuprojekat.R;
 
 public class FragmentTransitionKomentari
-{
+{/*
 
 
     public static void to(Fragment newFragment, FragmentActivity activity)
@@ -30,5 +30,5 @@ public class FragmentTransitionKomentari
         activity.getSupportFragmentManager().popBackStack();
     }
 
-
+*/
 }
