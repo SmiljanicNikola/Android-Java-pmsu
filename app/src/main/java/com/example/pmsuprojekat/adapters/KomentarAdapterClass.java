@@ -47,33 +47,27 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Porudzbina porudzbina = porudzbineProdavca.get(position);
-        holder.textViewID.setText(Integer.toString(porudzbina.getId()));
-        //holder.editText_naziv.setText(Integer.toString(akcija.getProcenat()));
-        holder.textViewKomentar.setText(porudzbina.getKomentar());
+
+            holder.textViewID.setText(Integer.toString(porudzbina.getId()));
+            //holder.editText_naziv.setText(Integer.toString(akcija.getProcenat()));
+            holder.textViewKomentar.setText(porudzbina.getKomentar());
 
 
+            //holder.editText_prodavacId.setText(artikal.getProdavac_id());
 
-        //holder.editText_prodavacId.setText(artikal.getProdavac_id());
+            holder.btn_arhiviraj.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    dbHelper.arhivirajKomentar(new Porudzbina(porudzbina.getId(), true));
+                    porudzbineProdavca.remove(position);
 
-        //Izmena
-        /*holder.btn_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                    notifyDataSetChanged();
+                /*((Activity) context).finish();
+                context.startActivity(((Activity) context).getIntent());*/
 
-                String naziv = holder.editText_naziv.getText().toString();
-                String opis = holder.editText_opis.getText().toString();
-                Double cena = Double.valueOf(holder.editText_cena.getText().toString());
-                String putanja = holder.editText_putanja.getText().toString();
-                //int prodavac_id = Integer.valueOf(holder.editText_prodavacId.getText().toString());
-
-                dbHelper.updateArtikal(new Artikal(akcija.getId(),naziv,opis,cena,putanja));
-                notifyDataSetChanged();
-                ((Activity) context).finish();
-                context.startActivity(((Activity) context).getIntent());
-
-            }
-        });*/
+                }
+            });
 
         /*//Brisanje
         holder.btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +100,7 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
         EditText editText_prodavacId;
 
         ImageView imgIcon;
-        Button btn_edit;
+        Button btn_arhiviraj;
         Button btn_delete;
 
         public ViewHolder(@NonNull View itemView){
@@ -124,7 +118,7 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
             editText_putanja = itemView.findViewById(R.id.editText_putanja);
             editText_prodavacId = itemView.findViewById(R.id.editText_prodavacId);
             btn_delete = itemView.findViewById(R.id.btn_delete);
-            btn_edit = itemView.findViewById(R.id.btn_edit);
+            btn_arhiviraj = itemView.findViewById(R.id.btn_arhiviraj);
             imgIcon = itemView.findViewById(R.id.imgIcon);
 
 

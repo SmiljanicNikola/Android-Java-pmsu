@@ -63,7 +63,7 @@ public class KomentarActivity extends AppCompatActivity {
         String prodavacId = String.valueOf(intent.getIntExtra("idProdavca",0));
 
         List<Artikal> artikli = dbHelper.getArtikliProdavca(prodavacId);
-        List<Porudzbina> porudzbine = dbHelper.getPorudzbine();
+        List<Porudzbina> porudzbine = dbHelper.getPorudzbineNearhivirani();
         List<Stavka> stavke = dbHelper.getStavke();
         List<Porudzbina> porudzbineProdavca = new ArrayList<>();
         for(Artikal artikal : artikli){

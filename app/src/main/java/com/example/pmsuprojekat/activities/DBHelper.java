@@ -455,8 +455,8 @@ public class  DBHelper extends SQLiteOpenHelper {
         }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public List<Porudzbina> getPorudzbine(){
-        String sql = "select * from porudzbine ";
+    public List<Porudzbina> getPorudzbineNearhivirani(){
+        String sql = "select * from porudzbine where arhiviranKomentar=false ";
         SQLiteDatabase MyDB = this.getReadableDatabase();
         List<Porudzbina> porudzbine = new ArrayList<>();
         Cursor cursor = MyDB.rawQuery(sql,null);
@@ -552,8 +552,17 @@ public class  DBHelper extends SQLiteOpenHelper {
 
         }
 
+        public void arhivirajKomentar(Porudzbina porudzbina){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("arhiviranKomentar", porudzbina.isArhiviranKomentar());
+            SQLiteDatabase MyDB = this.getWritableDatabase();
+            MyDB.update("porudzbine",contentValues, "id = ?", new String[] {String.valueOf(porudzbina.getId())});
 
-        public void deleteArtikal(int id){
+    }
+
+
+
+    public void deleteArtikal(int id){
             SQLiteDatabase MyDB = this.getWritableDatabase();
             MyDB.delete("artikli", "id = ?", new String[] {String.valueOf(id)});
         }
