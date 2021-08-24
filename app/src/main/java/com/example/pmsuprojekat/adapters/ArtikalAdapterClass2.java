@@ -100,10 +100,10 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                 int stavkaId = stavka.getId();
                 dbHelper.insertStavke(stavka);
 
+
                 SharedPreferences sharedPref = context.getSharedPreferences("My pref",Context.MODE_PRIVATE);
                 String usernameKupca = sharedPref.getString("userName", "No name defined");
                 //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
-
                 Kupac kupac = dbHelper.findKupca(usernameKupca);
                 int idKupca = kupac.getId();
 

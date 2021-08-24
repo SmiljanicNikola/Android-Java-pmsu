@@ -3,6 +3,8 @@ package com.example.pmsuprojekat.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -11,19 +13,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.adapters.AkcijaAdapterClass;
 import java.util.List;
 import model.Akcija;
+import model.Prodavac;
 
 public class AkcijeActivity extends AppCompatActivity {
 
+    Button dodajAkciju;
     RecyclerView recyclerView;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.artikli_list);
+        setContentView(R.layout.akcije_list);
+        dodajAkciju=findViewById(R.id.btnDodajAkciju);
 
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -57,6 +64,24 @@ public class AkcijeActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
         }
 
+        dodajAkciju.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent1 = getIntent();
+                String username = intent1.getStringExtra("user");
+                //String idProdavca = String.valueOf(intent1.getIntExtra("idProdavca",0));
+                int idProdavca = intent1.getIntExtra("idProdavca",0);
+                Intent intent = new Intent(AkcijeActivity.this, NovaAkcijaActivity.class);
+                //Korisnik korisnik = DB.findKorisnik(username);
+
+                /*Prodavac prodavac = dbHelper.findProdavac(username);
+                int idProdavca = prodavac.getId();*/
+
+                intent.putExtra("id", idProdavca);
+                intent.putExtra("user", username);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -64,4 +89,6 @@ public class AkcijeActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         super.onResume();
     }
+
+
 }

@@ -118,7 +118,6 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
         EditText editText_prodavacId;
         ImageView imgIcon;
         Button btn_edit;
-        Button btn_delete;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -135,7 +134,6 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
             editText_cena = itemView.findViewById(R.id.editText_cena);
             editText_putanja = itemView.findViewById(R.id.editText_putanja);
             editText_prodavacId = itemView.findViewById(R.id.editText_prodavacId);
-            btn_delete = itemView.findViewById(R.id.btn_delete);
             btn_edit = itemView.findViewById(R.id.btn_edit);
             imgIcon = itemView.findViewById(R.id.imgIcon);
 

@@ -66,7 +66,7 @@ public class AkcijaAdapterClass extends RecyclerView.Adapter<AkcijaAdapterClass.
 
 
         //Izmena
-        holder.btn_edit.setOnClickListener(new View.OnClickListener() {
+        /*holder.btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -82,7 +82,7 @@ public class AkcijaAdapterClass extends RecyclerView.Adapter<AkcijaAdapterClass.
                 context.startActivity(((Activity) context).getIntent());
 
             }
-        });
+        });*/
 
         /*//Brisanje
         holder.btn_delete.setOnClickListener(new View.OnClickListener() {

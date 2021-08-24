@@ -245,6 +245,29 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public Kupac findKupca2(String kupacId){
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        Cursor cursor = MyDB.rawQuery("select * from kupci where id=?", new String[] {String.valueOf(kupacId)});
+        if(cursor.getCount() == 1){
+            cursor.moveToFirst();
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+            String ime = cursor.getString(1);
+            String prezime = cursor.getString(2);
+            String username = cursor.getString(3);
+            String password = cursor.getString(4);
+            String adresa = cursor.getString(5);
+
+            Kupac kupac = new Kupac(id,ime,prezime,username,password,adresa);
+
+            return kupac;
+        }
+        else{
+            return null;
+        }
+
+    }
+
+
     /*public Stavka findStavka(String stavkaOznaka){
         SQLiteDatabase MyDB = this.getReadableDatabase();
         Cursor cursor = MyDB.rawQuery("select * from stavke where id=?", new String[] {stavkaOznaka});

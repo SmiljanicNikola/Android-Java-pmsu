@@ -20,6 +20,7 @@ import java.util.List;
 
 import model.Akcija;
 import model.Artikal;
+import model.Kupac;
 import model.Porudzbina;
 
 public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterClass.ViewHolder> {
@@ -50,6 +51,10 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
 
             holder.textViewID.setText(Integer.toString(porudzbina.getId()));
             //holder.editText_naziv.setText(Integer.toString(akcija.getProcenat()));
+            String kupacId = String.valueOf(porudzbina.getKupac_id());
+
+            Kupac kupac = dbHelper.findKupca2(kupacId);
+            holder.textViewAutorKomentara.setText(kupac.getUsername()+"|"+kupac.getIme()+" "+kupac.getPrezime());
             holder.textViewKomentar.setText(porudzbina.getKomentar());
 
 
@@ -91,7 +96,7 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
         TextView textViewDoKad;
         TextView textViewOdKad;
         TextView textViewKomentar;
-        TextView textViewArtikalId;
+        TextView textViewAutorKomentara;
 
         EditText editText_naziv;
         EditText editText_opis;
@@ -110,7 +115,7 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
             textViewDoKad = itemView.findViewById(R.id.textViewDoKad);
             textViewOdKad = itemView.findViewById(R.id.textViewOdKad);
             textViewKomentar = itemView.findViewById(R.id.textViewKomentar);
-            textViewArtikalId = itemView.findViewById(R.id.textViewArtikalId);
+            textViewAutorKomentara = itemView.findViewById(R.id.textViewAutorKomentara);
 
             editText_naziv = itemView.findViewById(R.id.editText_naziv);
             editText_opis = itemView.findViewById(R.id.editText_opis);

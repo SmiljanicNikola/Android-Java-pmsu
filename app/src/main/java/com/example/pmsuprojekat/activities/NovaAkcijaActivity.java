@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 
 import java.sql.Date;
@@ -25,6 +26,7 @@ import java.util.Calendar;
 
 import model.Akcija;
 import model.Artikal;
+import model.Prodavac;
 
 public class NovaAkcijaActivity extends AppCompatActivity {
 
@@ -87,9 +89,21 @@ public class NovaAkcijaActivity extends AppCompatActivity {
                     Akcija akcija = new Akcija(procenat, odKad,doKad,tekst,prodavac_id, artikal_id);
                     DB.insertAkcija(akcija);
                     Toast.makeText(NovaAkcijaActivity.this, "Uspesno ste dodali akciju", Toast.LENGTH_SHORT).show();
+
                     finish();
                     startActivity(getIntent());
                 }
+
+                Intent intent = new Intent(NovaAkcijaActivity.this, AkcijeActivity.class);
+                Intent intent1 = getIntent();
+                //String username = intent1.getStringExtra("user");
+                Integer prodavacid = intent1.getIntExtra("id",0);
+                //Korisnik korisnik = DB.findKorisnik(username);
+                //Prodavac prodavac = DB.findProdavac(username);
+                //int idProdavca = prodavac.getId();
+                intent.putExtra("idProdavca", prodavacid);
+                //intent.putExtra("user", username);
+                startActivity(intent);
             }
         });
 
