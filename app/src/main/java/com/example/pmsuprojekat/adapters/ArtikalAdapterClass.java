@@ -2,6 +2,7 @@ package com.example.pmsuprojekat.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -16,16 +17,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
+import com.example.pmsuprojekat.activities.NoviArtikalActivity;
+import com.example.pmsuprojekat.activities.RecenzijaActivity;
+import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 
 import java.sql.Blob;
 import java.util.List;
 
 import model.Artikal;
+import model.Prodavac;
 
 public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClass.ViewHolder>{
-
+    private SharedPreferenceConfig sharedPreferenceConfig;
     List<Artikal> artikli;
     Context context;
     DBHelper dbHelper;
@@ -90,6 +96,16 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
             }
         });
 
+        holder.btn_dodajArtikal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int prodavacId = artikal.getProdavac_id();
+                Intent myIntent = new Intent(v.getContext(), NoviArtikalActivity.class);
+                myIntent.putExtra("id", prodavacId);
+                v.getContext().startActivity(myIntent);
+            }
+        });
+
     }
 
     @Override
@@ -107,6 +123,7 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
         ImageView imgIcon;
         Button btn_edit;
         Button btn_delete;
+        Button btn_dodajArtikal;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -119,6 +136,7 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
             editText_prodavacId = itemView.findViewById(R.id.editText_prodavacId);
             btn_delete = itemView.findViewById(R.id.btn_delete);
             btn_edit = itemView.findViewById(R.id.btn_edit);
+            btn_dodajArtikal = itemView.findViewById(R.id.btn_dodajArtikal);
             imgIcon = itemView.findViewById(R.id.imgIcon);
 
 

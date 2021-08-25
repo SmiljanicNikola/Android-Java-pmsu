@@ -100,6 +100,11 @@ public class LoginActivity extends AppCompatActivity {
                             else if(korisnik.getUloga().equals("prodavac")){
                                 Toast.makeText(LoginActivity.this, "Uspesno ste se ulogovali kao prodavac", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                                SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                                editor.putString("userName", user);
+                                editor.apply();
+
                                 intent.putExtra("user", user);
                                 intent.putExtra("id", id);
                                 startActivity(intent);

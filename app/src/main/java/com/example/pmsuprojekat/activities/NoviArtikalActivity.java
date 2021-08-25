@@ -94,6 +94,13 @@ public class NoviArtikalActivity extends AppCompatActivity {
                     finish();
                     startActivity(getIntent());
                 }
+                Intent intent = new Intent(NoviArtikalActivity.this, ArtikalActivity.class);
+                Intent intent1 = getIntent();
+                Integer prodavacid = intent1.getIntExtra("id",0);
+                String username = intent.getStringExtra("user");
+                intent.putExtra("idProdavca", prodavacid);
+                intent.putExtra("user", username);
+                startActivity(intent);
             }
         });
 
