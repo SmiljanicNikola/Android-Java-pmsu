@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Artikal {
 
     private Integer id;
@@ -9,6 +11,7 @@ public class Artikal {
     private String putanjaSlike;
     private int prodavac_id;
     private byte[] image;
+    private List<Akcija> akcije;
 
 
     public Artikal(){
@@ -132,6 +135,14 @@ public class Artikal {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public List<Akcija> getAkcije() {
+        return akcije;
+    }
+
+    public void setAkcije(List<Akcija> akcije) {
+        this.akcije = akcije;
     }
 
     @Override

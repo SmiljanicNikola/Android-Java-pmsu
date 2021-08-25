@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pmsuprojekat.MainActivity;
@@ -25,6 +27,7 @@ import com.example.pmsuprojekat.activities.RecenzijaActivity;
 
 import java.util.List;
 
+import model.Akcija;
 import model.Artikal;
 import model.Porudzbina;
 import model.Prodavac;
@@ -52,9 +55,11 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Porudzbina porudzbina = porudzbine.get(position);
+        //List<Akcija> akcije = dbHelper.getAkcije();
 
         holder.textViewID.setText(Integer.toString(porudzbina.getId()));
         holder.textViewSatnica.setText("Satnica(Datum): "+porudzbina.getSatnica().toString());
@@ -66,6 +71,18 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
         holder.textViewArtikal.setText("Naziv artikla: "+artikal.getNaziv());
         holder.textViewKolicina.setText("Kolicina narucenih artikala: "+stavka.getKolicina());
         holder.textViewCenaPojedinacno.setText("Cena artikla pojedinacno: "+artikal.getCena());
+        /*for(Akcija akcija : akcije){
+            if(akcija.getArtikal_id() == artikal.getId()){
+                int procenat = akcija.getProcenat();
+                holder.textViewCenaSaAkcijom.setText("Cena sa akcijom:"+(artikal.getCena()-artikal.getCena()*procenat));
+            }
+        }*/
+        /*List<Akcija> akcije = artikal.getAkcije();
+        for(Akcija akcija : akcije){
+            holder.textViewCenaSaAkcijom.setText("Cena sa akcijom: "+artikal.getCena()/akcija.getProcenat());
+        }*/
+        //holder.textViewCenaSaAkcijom.setText("Cena sa akcijom: "+artikal.getCena());
+
         holder.textViewCenaUkupno.setText("Cena narudzbe ukupno:"+artikal.getCena()*stavka.getKolicina());
         //holder.editText_putanja.setText(artikal.getPutanjaSlike());
         //holder.editText_prodavacId.setText(artikal.getProdavac_id());
@@ -111,6 +128,7 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
         TextView textViewKolicina;
         TextView textViewCenaPojedinacno;
         TextView textViewCenaUkupno;
+        TextView textViewCenaSaAkcijom;
 
 
         EditText editText_cena;
@@ -129,6 +147,7 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
             textViewKolicina = itemView.findViewById(R.id.textViewKolicina);
             textViewCenaPojedinacno = itemView.findViewById(R.id.textViewCenaPojedinacno);
             textViewCenaUkupno = itemView.findViewById(R.id.textViewCenaUkupno);
+            textViewCenaSaAkcijom = itemView.findViewById(R.id.textViewCenaSaAkcijom);
 
 
             editText_cena = itemView.findViewById(R.id.editText_cena);

@@ -23,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.List;
 
 import model.Akcija;
 import model.Artikal;
@@ -82,22 +83,33 @@ public class NovaAkcijaActivity extends AppCompatActivity {
                 Artikal artikal = DB.findArtikal(artikal_id);
                 // LocalDate odKad = LocalDate.parse(getTodaysDate());
 
+                Akcija akcija = null;
                 if (procenat.equals("") || tekst.equals("") || doKad.equals("")) {
                     Toast.makeText(NovaAkcijaActivity.this, "Unesite sva polja!", Toast.LENGTH_SHORT).show();
                 } else {
                     DBHelper DB = new DBHelper(NovaAkcijaActivity.this);
-                    Akcija akcija = new Akcija(procenat, odKad,doKad,tekst,prodavac_id, artikal_id);
+                    akcija = new Akcija(procenat, odKad, doKad, tekst, prodavac_id, artikal_id);
                     DB.insertAkcija(akcija);
+
+
+
+                    /*int akcijaId = akcija.getId();
+                    DB.updateArtikal(new Artikal(artikal.getId(),akcijaId));*/
+
                     Toast.makeText(NovaAkcijaActivity.this, "Uspesno ste dodali akciju", Toast.LENGTH_SHORT).show();
 
                     finish();
                     startActivity(getIntent());
                 }
 
+                /*Artikal artikal1 = DB.findArtikal(artikal_id);
+                List<Akcija> akcije = artikal1.getAkcije();
+                akcije.add(akcija);*/
+
                 Intent intent = new Intent(NovaAkcijaActivity.this, AkcijeActivity.class);
                 Intent intent1 = getIntent();
                 //String username = intent1.getStringExtra("user");
-                Integer prodavacid = intent1.getIntExtra("id",0);
+                Integer prodavacid = intent1.getIntExtra("id", 0);
                 //Korisnik korisnik = DB.findKorisnik(username);
                 //Prodavac prodavac = DB.findProdavac(username);
                 //int idProdavca = prodavac.getId();

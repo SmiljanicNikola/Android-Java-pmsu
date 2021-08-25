@@ -18,12 +18,6 @@
         android:title="Exit"
         android:id="@+id/exit"/>
 
-     <item
-       android:id="@+id/search"
-       app:showAsAction="always"
-       android:icon="@drawable/ic_search"
-       />
-
    <item
        android:id="@+id/settings"
        android:icon="@drawable/ic_settings"

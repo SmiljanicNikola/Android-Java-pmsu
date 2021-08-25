@@ -545,6 +545,28 @@ public class  DBHelper extends SQLiteOpenHelper {
             return korisnici;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<Akcija> getAkcije(){
+        String sql = "select * from akcije";
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        List<Akcija> akcije = new ArrayList<>();
+        Cursor cursor = MyDB.rawQuery(sql,null);
+        if(cursor.moveToFirst()){
+            do{
+                int id = Integer.parseInt(cursor.getString(0));
+                Integer procenat = cursor.getInt(1);
+                LocalDate odKad = LocalDate.parse(cursor.getString(2));
+                LocalDate doKad = LocalDate.parse(cursor.getString(3));
+                String tekst = cursor.getString(4);
+                Integer prodavac_id = cursor.getInt(5);
+                Integer artikal_id = cursor.getInt(6);
+                akcije.add(new Akcija(id,procenat,odKad, doKad, tekst, prodavac_id, artikal_id));
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return akcije;
+    }
+
 
         public void updateArtikal(Artikal artikal){
             ContentValues contentValues = new ContentValues();

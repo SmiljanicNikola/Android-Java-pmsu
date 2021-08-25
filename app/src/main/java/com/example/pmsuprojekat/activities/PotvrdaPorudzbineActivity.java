@@ -25,6 +25,7 @@ import com.example.pmsuprojekat.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Akcija;
 import model.Artikal;
 import model.Stavka;
 
@@ -33,9 +34,10 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private SharedPreferenceConfig sharedPreferenceConfig;
     private Spinner spinner;
-    private TextView textViewNaziv,textViewKolicina,textViewCenaPojedinacno,textViewCenaUkupno;
+    private TextView textViewNaziv,textViewKolicina,textViewCenaPojedinacno,textViewCenaUkupno,textViewCenaSaAkcijom;
     private Button btnPotvrdiPorudzbinu;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +86,23 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
 
         textViewCenaPojedinacno = findViewById(R.id.textView3);
         textViewCenaPojedinacno.setText(String.valueOf(cenaArtikla));
+
+        /*List<Akcija> akcije = artikal.getAkcije();
+        for(Akcija akcija : akcije){
+            textViewCenaSaAkcijom = findViewById(R.id.textView5);
+            textViewCenaSaAkcijom.setText(String.valueOf(cenaArtikla*akcija.getProcenat()));
+        }*/
+        List<Akcija> akcije = dbHelper.getAkcije();
+        for(Akcija akcija : akcije) {
+            if (akcija.getArtikal_id() == artikal.getId()) {
+                textViewCenaSaAkcijom = findViewById(R.id.textView5);
+                textViewCenaSaAkcijom.setText(String.valueOf(cenaArtikla * akcija.getProcenat()));
+            }
+            else{
+                textViewCenaSaAkcijom = findViewById(R.id.textView5);
+                textViewCenaSaAkcijom.setText("Trenutno nema aktivne akcije");
+            }
+        }
 
         textViewCenaUkupno = findViewById(R.id.textView4);
         textViewCenaUkupno.setText(String.valueOf(cenaArtikla * kolicina));

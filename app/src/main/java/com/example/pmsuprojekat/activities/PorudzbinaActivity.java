@@ -43,6 +43,7 @@ public class PorudzbinaActivity extends AppCompatActivity {
         //Dobavljanje pourdzbina pojedinacnog kupca koji ih je obavio
         List<Porudzbina> porudzbine = dbHelper.getPorudzbineKupca(kupacId);
 
+
         if(porudzbine.size() > 0){
             PorudzbinaAdapterClass porudzbinaAdapterClass = new PorudzbinaAdapterClass(porudzbine,PorudzbinaActivity.this);
             recyclerView.setAdapter(porudzbinaAdapterClass);
