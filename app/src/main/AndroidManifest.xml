@@ -58,7 +58,8 @@
             android:name=".activities.NovaAkcijaActivity">
         </activity>
         <activity
-            android:name=".activities.PotvrdaPorudzbineActivity">
+            android:name=".activities.PotvrdaPorudzbineActivity"
+            android:label="@string/Empty">
         </activity>
         <activity
             android:name=".activities.RegisterActivityProdavac">
@@ -71,7 +72,9 @@
             android:label="@string/Empty">
         </activity>
         <activity
-            android:name=".activities.ArtikalActivity">
+            android:name=".activities.ArtikalActivity"
+            android:label="@string/Lista">
+
         </activity>
         <activity
             android:name=".activities.NoviArtikalActivity">

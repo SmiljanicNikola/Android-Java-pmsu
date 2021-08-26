@@ -1,5 +1,6 @@
 package com.example.pmsuprojekat.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -77,11 +78,20 @@ public class ArtikalActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
         }
 
+
+
     }
     @Override
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
+    }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
     }
 
 }

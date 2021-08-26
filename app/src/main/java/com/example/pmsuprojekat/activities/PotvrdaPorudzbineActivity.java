@@ -96,7 +96,8 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
         for(Akcija akcija : akcije) {
             if (akcija.getArtikal_id() == artikal.getId()) {
                 textViewCenaSaAkcijom = findViewById(R.id.textView5);
-                textViewCenaSaAkcijom.setText(String.valueOf(cenaArtikla * akcija.getProcenat()));
+                double stotiDeo = cenaArtikla/100;
+                textViewCenaSaAkcijom.setText(String.valueOf(cenaArtikla-(stotiDeo*akcija.getProcenat())));
             }
             else{
                 textViewCenaSaAkcijom = findViewById(R.id.textView5);
@@ -120,7 +121,7 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
             }
             });
 
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        /*dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(dataAdapter);
 
@@ -151,7 +152,7 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();

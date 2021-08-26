@@ -51,15 +51,15 @@ public class AkcijaAdapterClass extends RecyclerView.Adapter<AkcijaAdapterClass.
         final Akcija akcija = akcije.get(position);
         holder.textViewID.setText(Integer.toString(akcija.getId()));
         //holder.editText_naziv.setText(Integer.toString(akcija.getProcenat()));
-        holder.textViewProcenat.setText(Integer.toString(akcija.getProcenat()));
+        holder.textViewProcenat.setText("Popust: "+Integer.toString(akcija.getProcenat())+"%");
         //holder.editText_opis.setText(akcija.getOdKad().toString());
 
-        holder.textViewOdKad.setText(akcija.getOdKad().toString());
+        holder.textViewOdKad.setText("Akcija traje od: "+akcija.getOdKad().toString());
         //holder.editText_cena.setText(akcija.getDoKad().toString());
-        holder.textViewDoKad.setText(akcija.getDoKad().toString());
+        holder.textViewDoKad.setText("Akcija traje do: "+akcija.getDoKad().toString());
 
         Artikal artikal = dbHelper.findArtikal(akcija.getArtikal_id());
-        holder.textViewArtikalId.setText(artikal.getNaziv());
+        holder.textViewArtikalId.setText("Artikal koji je na popustu: "+artikal.getNaziv());
 
 
         //holder.editText_prodavacId.setText(artikal.getProdavac_id());

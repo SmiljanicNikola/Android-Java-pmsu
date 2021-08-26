@@ -84,7 +84,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (checkuserpass == true) {
                         Korisnik korisnik = DB.findKorisnik(user);
                         int id = korisnik.getId();
-                        if (korisnik.isBlokiran() == false) {
+                        Boolean blokiran = korisnik.isBlokiran();
+                        if (blokiran == false) {
                             if(korisnik.getUloga().equals("kupac")) {
                                 Toast.makeText(LoginActivity.this, "Uspesno ste se ulogovali kao kupac", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivityKupac.class);
@@ -122,9 +123,14 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
                             }
                         }
-                        else if(korisnik.isBlokiran() == true) {
+                        else if(blokiran == true){
                             Toast.makeText(LoginActivity.this, "Blokirani ste!", Toast.LENGTH_SHORT).show();
                         }
+                        else{
+                            Toast.makeText(LoginActivity.this, "NISTA!", Toast.LENGTH_SHORT).show();
+
+                        }
+
                     }
                     else {
                         Toast.makeText(LoginActivity.this, "Unesite prave kredencijale!", Toast.LENGTH_SHORT).show();

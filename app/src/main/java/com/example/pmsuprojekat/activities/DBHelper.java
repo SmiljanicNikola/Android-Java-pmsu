@@ -54,7 +54,7 @@ public class  DBHelper extends SQLiteOpenHelper {
 
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (1,'milorad','miloradovic','miloradm','321','administrator',0)");
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (2,'milan','milanovic','milanm','321','administrator',0)");
-        MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (3,'nenad','nenadovic','nenadn','123','prodavac',0)");
+        MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (3,'nenad','nenadovic','nenadn','123','prodavac',false)");
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (4,'ivan','ivanovic','ivani','123','prodavac',0)");
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (5,'predrag','predragovic','predragp','123','prodavac',0)");
 
@@ -90,7 +90,7 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public Boolean insertData(String ime, String prezime, String username, String password, String uloga, boolean b){
+    public Boolean insertData(String ime, String prezime, String username, String password, String uloga, boolean blokiran){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("ime", ime);
@@ -199,15 +199,15 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public Korisnik findKorisnik(String username){
+    public Korisnik findKorisnik(String usernamee){
         SQLiteDatabase MyDB = this.getReadableDatabase();
-        Cursor cursor = MyDB.rawQuery("select * from users where username=?", new String[] {username});
+        Cursor cursor = MyDB.rawQuery("select * from users where username=?", new String[] {usernamee});
         if(cursor.getCount() == 1){
             cursor.moveToFirst();
             int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
             String ime = cursor.getString(1);
             String prezime = cursor.getString(2);
-            String usernamee = cursor.getString(3);
+            String username = cursor.getString(3);
             String password = cursor.getString(4);
             String uloga = cursor.getString(5);
             boolean blokiran = Boolean.parseBoolean(cursor.getString(6));
