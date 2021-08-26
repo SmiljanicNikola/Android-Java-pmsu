@@ -27,14 +27,7 @@
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
-            <Spinner
-                android:id="@+id/aSpinnerToolBar"
-                android:layout_width="140dp"
-                android:layout_height="30dp"
-                android:layout_margin="5dp"
-                android:layout_centerHorizontal="true"
-                android:ems="10"
-                android:textColor="@color/white"/>
+
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

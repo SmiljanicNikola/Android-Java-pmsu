@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true"/>
+
 
     <application
         android:allowBackup="true"
@@ -49,7 +53,9 @@
             android:name=".activities.RegisterActivity">
         </activity>
         <activity
-            android:name=".activities.AkcijeActivity">
+            android:name=".activities.AkcijeActivity"
+            android:label="@string/akcije">
+
         </activity>
         <activity
             android:name=".activities.PorudzbinaActivity">
@@ -93,11 +99,14 @@
 
         </activity>
         <activity
-            android:name=".activities.SviKorisniciActivity">
+            android:name=".activities.SviKorisniciActivity"
+            android:label="@string/sviKorisnici">
+
         </activity>
 
         <activity
-            android:name=".activities.KomentarActivity">
+            android:name=".activities.KomentarActivity"
+            android:label="@string/komentari">
         </activity>
 
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"

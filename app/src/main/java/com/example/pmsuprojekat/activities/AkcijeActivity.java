@@ -1,8 +1,15 @@
 package com.example.pmsuprojekat.activities;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,6 +29,11 @@ import model.Akcija;
 import model.Prodavac;
 
 public class AkcijeActivity extends AppCompatActivity {
+
+    private SensorManager sensor;
+    private float acelVal;
+    private float acelLast;
+    private float shake;
 
     Button dodajAkciju;
     RecyclerView recyclerView;
@@ -56,11 +68,8 @@ public class AkcijeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
 
-
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            /*actionBar.setIcon(R.drawable.ic_launcher);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);*/
             actionBar.setHomeButtonEnabled(true);
         }
 
@@ -82,12 +91,50 @@ public class AkcijeActivity extends AppCompatActivity {
             }
         });
 
+        sensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensor.registerListener(sensorListener, sensor.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+
+        acelVal = SensorManager.GRAVITY_EARTH;
+        acelLast = SensorManager.GRAVITY_EARTH;
+        shake = 0.00f;
+
     }
+
+    private final SensorEventListener sensorListener = new SensorEventListener(){
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent){
+            float x = sensorEvent.values[0];
+            float y = sensorEvent.values[1];
+            float z = sensorEvent.values[2];
+
+            acelLast = acelVal;
+            acelVal = (float) Math.sqrt((double) (x*x + y*y + z*z));
+            float delta = acelVal - acelLast;
+            shake = shake * 0.9f + delta;
+
+            if(shake>12){
+                Toast toast = Toast.makeText(getApplicationContext(), "NE MUCKAJ!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
 
     @Override
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
+    }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
     }
 
 
