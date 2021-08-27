@@ -147,11 +147,6 @@ public class Artikal {
 
     @Override
     public String toString() {
-        return "Artikal{" +
-                "naziv='" + naziv + '\'' +
-                ", opis='" + opis + '\'' +
-                ", cena=" + cena +
-                ", putanjaSlike='" + putanjaSlike + '\'' +
-                '}';
+        return ""+id;
     }
 }

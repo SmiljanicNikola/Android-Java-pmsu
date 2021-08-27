@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +37,7 @@ public class NovaAkcijaActivity extends AppCompatActivity {
     EditText txtProcenat, txtOdKad, txtDoKad, txtTekst, txtArtikalId;
     TextView textViewDodaj, textViewPregledaj;
     DBHelper DB;
+    Spinner spinner;
     private DatePickerDialog datePickerDialog;
     private DatePickerDialog datePickerDialog1;
     private Button dateButton;
@@ -43,6 +47,8 @@ public class NovaAkcijaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dodaj_akciju);
+
+
 
         txtProcenat = findViewById(R.id.txtProcenat);
         //txtOdKad = findViewById(R.id.);
@@ -65,6 +71,26 @@ public class NovaAkcijaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Integer prodavacid = intent.getIntExtra("id",0);
 
+        spinner = findViewById(R.id.spinner);
+        List<Artikal> artikliList = DB.getArtikliProdavca(String.valueOf(prodavacid));
+        ArrayAdapter<Artikal> adapter = new ArrayAdapter<Artikal>(this, android.R.layout.simple_spinner_item, artikliList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Artikal artikal = (Artikal) parent.getSelectedItem();
+                displayArtikalData(artikal);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         textViewDodaj.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -83,7 +109,9 @@ public class NovaAkcijaActivity extends AppCompatActivity {
                 LocalDate odKad = LocalDate.parse(dateTextView.getText().toString());
                 LocalDate doKad = LocalDate.parse(dateTextView1.getText().toString());
                 Integer prodavac_id = prodavacid;
-                Integer artikal_id = Integer.valueOf(txtArtikalId.getText().toString());
+                //Integer artikal_id = Integer.valueOf(txtArtikalId.getText().toString());
+                Integer artikal_id = Integer.valueOf(spinner.getSelectedItem().toString());
+
                 Artikal artikal = DB.findArtikal(artikal_id);
                 // LocalDate odKad = LocalDate.parse(getTodaysDate());
 
@@ -125,6 +153,21 @@ public class NovaAkcijaActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void getSelectedArtikal(View v){
+        Artikal artikal = (Artikal) spinner.getSelectedItem();
+        displayArtikalData(artikal);
+    }
+
+    private void displayArtikalData(Artikal artikal){
+        String naziv = artikal.getNaziv();
+        String opis = artikal.getOpis();
+        Double cena = artikal.getCena();
+
+        String artikalData = "Naziv: "+naziv+"\nOpis: "+opis+"\nCena: "+cena;
+
+        Toast.makeText(this, artikalData, Toast.LENGTH_LONG).show();
     }
 
     private String getTodaysDate() {
