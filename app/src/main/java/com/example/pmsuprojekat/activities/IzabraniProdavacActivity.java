@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.adapters.ArtikalAdapterClass;
@@ -54,7 +55,7 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
 
 
 
-        spinner = findViewById(R.id.aSpinnerToolBar);
+        /*spinner = findViewById(R.id.aSpinnerToolBar);
 
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
@@ -100,7 +101,7 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
 
 
@@ -140,15 +141,13 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
 
-
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setHomeButtonEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_check);
-
         }
 
     }
+
 
     @SuppressLint("ResourceType")
     @Override
@@ -162,8 +161,15 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.share){
-            Toast.makeText(getApplicationContext(), "You clicked share",
-                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(IzabraniProdavacActivity.this, MainActivityKupac.class);
+            /*SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+            editor.putString("userName", user);
+            editor.apply();
+            intent.putExtra("user", user);
+            intent.putExtra("id", id);*/
+            startActivity(intent);
+            //sharedPreferenceConfig.login_status(true);
+            finish();
         }
         return true;
     }

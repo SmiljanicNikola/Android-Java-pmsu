@@ -56,11 +56,8 @@ public class PorudzbinaActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
 
-
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            /*actionBar.setIcon(R.drawable.ic_launcher);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);*/
             actionBar.setHomeButtonEnabled(true);
         }
 

@@ -35,8 +35,9 @@ public class NovaAkcijaActivity extends AppCompatActivity {
     TextView textViewDodaj, textViewPregledaj;
     DBHelper DB;
     private DatePickerDialog datePickerDialog;
+    private DatePickerDialog datePickerDialog1;
     private Button dateButton;
-    private TextView dateTextView;
+    private TextView dateTextView, dateTextView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +46,20 @@ public class NovaAkcijaActivity extends AppCompatActivity {
 
         txtProcenat = findViewById(R.id.txtProcenat);
         //txtOdKad = findViewById(R.id.);
-        txtDoKad = findViewById(R.id.txtDoKad);
+        ////txtDoKad = findViewById(R.id.txtDoKad);
         txtTekst = findViewById(R.id.txtTekst);
         txtArtikalId = findViewById(R.id.txtArtikalId);
 
         textViewDodaj = findViewById(R.id.textViewDodaj);
 
         initDatePicker();
+        initDatePicker1();
         //dateButton = findViewById(R.id.datePickerButton);
         dateTextView = findViewById(R.id.datePickerButton);
+        dateTextView1 = findViewById(R.id.datePickerButton1);
 
         //dateButton.setText(getTodaysDate());
+        dateTextView1.setText(getTodaysDate());
         dateTextView.setText(getTodaysDate());
         DB = new DBHelper(this);
         Intent intent = getIntent();
@@ -77,7 +81,7 @@ public class NovaAkcijaActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }*/
                 LocalDate odKad = LocalDate.parse(dateTextView.getText().toString());
-                LocalDate doKad = LocalDate.parse(txtDoKad.getText().toString());
+                LocalDate doKad = LocalDate.parse(dateTextView1.getText().toString());
                 Integer prodavac_id = prodavacid;
                 Integer artikal_id = Integer.valueOf(txtArtikalId.getText().toString());
                 Artikal artikal = DB.findArtikal(artikal_id);
@@ -153,6 +157,26 @@ public class NovaAkcijaActivity extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year,month,day);
     }
 
+    private void initDatePicker1() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = makeDateString(day, month,year);
+                dateTextView1.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog1 = new DatePickerDialog(this, style, dateSetListener, year,month,day);
+    }
+
     private String makeDateString(int day, int month, int year) {
         return year + "-" + getMonthFormat(month) + "-" + day;
     }
@@ -202,6 +226,8 @@ public class NovaAkcijaActivity extends AppCompatActivity {
     public void openDatePicker(View view){
         datePickerDialog.show();
     }
-
+    public void openDatePicker1(View view){
+        datePickerDialog1.show();
+    }
 
 }

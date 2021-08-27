@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.pmsuprojekat.R;
 
@@ -32,6 +34,15 @@ public class RecenzijaActivity extends AppCompatActivity {
         checkBoxAnonimno = (CheckBox) findViewById(R.id.checkBoxAnonimno);
 
         submitClick = (Button) findViewById(R.id.btnSubmit);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setHomeButtonEnabled(true);
+        }
 
         dbHelper = new DBHelper(this);
 

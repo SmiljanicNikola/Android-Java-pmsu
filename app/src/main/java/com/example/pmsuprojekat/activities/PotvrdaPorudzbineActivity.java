@@ -97,7 +97,7 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
             if (akcija.getArtikal_id() == artikal.getId()) {
                 textViewCenaSaAkcijom = findViewById(R.id.textView5);
                 double stotiDeo = cenaArtikla/100;
-                textViewCenaSaAkcijom.setText(String.valueOf(cenaArtikla-(stotiDeo*akcija.getProcenat())));
+                textViewCenaSaAkcijom.setText(String.valueOf((cenaArtikla-(stotiDeo*akcija.getProcenat()))*kolicina));
             }
             else{
                 textViewCenaSaAkcijom = findViewById(R.id.textView5);
@@ -157,12 +157,9 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
 
-
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_check);
-
         }
     }
 

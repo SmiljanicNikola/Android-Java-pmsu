@@ -43,6 +43,9 @@
     <string name="komentari">Komentari</string>
     <string name="sviKorisnici">Korisnici</string>
     <string name="akcije">Akcije</string>
+    <string name="listaObavljenihKupovina">Lista obavljenih kupovina</string>
+    <string name="ostavljanjeKomentara">Ostavite komentar</string>
+    <string name="artikliIzabranog">Artikli izabranog prodavca</string>
 
 
 

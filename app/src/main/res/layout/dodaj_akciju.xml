@@ -54,7 +54,7 @@
         android:onClick="openDatePicker"/>
 
 
-    <EditText
+    <!--<EditText
         android:id="@+id/txtDoKad"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -65,13 +65,33 @@
         android:hint="Unesite do kad traje"
         android:inputType="textPersonName"
         android:textSize="16dp"
-        tools:text="" />
+        tools:text="" /> -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do Kad:"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/datePickerButton"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:id="@+id/datePickerButton1"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:onClick="openDatePicker1"/>
 
     <EditText
         android:id="@+id/txtTekst"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtDoKad"
+        android:layout_below="@id/datePickerButton1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:ems="10"
