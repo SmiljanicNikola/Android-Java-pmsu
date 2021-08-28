@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Akcija;
 import model.Artikal;
 import model.Kupac;
 import model.NavItem;
@@ -76,6 +77,7 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Artikal artikal = artikli.get(position);
@@ -89,6 +91,18 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
         holder.textViewNaziv.setText("Naziv: "+artikal.getNaziv());
         holder.textViewOpis.setText("Opis: "+artikal.getOpis());
         holder.textViewCena.setText(Double.toString(artikal.getCena()));
+
+
+        List<Akcija> akcije = dbHelper.getAkcije();
+        for(Akcija akcija : akcije) {
+            if (akcija.getArtikal_id() == artikal.getId()) {
+                double stotiDeo = artikal.getCena()/100;
+                holder.textViewAkcijskaCena.setText(String.valueOf(artikal.getCena()-(stotiDeo*akcija.getProcenat())));
+            }
+            else{
+                holder.textViewAkcijskaCena.setText("Nema akcije");
+            }
+        }
         //holder.editText_putanja.setText(artikal.getPutanjaSlike());
         //holder.editText_prodavacId.setText(artikal.getProdavac_id());
 
@@ -154,6 +168,7 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
         TextView textViewNaziv;
         TextView textViewCena;
         TextView textViewOpis;
+        TextView textViewAkcijskaCena;
 
         EditText editText_kolicina;
         //EditText editText_putanja;
@@ -169,6 +184,7 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
             textViewNaziv = itemView.findViewById(R.id.textViewNaziv);
             textViewOpis = itemView.findViewById(R.id.textViewOpis);
             textViewCena = itemView.findViewById(R.id.textViewCena);
+            textViewAkcijskaCena = itemView.findViewById(R.id.textViewAkcijskaCena);
 
             editText_kolicina = itemView.findViewById(R.id.editText_kolicina);
             //editText_putanja = itemView.findViewById(R.id.editText_putanja);

@@ -89,7 +89,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cena"
+        android:text="Cena: "
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_below="@id/textViewOpis"
@@ -99,13 +99,29 @@
         android:clickable="false"
         android:layout_gravity="center"
         android:editable="false"
-        android:textColor="#000"
+        android:textColor="@color/red"
+        android:id="@+id/textViewObicna"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cena"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/textViewOpis"
+        android:layout_toRightOf="@id/textViewObicna"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:clickable="false"
+        android:layout_gravity="center"
+        android:editable="false"
+        android:textColor="@color/red"
         android:id="@+id/textViewCena"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Akcijska cena"
+        android:text="Akcijska cena: "
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_below="@id/textViewCena"
@@ -115,7 +131,22 @@
         android:clickable="false"
         android:layout_gravity="center"
         android:editable="false"
-        android:textColor="#000"
+        android:textColor="@color/holo_blue"
+        android:id="@+id/textViewAkcijska"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/textViewCena"
+        android:layout_toRightOf="@id/textViewAkcijska"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:clickable="false"
+        android:layout_gravity="center"
+        android:editable="false"
+        android:textColor="@color/holo_blue"
         android:id="@+id/textViewAkcijskaCena"/>
 
     <LinearLayout

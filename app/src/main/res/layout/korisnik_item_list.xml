@@ -1,34 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:id="@+id/imgIcon"
+        android:background="@drawable/user"
+        android:layout_gravity="left"
+        android:layout_margin="11dp"/>
+
+    <!--<TextView
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="5dp"
         android:text="Id"
         android:textStyle="bold"
         android:id="@+id/text_id"
-        android:textSize="16dp"
-        android:layout_height="wrap_content"/>
+        android:layout_toRightOf="@id/imgIcon"
+        android:textSize="16sp"
+        android:layout_height="wrap_content"/> -->
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Korisnicko Ime"
-        android:layout_margin="5dp"
+        android:layout_toRightOf="@id/imgIcon"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="#000"
+        android:id="@+id/textViewKorisnickoIme"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ime"
+        android:layout_below="@id/textViewKorisnickoIme"
+        android:layout_toRightOf="@id/imgIcon"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="5dp"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="#000"
-        android:id="@+id/editText_korisnickoIme"/>
+        android:id="@+id/textViewIme"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prezime"
+        android:layout_below="@id/textViewIme"
+        android:layout_toRightOf="@id/imgIcon"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:id="@+id/textViewPrezime"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="5dp">
+        android:layout_margin="3dp"
+        android:layout_below="@id/imgIcon">
 
         <Button
             android:layout_width="match_parent"
@@ -37,7 +76,7 @@
             android:layout_weight="2"
             android:background="#E85252"
             android:id="@+id/btn_blokiraj"
-            android:layout_margin="4dp"
+            android:layout_margin="8dp"
             />
     </LinearLayout>
     <View
@@ -46,4 +85,4 @@
         android:background="#C5C5C5"
         android:layout_margin="5dp"/>
 
-</LinearLayout>
+</RelativeLayout>

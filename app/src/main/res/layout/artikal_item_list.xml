@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,23 +13,25 @@
         android:text="Id"
         android:textStyle="bold"
         android:id="@+id/text_id"
-        android:textSize="16dp"
+        android:textSize="1sp"
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/imgIcon"
-        android:layout_gravity="center"/>
+        android:layout_gravity="left"
+        android:layout_margin="13dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Naziv"
-        android:layout_margin="5dp"
-        android:textSize="16sp"
+        android:layout_toRightOf="@id/imgIcon"
+        android:layout_marginTop="13dp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:textColor="#000"
         android:id="@+id/editText_naziv"/>
@@ -37,9 +39,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imgIcon"
+        android:layout_below="@id/editText_naziv"
         android:text="Opis"
-        android:layout_margin="5dp"
-        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:textColor="#000"
         android:id="@+id/editText_opis"/>
@@ -48,24 +52,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cena"
-        android:layout_margin="5dp"
-        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
+        android:layout_toRightOf="@id/imgIcon"
+        android:layout_below="@id/editText_opis"
         android:textStyle="bold"
         android:textColor="#000"
         android:id="@+id/editText_cena"/>
 
     <EditText
-        android:layout_width="1dp"
-        android:layout_height="1dp"
+        android:layout_width="1sp"
+        android:layout_height="1sp"
         android:text="Cena"
-        android:layout_margin="5dp"
-        android:textSize="16sp"
+        android:textSize="1sp"
         android:textStyle="bold"
         android:textColor="#000"
         android:id="@+id/editText_putanja"
         android:visibility="invisible"/>
 
-    <EditText
+   <!-- <EditText
         android:layout_width="1dp"
         android:layout_height="1dp"
         android:text="Cena"
@@ -74,13 +79,16 @@
         android:textStyle="bold"
         android:textColor="#000"
         android:id="@+id/editText_prodavacId"
-        android:visibility="invisible"/>
+        android:visibility="invisible"/> -->
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_below="@id/editText_cena"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="5dp">
+        android:layout_marginTop="25dp"
+        android:id="@+id/linearni"
+        >
 
         <Button
             android:layout_width="match_parent"
@@ -107,9 +115,10 @@
         android:layout_height="wrap_content"
         android:text="Dodaj novi artikal"
         android:layout_weight="2"
+        android:layout_below="@id/linearni"
         android:background="#22B828"
         android:id="@+id/btn_dodajArtikal"
-        android:layout_margin="4dp"
+        android:layout_marginTop="5dp"
         />
     <View
         android:layout_width="match_parent"
@@ -117,4 +126,4 @@
         android:background="#C5C5C5"
         android:layout_margin="5dp"/>
     
-</LinearLayout>
+</RelativeLayout>

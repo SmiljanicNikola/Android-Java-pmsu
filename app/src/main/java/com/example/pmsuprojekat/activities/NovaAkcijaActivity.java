@@ -54,7 +54,6 @@ public class NovaAkcijaActivity extends AppCompatActivity {
         //txtOdKad = findViewById(R.id.);
         ////txtDoKad = findViewById(R.id.txtDoKad);
         txtTekst = findViewById(R.id.txtTekst);
-        txtArtikalId = findViewById(R.id.txtArtikalId);
 
         textViewDodaj = findViewById(R.id.textViewDodaj);
 

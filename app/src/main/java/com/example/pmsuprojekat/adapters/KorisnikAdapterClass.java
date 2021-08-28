@@ -47,8 +47,10 @@ public class KorisnikAdapterClass extends RecyclerView.Adapter<KorisnikAdapterCl
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Korisnik korisnik = korisnici.get(position);
 
-        holder.textViewID.setText(Integer.toString(korisnik.getId()));
-        holder.editText_korisnickoIme.setText(korisnik.getUsername());
+        //holder.textViewID.setText(Integer.toString(korisnik.getId()));
+        holder.textViewKorisnickoIme.setText("Username: "+korisnik.getUsername());
+        holder.textViewIme.setText("Ime: "+korisnik.getIme());
+        holder.textViewPrezime.setText("Prezime: "+korisnik.getPrezime());
         //holder.editText_putanja.setText(artikal.getPutanjaSlike());
 
         //Izmena
@@ -56,7 +58,7 @@ public class KorisnikAdapterClass extends RecyclerView.Adapter<KorisnikAdapterCl
             @Override
             public void onClick(View v) {
 
-                String username = holder.editText_korisnickoIme.getText().toString();
+                String username = holder.textViewKorisnickoIme.getText().toString();
                 //String putanja = holder.editText_putanja.getText().toString();
 
                 dbHelper.updateKorisnik(new Korisnik(korisnik.getId(),true));
@@ -77,15 +79,17 @@ public class KorisnikAdapterClass extends RecyclerView.Adapter<KorisnikAdapterCl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView textViewID;
-        EditText editText_korisnickoIme;
+        TextView textViewID,textViewIme,textViewPrezime,textViewKorisnickoIme;
         Button btn_blokiraj;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
             textViewID = itemView.findViewById(R.id.text_id);
-            editText_korisnickoIme = itemView.findViewById(R.id.editText_korisnickoIme);
+            textViewIme = itemView.findViewById(R.id.textViewIme);
+            textViewPrezime = itemView.findViewById(R.id.textViewPrezime);
+
+            textViewKorisnickoIme = itemView.findViewById(R.id.textViewKorisnickoIme);
             //editText_putanja = itemView.findViewById(R.id.editText_putanja);
             btn_blokiraj = itemView.findViewById(R.id.btn_blokiraj);
 
