@@ -40,8 +40,6 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
     ArrayList<String> listItem;
     ArrayAdapter adapter;
     DBHelper DB;
-
-
     /*SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPref.edit();
     editor.putString("userName", userName);
@@ -52,75 +50,12 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.izabrani_prodavac);
 
-
-
-
-        /*spinner = findViewById(R.id.aSpinnerToolBar);
-
-        List<String> categories = new ArrayList<>();
-        categories.add(0, "Izaberi");
-        categories.add("Artikli");
-        categories.add("Dodaj artikal");
-        categories.add("Svi korisnici");
-
-        ArrayAdapter<String> dataAdapter;
-        dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,categories);
-
-
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(dataAdapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (parent.getItemAtPosition(position).equals("Izaberi")) {
-                } else {
-                    String item = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
-                    if(parent.getItemAtPosition(position).equals("Artikli"))
-                    {
-                        Intent intent = new Intent(IzabraniProdavacActivity.this, ArtikalActivity.class);
-                        startActivity(intent);
-                    }
-                    if(parent.getItemAtPosition(position).equals("Dodaj artikal"))
-                    {
-                        Intent intent = new Intent(IzabraniProdavacActivity.this, NoviArtikalActivity.class);
-                        startActivity(intent);
-                    }
-                    if(parent.getItemAtPosition(position).equals("Svi korisnici"))
-                    {
-                        Intent intent = new Intent(IzabraniProdavacActivity.this, SviKorisniciActivity.class);
-                        startActivity(intent);
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
-
-
-
-
-
-
-
-
-
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
         DBHelper dbHelper = new DBHelper(this);
-
-
         Intent intent = getIntent();
-        //String idKupca = String.valueOf(intent.getIntExtra("idKupca",0));
-
         String username = intent.getStringExtra("user");
         int id = intent.getIntExtra("id",0);
         int idKupca = intent.getIntExtra("idKupca",0);
@@ -148,7 +83,6 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
 
     }
 
-
     @SuppressLint("ResourceType")
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -162,13 +96,7 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
 
         if(id == R.id.share){
             Intent intent = new Intent(IzabraniProdavacActivity.this, MainActivityKupac.class);
-            /*SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
-            editor.putString("userName", user);
-            editor.apply();
-            intent.putExtra("user", user);
-            intent.putExtra("id", id);*/
             startActivity(intent);
-            //sharedPreferenceConfig.login_status(true);
             finish();
         }
         return true;

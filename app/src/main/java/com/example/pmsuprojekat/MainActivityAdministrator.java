@@ -1,6 +1,8 @@
 package com.example.pmsuprojekat;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -112,8 +114,6 @@ public class MainActivityAdministrator extends AppCompatActivity {
 
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
-        categories.add("Artikli");
-        categories.add("Dodaj artikal");
         categories.add("Svi korisnici");
 
         ArrayAdapter<String> dataAdapter;
@@ -132,16 +132,6 @@ public class MainActivityAdministrator extends AppCompatActivity {
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
                     Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
-                    if(parent.getItemAtPosition(position).equals("Artikli"))
-                    {
-                        Intent intent = new Intent(MainActivityAdministrator.this, ArtikalActivity.class);
-                        startActivity(intent);
-                    }
-                    if(parent.getItemAtPosition(position).equals("Dodaj artikal"))
-                    {
-                        Intent intent = new Intent(MainActivityAdministrator.this, NoviArtikalActivity.class);
-                        startActivity(intent);
-                    }
                     if(parent.getItemAtPosition(position).equals("Svi korisnici"))
                     {
                         Intent intent = new Intent(MainActivityAdministrator.this, SviKorisniciActivity.class);
@@ -165,18 +155,31 @@ public class MainActivityAdministrator extends AppCompatActivity {
     }
 
     private void prepareMenu(ArrayList<NavItem> mNavItems) {
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("user");
-        Korisnik korisnik = DB.findKorisnik(username);
-        mNavItems.add(new NavItem(username,korisnik.getUloga(), R.drawable.ic_action_username));
+        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+        String userName = prefs.getString("userName", "No name defined");//"No name defined" is the default value.
+        Korisnik korisnik = DB.findKorisnik(userName);
+        if(userName != null) {
+            mNavItems.add(new NavItem(userName, korisnik.getUloga(), R.drawable.ic_action_username));
+        }
+        else{
+            mNavItems.add(new NavItem("You are logged out", "Logged out", R.drawable.ic_action_username));
+
+        }
         mNavItems.add(new NavItem(getString(R.string.Location),getString(R.string.FindUs), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.about), getString(R.string.about_long), R.drawable.ic_action_username));
         mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
+    }*/
+
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
     }
 
     @Override
@@ -246,6 +249,8 @@ public class MainActivityAdministrator extends AppCompatActivity {
         super.onPause();
 
     }
+
+
 
 
 

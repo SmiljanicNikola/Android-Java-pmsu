@@ -69,7 +69,7 @@ public class AkcijeActivity extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
 
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setHomeButtonEnabled(true);
         }
 
@@ -115,6 +115,19 @@ public class AkcijeActivity extends AppCompatActivity {
             if(shake>12){
                 Toast toast = Toast.makeText(getApplicationContext(), "NE MUCKAJ!", Toast.LENGTH_SHORT);
                 toast.show();
+                Intent intent1 = getIntent();
+                String username = intent1.getStringExtra("user");
+                //String idProdavca = String.valueOf(intent1.getIntExtra("idProdavca",0));
+                int idProdavca = intent1.getIntExtra("idProdavca",0);
+                Intent intent = new Intent(AkcijeActivity.this, NovaAkcijaActivity.class);
+                //Korisnik korisnik = DB.findKorisnik(username);
+
+                /*Prodavac prodavac = dbHelper.findProdavac(username);
+                int idProdavca = prodavac.getId();*/
+
+                intent.putExtra("id", idProdavca);
+                intent.putExtra("user", username);
+                startActivity(intent);
             }
         }
 

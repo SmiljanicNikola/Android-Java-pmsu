@@ -2,6 +2,7 @@ package com.example.pmsuprojekat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -123,10 +124,8 @@ public class MainActivity extends AppCompatActivity {
         categories.add("akcije");
         categories.add("Dodaj akciju");
         categories.add("Komentari");
-        categories.add("Porudzbine");
         categories.add("Artikli");
         categories.add("Dodaj artikal");
-        categories.add("Svi korisnici");
 
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,categories);
@@ -236,11 +235,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void prepareMenu(ArrayList<NavItem> mNavItems) {
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("user");
-        if(username != null) {
-            Korisnik korisnik = DB.findKorisnik(username);
-            mNavItems.add(new NavItem(username, korisnik.getUloga(), R.drawable.ic_action_username));
+        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+        String userName = prefs.getString("userName", "No name defined");//"No name defined" is the default value.
+        Korisnik korisnik = DB.findKorisnik(userName);
+        if(userName != null) {
+            mNavItems.add(new NavItem(userName, korisnik.getUloga(), R.drawable.ic_action_username));
         }
         else{
             mNavItems.add(new NavItem("You are logged out", "Logged out", R.drawable.ic_action_username));

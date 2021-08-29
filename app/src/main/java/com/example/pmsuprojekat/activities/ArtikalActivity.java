@@ -72,7 +72,7 @@ public class ArtikalActivity extends AppCompatActivity {
 
 
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(false);
             /*actionBar.setIcon(R.drawable.ic_launcher);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);*/
             actionBar.setHomeButtonEnabled(true);

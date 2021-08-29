@@ -131,4 +131,20 @@ public class Porudzbina {
     public void setStavka_id(int stavka_id) {
         this.stavka_id = stavka_id;
     }
+
+
+    @Override
+    public String toString() {
+        return "Porudzbina{" +
+                "id=" + id +
+                ", satnica=" + satnica +
+                ", dostavljeno=" + dostavljeno +
+                ", ocena=" + ocena +
+                ", komentar='" + komentar + '\'' +
+                ", anonimanKomentar=" + anonimanKomentar +
+                ", arhiviranKomentar=" + arhiviranKomentar +
+                ", kupac_id=" + kupac_id +
+                ", stavka_id=" + stavka_id +
+                '}';
+    }
 }

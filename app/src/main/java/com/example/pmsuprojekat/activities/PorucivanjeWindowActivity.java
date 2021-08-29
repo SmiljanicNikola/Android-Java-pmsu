@@ -25,20 +25,6 @@ public class PorucivanjeWindowActivity extends AppCompatActivity {
         setContentView(R.layout.artikal_item_list2);
 
 
-
-        /*Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        final ActionBar actionBar = getSupportActionBar();
-
-
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false);      // Disable the button
-            actionBar.setDisplayHomeAsUpEnabled(false); // Remove the left caret
-            actionBar.setDisplayShowHomeEnabled(false); // Remove the icon
-            actionBar.setDisplayShowTitleEnabled(true);
-
-        }*/
-
     }
 
 

@@ -54,10 +54,10 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
             String kupacId = String.valueOf(porudzbina.getKupac_id());
 
             Kupac kupac = dbHelper.findKupca2(kupacId);
-            if(porudzbina.isAnonimanKomentar() == false) {
-                holder.textViewAutorKomentara.setText("Autor komentara(Kupac): " + kupac.getUsername() + "|" + kupac.getIme() + " " + kupac.getPrezime());
-            }else{
+            if(porudzbina.isAnonimanKomentar()) {
                 holder.textViewAutorKomentara.setText("Anoniman komentar");
+            }else{
+                holder.textViewAutorKomentara.setText("Autor komentara(Kupac): " + kupac.getUsername() + "|" + kupac.getIme() + " " + kupac.getPrezime());
             }
             holder.textViewKomentar.setText("Komentar: "+porudzbina.getKomentar());
 

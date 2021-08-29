@@ -1,5 +1,6 @@
 package com.example.pmsuprojekat;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -154,9 +155,6 @@ public class MainActivityKupac extends AppCompatActivity {
 
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
-        categories.add("Artikli");
-        //categories.add("Dodaj artikal");
-        categories.add("Svi korisnici");
         categories.add("Porudzbine");
 
 
@@ -177,21 +175,6 @@ public class MainActivityKupac extends AppCompatActivity {
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
                     Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
-                    if(parent.getItemAtPosition(position).equals("Artikli"))
-                    {
-                        Intent intent = new Intent(MainActivityKupac.this, ArtikalActivity.class);
-                        startActivity(intent);
-                    }
-                    /*if(parent.getItemAtPosition(position).equals("Dodaj artikal"))
-                    {
-                        Intent intent = new Intent(MainActivityKupac.this, NoviArtikalActivity.class);
-                        startActivity(intent);
-                    }*/
-                    if(parent.getItemAtPosition(position).equals("Svi korisnici"))
-                    {
-                        Intent intent = new Intent(MainActivityKupac.this, SviKorisniciActivity.class);
-                        startActivity(intent);
-                    }
                     if(parent.getItemAtPosition(position).equals("Porudzbine"))
                     {
 
@@ -262,10 +245,10 @@ public class MainActivityKupac extends AppCompatActivity {
         mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -333,6 +316,13 @@ public class MainActivityKupac extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+    }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
     }
 
 

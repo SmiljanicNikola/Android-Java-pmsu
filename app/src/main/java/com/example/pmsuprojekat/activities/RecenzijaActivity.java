@@ -1,8 +1,11 @@
 package com.example.pmsuprojekat.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -73,5 +76,14 @@ public class RecenzijaActivity extends AppCompatActivity {
             }
         });
 
+
     }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
+    }
+
 }

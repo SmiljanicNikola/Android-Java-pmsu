@@ -1,8 +1,12 @@
 package com.example.pmsuprojekat.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -12,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.adapters.ArtikalAdapterClass;
 import com.example.pmsuprojekat.adapters.PorudzbinaAdapterClass;
@@ -57,7 +62,7 @@ public class PorudzbinaActivity extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
 
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setHomeButtonEnabled(true);
         }
 
@@ -67,6 +72,25 @@ public class PorudzbinaActivity extends AppCompatActivity {
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
+    }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.share){
+            Intent intent = new Intent(PorudzbinaActivity.this, MainActivityKupac.class);
+            startActivity(intent);
+            finish();
+        }
+        return true;
     }
 
 }

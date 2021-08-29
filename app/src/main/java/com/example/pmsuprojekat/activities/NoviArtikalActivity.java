@@ -34,7 +34,7 @@ import model.Prodavac;
 public class NoviArtikalActivity extends AppCompatActivity {
 
     EditText txtNaziv, txtOpis, txtCena, txtPutanja;
-    TextView textViewDodaj, textViewPregledaj;
+    TextView textViewDodaj;
     DBHelper DB;
     ImageView imageViewSlika;
 
@@ -65,7 +65,6 @@ public class NoviArtikalActivity extends AppCompatActivity {
 
 
         textViewDodaj = findViewById(R.id.textViewDodaj);
-        textViewPregledaj = findViewById(R.id.textViewPregledaj);
         /*Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);*/
         Intent intent = getIntent();
@@ -101,24 +100,6 @@ public class NoviArtikalActivity extends AppCompatActivity {
                 intent.putExtra("idProdavca", prodavacid);
                 intent.putExtra("user", username);
                 startActivity(intent);
-            }
-        });
-
-        textViewPregledaj.setOnClickListener(new View.OnClickListener(){
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View v) {
-            Intent intent = new Intent(NoviArtikalActivity.this, ArtikalActivity.class);
-            startActivity(intent);
-                /*Intent intent = new Intent(NoviArtikalActivity.this, ArtikalActivity.class);
-                Intent intent1 = getIntent();
-                String username = intent1.getStringExtra("user");
-                //Korisnik korisnik = DB.findKorisnik(username);
-                Prodavac prodavac = DB.findProdavac(username);
-                int idProdavca = prodavac.getId();
-                intent.putExtra("idProdavca", idProdavca);
-                intent.putExtra("user", username);
-                startActivity(intent);*/
             }
         });
 

@@ -137,7 +137,7 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                     //intent.putExtra("your_extra","your_class_value");
                     context.startActivity(intent);*/
 
-                Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-04-04"),false,4,"teksttekst",false,false, idKupca, stavkaId);
+                Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-03-09"),false,3,"Nije Unesen",false,false, idKupca, stavkaId);
                 dbHelper.insertPorudzbinu(porudzbina);
 
                 notifyDataSetChanged();
