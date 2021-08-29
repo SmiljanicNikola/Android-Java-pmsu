@@ -182,7 +182,7 @@ public class MainActivityAdministrator extends AppCompatActivity {
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
@@ -190,7 +190,7 @@ public class MainActivityAdministrator extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override

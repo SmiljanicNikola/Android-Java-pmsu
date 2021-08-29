@@ -95,15 +95,4 @@
     </androidx.cardview.widget.CardView>
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/cardView1"
-        android:layout_marginTop="40dp"
-        app:cardBackgroundColor="@color/purple_500">
-
-    </androidx.cardview.widget.CardView>
-
-
 </RelativeLayout>

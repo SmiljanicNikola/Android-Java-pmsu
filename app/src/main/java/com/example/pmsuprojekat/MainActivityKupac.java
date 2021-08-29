@@ -250,7 +250,7 @@ public class MainActivityKupac extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }*/
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
@@ -258,7 +258,7 @@ public class MainActivityKupac extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override

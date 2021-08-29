@@ -25,6 +25,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pmsuprojekat.MainActivity;
+import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 /*import com.example.pmsuprojekat.fragments.MyFragmentArtikal;
 import com.example.pmsuprojekat.fragments.MyFragmentKomentar;*/
@@ -106,6 +108,18 @@ public class KomentarActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.share){
+            Intent intent = new Intent(KomentarActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         return true;
     }
 
