@@ -43,10 +43,10 @@
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:id="@+id/datePickerButton"
         android:layout_below="@+id/textView1"
@@ -77,10 +77,10 @@
         android:layout_below="@id/datePickerButton"
         android:layout_centerHorizontal="true"/>
     <TextView
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:id="@+id/datePickerButton1"
         android:layout_below="@+id/textView2"
@@ -110,15 +110,26 @@
         android:hint="Artikal Id"
         android:textSize="16dp"
         tools:text="" /> -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Izaberite artikal: "
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"
+
+        android:textColor="@color/black"
+        android:id="@+id/izaberi"
+        android:layout_below="@+id/txtTekst"
+        android:layout_centerHorizontal="true" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="140dp"
         android:layout_height="30dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
-        android:layout_below="@id/txtTekst"
+        android:layout_below="@id/izaberi"
         android:ems="10"
         android:textColor="@color/white" />
 

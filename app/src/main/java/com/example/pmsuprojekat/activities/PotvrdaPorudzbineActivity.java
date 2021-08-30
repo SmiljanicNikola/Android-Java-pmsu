@@ -92,9 +92,9 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
             textViewCenaSaAkcijom = findViewById(R.id.textView5);
             textViewCenaSaAkcijom.setText(String.valueOf(cenaArtikla*akcija.getProcenat()));
         }*/
-        List<Akcija> akcije = dbHelper.getAkcije();
+        List<Akcija> akcije = dbHelper.getAkcijeProdavca(String.valueOf(artikal.getProdavac_id()));
         for(Akcija akcija : akcije) {
-            if (akcija.getArtikal_id() == artikal.getId()) {
+            if (akcija.getArtikal_id() == artikal_id && akcija.getProdavac_id()==artikal.getProdavac_id()) {
                 textViewCenaSaAkcijom = findViewById(R.id.textView5);
                 double stotiDeo = cenaArtikla/100;
                 textViewCenaSaAkcijom.setText(String.valueOf((cenaArtikla-(stotiDeo*akcija.getProcenat()))*kolicina));

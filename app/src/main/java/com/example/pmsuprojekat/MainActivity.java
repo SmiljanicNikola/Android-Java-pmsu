@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
         DB = new DBHelper(this);
         Intent intent = getIntent();
         String username = intent.getStringExtra("user");
-        //Korisnik korisnik = DB.findKorisnik(username);
-        //Prodavac prodavac = DB.findProdavac(username);
 
         prepareMenu(mNavItems);
 
@@ -151,10 +149,20 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(MainActivity.this, ArtikalActivity.class);
                         Intent intent1 = getIntent();
+
+                        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+                        String usernameProdavca = prefs.getString("userName", "No name defined");
+
                         String username = intent1.getStringExtra("user");
-                        //Korisnik korisnik = DB.findKorisnik(username);
-                        Prodavac prodavac = DB.findProdavac(username);
+                        Prodavac prodavac = DB.findProdavac(usernameProdavca);
+                        //Prodavac prodavac = DB.findProdavac(usernameProdavca);
                         int idProdavca = prodavac.getId();
+
+                        SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                        editor.putString("usernameProdavca", usernameProdavca);
+                        editor.putInt("idProdavca", idProdavca);
+                        editor.apply();
+
                         intent.putExtra("idProdavca", idProdavca);
                         intent.putExtra("user", username);
                         startActivity(intent);
@@ -164,10 +172,19 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(MainActivity.this, KomentarActivity.class);
                         Intent intent1 = getIntent();
+
+                        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+                        String usernameProdavca = prefs.getString("userName", "No name defined");
+
                         String username = intent1.getStringExtra("user");
-                        //Korisnik korisnik = DB.findKorisnik(username);
-                        Prodavac prodavac = DB.findProdavac(username);
+                        Prodavac prodavac = DB.findProdavac(usernameProdavca);
                         int idProdavca = prodavac.getId();
+
+                        SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                        editor.putString("usernameProdavca", usernameProdavca);
+                        editor.putInt("idProdavca", idProdavca);
+                        editor.apply();
+
                         intent.putExtra("idProdavca", idProdavca);
                         intent.putExtra("user", username);
                         startActivity(intent);
@@ -177,10 +194,19 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent1 = getIntent();
                         String username = intent1.getStringExtra("user");
 
+                        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+                        String usernameProdavca = prefs.getString("userName", "No name defined");
+
                         Intent intent = new Intent(MainActivity.this, NoviArtikalActivity.class);
                         //Korisnik korisnik = DB.findKorisnik(username);
-                        Prodavac prodavac = DB.findProdavac(username);
+                        Prodavac prodavac = DB.findProdavac(usernameProdavca);
                         int idProdavca = prodavac.getId();
+
+                        SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                        editor.putString("usernameProdavca", usernameProdavca);
+                        editor.putInt("idProdavca", idProdavca);
+                        editor.apply();
+
                         intent.putExtra("id", idProdavca);
                         intent.putExtra("user", username);
                         startActivity(intent);
@@ -191,9 +217,18 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, AkcijeActivity.class);
                         Intent intent1 = getIntent();
                         String username = intent1.getStringExtra("user");
-                        //Korisnik korisnik = DB.findKorisnik(username);
-                        Prodavac prodavac = DB.findProdavac(username);
+
+                        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+                        String usernameProdavca = prefs.getString("userName", "No name defined");
+
+                        Prodavac prodavac = DB.findProdavac(usernameProdavca);
                         int idProdavca = prodavac.getId();
+
+                        SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                        editor.putString("usernameProdavca", usernameProdavca);
+                        editor.putInt("idProdavca", idProdavca);
+                        editor.apply();
+
                         intent.putExtra("idProdavca", idProdavca);
                         intent.putExtra("user", username);
                         startActivity(intent);
@@ -203,19 +238,22 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent1 = getIntent();
                         String username = intent1.getStringExtra("user");
 
+                        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+                        String usernameProdavca = prefs.getString("userName", "No name defined");
+
                         Intent intent = new Intent(MainActivity.this, NovaAkcijaActivity.class);
-                        //Korisnik korisnik = DB.findKorisnik(username);
-                        Prodavac prodavac = DB.findProdavac(username);
+                        Prodavac prodavac = DB.findProdavac(usernameProdavca);
                         int idProdavca = prodavac.getId();
+
+                        SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                        editor.putString("usernameProdavca", usernameProdavca);
+                        editor.putInt("idProdavca", idProdavca);
+                        editor.apply();
+
                         intent.putExtra("id", idProdavca);
                         intent.putExtra("user", username);
                         startActivity(intent);
 
-                    }
-                    if(parent.getItemAtPosition(position).equals("Svi korisnici"))
-                    {
-                        Intent intent = new Intent(MainActivity.this, SviKorisniciActivity.class);
-                        startActivity(intent);
                     }
                 }
             }

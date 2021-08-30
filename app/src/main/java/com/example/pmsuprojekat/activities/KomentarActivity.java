@@ -2,6 +2,7 @@ package com.example.pmsuprojekat.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -60,9 +61,14 @@ public class KomentarActivity extends AppCompatActivity {
 
         DBHelper dbHelper = new DBHelper(this);
 
+        //SHAREDRPEFERENCES NACIN ------------------------
+        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+        int idProdavca = prefs.getInt("idProdavca", 0);
+        String idProdavcaa = String.valueOf(idProdavca);//SHARED NACIN BREEEE
+        String usernameProdavca = prefs.getString("usernameProdavca", "No name defined");
+
         Intent intent = getIntent();
         String username = intent.getStringExtra("user");
-
         String prodavacId = String.valueOf(intent.getIntExtra("idProdavca",0));
 
         List<Artikal> artikli = dbHelper.getArtikliProdavca(prodavacId);

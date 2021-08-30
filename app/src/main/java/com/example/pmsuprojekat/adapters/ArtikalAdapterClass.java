@@ -96,7 +96,7 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
             }
         });
 
-        holder.btn_dodajArtikal.setOnClickListener(new View.OnClickListener() {
+        /*holder.btn_dodajArtikal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int prodavacId = artikal.getProdavac_id();
@@ -104,7 +104,7 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
                 myIntent.putExtra("id", prodavacId);
                 v.getContext().startActivity(myIntent);
             }
-        });
+        });*/
 
     }
 

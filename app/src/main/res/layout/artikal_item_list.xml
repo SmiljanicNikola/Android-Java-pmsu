@@ -110,16 +110,7 @@
             />
     </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dodaj novi artikal"
-        android:layout_weight="2"
-        android:layout_below="@id/linearni"
-        android:background="#22B828"
-        android:id="@+id/btn_dodajArtikal"
-        android:layout_marginTop="5dp"
-        />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -3,6 +3,7 @@ package com.example.pmsuprojekat.activities;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -68,6 +69,8 @@ public class NovaAkcijaActivity extends AppCompatActivity {
         dateTextView.setText(getTodaysDate());
         DB = new DBHelper(this);
         Intent intent = getIntent();
+        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+        int prodavacId = prefs.getInt("idProdavca", 0);
         Integer prodavacid = intent.getIntExtra("id",0);
 
         spinner = findViewById(R.id.spinner);

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,6 +32,7 @@ import com.example.pmsuprojekat.adapters.ArtikalAdapterClass2;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Akcija;
 import model.Artikal;
 
 public class IzabraniProdavacActivity extends AppCompatActivity {
@@ -45,6 +48,7 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
     editor.putString("userName", userName);
     editor.commit();*/
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,13 +63,29 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
         String username = intent.getStringExtra("user");
         int id = intent.getIntExtra("id",0);
         int idKupca = intent.getIntExtra("idKupca",0);
+
+        /*SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+        String usernameKupca = prefs.getString("usernameKupca", "No name defined");
+        int idKupca = prefs.getInt("idKupca", 0);
+        int idProdavca = prefs.getInt("idProdavca", 0);
+        String username = prefs.getString("username", "No name defined");*/
+
         textView_idKupca = findViewById(R.id.text_idKupca);
 
+
+        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+        String usernameKupca = prefs.getString("usernameKupca", "No name defined");
+        //int idKupca = prefs.getInt("idKupca", 0);
+        /*int idProdavca = prefs.getInt("id", 0);
+        String prodavacId = String.valueOf(idProdavca);*/
         String prodavacId = String.valueOf(intent.getIntExtra("id",0));
+
         //Dobavljanje artikala pojedinacnog prodavca
         List<Artikal> artikli = dbHelper.getArtikliProdavca(prodavacId);
+        List<Akcija> akcije= dbHelper.getAkcijeProdavca(prodavacId);
+
         if(artikli.size() > 0){
-            ArtikalAdapterClass2 artikalAdapterClass = new ArtikalAdapterClass2(artikli,IzabraniProdavacActivity.this);
+            ArtikalAdapterClass2 artikalAdapterClass = new ArtikalAdapterClass2(artikli, akcije,IzabraniProdavacActivity.this);
             recyclerView.setAdapter(artikalAdapterClass);
 
         }else{

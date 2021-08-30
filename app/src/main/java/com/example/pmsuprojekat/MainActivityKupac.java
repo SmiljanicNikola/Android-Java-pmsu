@@ -72,7 +72,6 @@ public class MainActivityKupac extends AppCompatActivity {
         sharedPreferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         DB = new DBHelper(this);
         Intent intent = getIntent();
-        String username = intent.getStringExtra("user");
         //Korisnik korisnik = DB.findKorisnik(username);
 
         listItem = new ArrayList<>();
@@ -90,11 +89,16 @@ public class MainActivityKupac extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
                 String usernameKupca = prefs.getString("userName", "No name defined");
 
-                //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
                 Kupac kupac = DB.findKupca(usernameKupca);
                 int idKupca = kupac.getId();
                 Prodavac prodavac = DB.findProdavac(username);
                 int idProdavca = prodavac.getId();
+                /*SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                editor.putInt("id", idProdavca);
+                editor.putInt("idKupca", idKupca);
+                editor.putString("username", username);
+                editor.putString("usernameKupca", usernameKupca);
+                editor.apply();OOOOOOOOOO*/
                 intent1.putExtra("id", idProdavca);
                 intent1.putExtra("usernameKupca", usernameKupca);
                 intent1.putExtra("idKupca", idKupca);
@@ -185,6 +189,12 @@ public class MainActivityKupac extends AppCompatActivity {
                         String usernameKupca = prefs.getString("userName", "No name defined");
                         Kupac kupac = DB.findKupca(usernameKupca);
                         int idKupca = kupac.getId();
+
+                        //SHARED NACIN---------------------------------------------
+                        SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                        editor.putString("usernameKupca", usernameKupca);
+                        editor.putInt("idKupca", idKupca);
+                        editor.apply();
 
                         intent.putExtra("idKupca", idKupca);
                         intent.putExtra("usernameKupca", usernameKupca);

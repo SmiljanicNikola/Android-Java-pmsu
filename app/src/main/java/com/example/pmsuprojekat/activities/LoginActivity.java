@@ -41,10 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login);
 
         sharedPreferenceConfig = new SharedPreferenceConfig(getApplicationContext());
-        if(sharedPreferenceConfig.read_login_status()){
+        /*if(sharedPreferenceConfig.read_login_status()){
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
-        }
+        }*/
 
 
         username = (EditText) findViewById(R.id.username1);

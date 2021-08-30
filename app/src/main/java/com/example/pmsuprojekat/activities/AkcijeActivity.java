@@ -3,6 +3,7 @@ package com.example.pmsuprojekat.activities;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -10,6 +11,7 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pmsuprojekat.MainActivity;
+import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.adapters.AkcijaAdapterClass;
 import java.util.List;
@@ -51,10 +54,15 @@ public class AkcijeActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
         Intent intent = getIntent();
         String username = intent.getStringExtra("user");
-        String prodavacId = String.valueOf(intent.getIntExtra("idProdavca",0));
+        //String prodavacId = String.valueOf(intent.getIntExtra("idProdavca",0));
+
+        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+        int prodavacId = prefs.getInt("idProdavca", 0);
+        String usernameProdavca = prefs.getString("usernameProdavca", "No name defined");
+        String prodavacIdd = String.valueOf(prodavacId);
 
         //Dobavljanje akcija pojedinacnog prodavca
-        List<Akcija> akcije = dbHelper.getAkcijeProdavca(prodavacId);
+        List<Akcija> akcije = dbHelper.getAkcijeProdavca(prodavacIdd);
 
         if(akcije.size() > 0){
             AkcijaAdapterClass akcijaAdapterClass = new AkcijaAdapterClass(akcije,AkcijeActivity.this);
@@ -147,6 +155,26 @@ public class AkcijeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.share){
+            Intent intent = new Intent(AkcijeActivity.this, MainActivity.class);
+            //Intent intent1 = getIntent();
+            SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+            String usernameProdavca = prefs.getString("userName", "No name defined");
+            SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+            editor.putString("usernameProdavca", usernameProdavca);
+            editor.apply();
+            /*String username = intent1.getStringExtra("user");
+            intent.putExtra("user", username);*/
+            startActivity(intent);
+            finish();
+        }
         return true;
     }
 

@@ -146,9 +146,12 @@
             android:text="Potvrdi porudzbinu"
             android:layout_weight="2"
             android:background="#1F33A6"
+            android:textColor="@color/white"
             android:id="@+id/btnPotvrdiPorudzbinu"
             android:layout_below="@id/textView10"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="80dp"/>
     </RelativeLayout>
 
 </LinearLayout>

@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -31,6 +32,7 @@ import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
+import com.example.pmsuprojekat.activities.LoginActivity;
 import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.PotvrdaPorudzbineActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
@@ -53,6 +55,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterClass2.ViewHolder> {
 
     List<Artikal> artikli;
+    List<Akcija> akcije;
+
     Context context;
     DBHelper dbHelper;
     ImageView imgIcon;
@@ -61,8 +65,9 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
     private SharedPreferenceConfig sharedPreferenceConfig;
 
 
-    public ArtikalAdapterClass2(List<Artikal> artikli, Context context) {
+    public ArtikalAdapterClass2(List<Artikal> artikli ,List<Akcija> akcije, Context context) {
         this.artikli = artikli;
+        this.akcije = akcije;
         this.context = context;
         dbHelper = new DBHelper(context);
     }
@@ -82,19 +87,34 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Artikal artikal = artikli.get(position);
 
-        holder.textViewID.setText(Integer.toString(artikal.getId()));
-
-        byte[] recordImage = artikal.getImage();
-        Bitmap bitmap = BitmapFactory.decodeByteArray(recordImage, 0, recordImage.length);
-        holder.imgIcon.setImageBitmap(bitmap);
-
-        holder.textViewNaziv.setText("Naziv: "+artikal.getNaziv());
-        holder.textViewOpis.setText("Opis: "+artikal.getOpis());
-        holder.textViewCena.setText(Double.toString(artikal.getCena()));
 
 
-        List<Akcija> akcije = dbHelper.getAkcije();
-        for(Akcija akcija : akcije) {
+            holder.textViewID.setText(Integer.toString(artikal.getId()));
+
+            byte[] recordImage = artikal.getImage();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(recordImage, 0, recordImage.length);
+            holder.imgIcon.setImageBitmap(bitmap);
+
+            holder.textViewNaziv.setText("Naziv: " + artikal.getNaziv());
+            holder.textViewOpis.setText("Opis: " + artikal.getOpis());
+            holder.textViewCena.setText(Double.toString(artikal.getCena()));
+
+
+            //List<Akcija> akcije = dbHelper.getAkcije();
+for(Akcija akcija1 : akcije) {
+    if (position < akcije.size()) {
+        Akcija akcija = akcije.get(position);
+
+        if (akcija.getArtikal_id() == artikal.getId() && akcija.getProdavac_id() == artikal.getProdavac_id()) {
+            double stotiDeo = artikal.getCena() / 100;
+            holder.textViewAkcijskaCena.setText(String.valueOf(artikal.getCena() - (stotiDeo * akcija.getProcenat())));
+        }
+    }
+    else {
+        holder.textViewAkcijskaCena.setText("Nema akcije");
+    }
+}
+        /*for(Akcija akcija : akcije) {
             if (akcija.getArtikal_id() == artikal.getId()) {
                 double stotiDeo = artikal.getCena()/100;
                 holder.textViewAkcijskaCena.setText(String.valueOf(artikal.getCena()-(stotiDeo*akcija.getProcenat())));
@@ -102,7 +122,7 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
             else{
                 holder.textViewAkcijskaCena.setText("Nema akcije");
             }
-        }
+        }*/
         //holder.editText_putanja.setText(artikal.getPutanjaSlike());
         //holder.editText_prodavacId.setText(artikal.getProdavac_id());
 
@@ -117,41 +137,43 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                 String opis = holder.textViewOpis.getText().toString();
                 Double cena = Double.valueOf(holder.textViewCena.getText().toString());
                 //int prodavac_id = Integer.valueOf(holder.editText_prodavacId.getText().toString());
-                int kolicina = Integer.valueOf(holder.editText_kolicina.getText().toString());
-                //int id = hashCode();
-                int idStavke = hashCode();
-                Stavka stavka = new Stavka(idStavke,kolicina,artikal_id);
-                int stavkaId = stavka.getId();
-                dbHelper.insertStavke(stavka);
+                if(holder.editText_kolicina.getText().toString().equals("")){
+                    Toast.makeText(v.getContext(), "Morate uneti kolicinu koju zelite da narucite!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    int kolicina = Integer.valueOf(holder.editText_kolicina.getText().toString());
 
 
-                SharedPreferences sharedPref = context.getSharedPreferences("My pref",Context.MODE_PRIVATE);
-                String usernameKupca = sharedPref.getString("userName", "No name defined");
-                //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
-                Kupac kupac = dbHelper.findKupca(usernameKupca);
-                int idKupca = kupac.getId();
+                    //int id = hashCode();
+                    int idStavke = hashCode();
+                    Stavka stavka = new Stavka(idStavke, kolicina, artikal_id);
+                    int stavkaId = stavka.getId();
+                    dbHelper.insertStavke(stavka);
 
-                //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
 
-                    /*Intent intent= new Intent(context, MainActivityKupac.class);
-                    //intent.putExtra("your_extra","your_class_value");
-                    context.startActivity(intent);*/
+                    SharedPreferences sharedPref = context.getSharedPreferences("My pref", Context.MODE_PRIVATE);
+                    String usernameKupca = sharedPref.getString("userName", "No name defined");
+                    //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
+                    Kupac kupac = dbHelper.findKupca(usernameKupca);
+                    int idKupca = kupac.getId();
 
-                Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-03-09"),false,3,"Nije Unesen",false,false, idKupca, stavkaId);
-                dbHelper.insertPorudzbinu(porudzbina);
 
-                notifyDataSetChanged();
-                ((Activity) context).finish();
-                context.startActivity(((Activity) context).getIntent());
+                    Porudzbina porudzbina = new Porudzbina(LocalDate.parse("2021-03-09"), false, 3, "Nije Unesen", false, false, idKupca, stavkaId);
+                    dbHelper.insertPorudzbinu(porudzbina);
 
-                Intent myIntent = new Intent(v.getContext(), PotvrdaPorudzbineActivity.class);
-                myIntent.putExtra("idKupca", idKupca);
-                myIntent.putExtra("kolicina", kolicina);
-                myIntent.putExtra("artikalId", artikal_id);
-                myIntent.putExtra("stavkaId", stavkaId);
+                    notifyDataSetChanged();
+                    ((Activity) context).finish();
+                    context.startActivity(((Activity) context).getIntent());
 
-                v.getContext().startActivity(myIntent);
+                    Intent myIntent = new Intent(v.getContext(), PotvrdaPorudzbineActivity.class);
+                    myIntent.putExtra("idKupca", idKupca);
+                    myIntent.putExtra("kolicina", kolicina);
+                    myIntent.putExtra("artikalId", artikal_id);
+                    myIntent.putExtra("stavkaId", stavkaId);
 
+                    v.getContext().startActivity(myIntent);
+
+                }
             }
 
 
@@ -171,8 +193,6 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
         TextView textViewAkcijskaCena;
 
         EditText editText_kolicina;
-        //EditText editText_putanja;
-        //EditText editText_prodavacId;
         Button btn_poruci;
         ImageView imgIcon;
 

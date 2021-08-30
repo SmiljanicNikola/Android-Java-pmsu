@@ -3,6 +3,7 @@ package com.example.pmsuprojekat.activities;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -65,11 +66,14 @@ public class NoviArtikalActivity extends AppCompatActivity {
 
 
         textViewDodaj = findViewById(R.id.textViewDodaj);
-        /*Intent intent = getIntent();
-        int id = intent.getIntExtra("id",0);*/
+
+        //SHAREDRPEFERENCES NACIN ------------------------
+        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+        int idProdavca = prefs.getInt("idProdavca", 0);
+        String idProdavcaa = String.valueOf(idProdavca);//SHARED NACIN BREEEE
+        String usernameProdavca = prefs.getString("usernameProdavca", "No name defined");
+
         Intent intent = getIntent();
-       // String username = intent.getStringExtra("user");
-        //String prodavacId = String.valueOf(intent.getIntExtra("idProdavca",0));
         Integer prodavacid = intent.getIntExtra("id",0);
 
         textViewDodaj.setOnClickListener(new View.OnClickListener() {
