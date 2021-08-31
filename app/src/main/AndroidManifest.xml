@@ -34,9 +34,6 @@
         <activity
             android:name=".activities.PorucivanjeWindowActivity"
             android:label="@string/Empty">
-
-
-
         </activity>
 
         <activity

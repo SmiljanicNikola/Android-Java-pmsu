@@ -223,7 +223,7 @@ public class NovaAkcijaActivity extends AppCompatActivity {
     }
 
     private String makeDateString(int day, int month, int year) {
-        return year + "-" + getMonthFormat(month) + "-" + day;
+        return year + "-" + getMonthFormat(month) + "-" + getDayFormat(day);
     }
 
     private String getMonthFormat(int month) {
@@ -265,6 +265,109 @@ public class NovaAkcijaActivity extends AppCompatActivity {
             return "11";
         }
         return "8";
+
+    }
+
+
+    private String getDayFormat(int day) {
+
+        if(day==1){
+            return "01";
+        }
+        if(day==2){
+            return "02";
+        }
+        if(day==3){
+            return "03";
+        }
+        if(day==4){
+            return "04";
+        }
+        if(day==5){
+            return "05";
+        }
+        if(day==6){
+            return "06";
+        }
+        if(day==7){
+            return "07";
+        }
+        if(day==8){
+            return "08";
+        }
+        if(day==9){
+            return "09";
+        }
+        if(day==10){
+            return "10";
+        }
+        if(day==11){
+            return "11";
+        }
+        if(day==12){
+            return "12";
+        }
+        if(day==13){
+            return "13";
+        }
+        if(day==14){
+            return "14";
+        }
+        if(day==15){
+            return "15";
+        }
+        if(day==16){
+            return "16";
+        }
+        if(day==17){
+            return "17";
+        }
+        if(day==18){
+            return "18";
+        }
+        if(day==18){
+            return "18";
+        }
+        if(day==19){
+            return "19";
+        }
+        if(day==20){
+            return "20";
+        }
+        if(day==21){
+            return "21";
+        }
+        if(day==22){
+            return "22";
+        }
+        if(day==23){
+            return "23";
+        }
+        if(day==24){
+            return "24";
+        }
+        if(day==25){
+            return "25";
+        }
+        if(day==26){
+            return "26";
+        }
+        if(day==27){
+            return "27";
+        }
+        if(day==28){
+            return "28";
+        }
+        if(day==29){
+            return "29";
+        }
+        if(day==30){
+            return "30";
+        }
+        if(day==31){
+            return "31";
+        }
+        return "3";
 
     }
 
