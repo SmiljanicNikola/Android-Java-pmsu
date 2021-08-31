@@ -27,9 +27,11 @@ import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
 import com.example.pmsuprojekat.activities.LoginActivity;
 import com.example.pmsuprojekat.activities.NoviArtikalActivity;
+import com.example.pmsuprojekat.activities.ResavanjePorudzbina;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 import com.example.pmsuprojekat.activities.SviKorisniciActivity;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
+import com.example.pmsuprojekat.adapters.SvePorudzbineAdapterClass;
 //import com.example.pmsuprojekat.fragments.MyFragment;
 
 import java.util.ArrayList;
@@ -115,6 +117,7 @@ public class MainActivityAdministrator extends AppCompatActivity {
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
         categories.add("Svi korisnici");
+        categories.add("Resi porudzbine");
 
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,categories);
@@ -135,6 +138,11 @@ public class MainActivityAdministrator extends AppCompatActivity {
                     if(parent.getItemAtPosition(position).equals("Svi korisnici"))
                     {
                         Intent intent = new Intent(MainActivityAdministrator.this, SviKorisniciActivity.class);
+                        startActivity(intent);
+                    }
+                    if(parent.getItemAtPosition(position).equals("Resi porudzbine"))
+                    {
+                        Intent intent = new Intent(MainActivityAdministrator.this, ResavanjePorudzbina.class);
                         startActivity(intent);
                     }
                 }

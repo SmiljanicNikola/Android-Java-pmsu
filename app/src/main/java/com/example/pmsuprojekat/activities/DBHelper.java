@@ -478,7 +478,58 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public List<Porudzbina> getPorudzbineNearhivirani(){
-        String sql = "select * from porudzbine where arhiviranKomentar=false and komentar NOT LIKE 'Nije unesen'";
+        String sql = "select * from porudzbine where arhiviranKomentar=false and anonimanKomentar=false and komentar NOT LIKE 'Nije unesen'";
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        List<Porudzbina> porudzbine = new ArrayList<>();
+        Cursor cursor = MyDB.rawQuery(sql,null);
+        if(cursor.moveToFirst()){
+            do{
+                int id = Integer.parseInt(cursor.getString(0));
+                LocalDate satnica = LocalDate.parse(cursor.getString(1));
+                boolean dostavljeno = Boolean.parseBoolean(cursor.getString(2));
+                int ocena = cursor.getInt(3);
+                String komentar = cursor.getString(4);
+                boolean anonimanKomentar = Boolean.parseBoolean(cursor.getString(5));
+                boolean arhiviranKomentar = Boolean.parseBoolean(cursor.getString(6));
+                Integer kupac_id = cursor.getInt(7);
+                Integer stavka_id = cursor.getInt(8);
+                porudzbine.add(new Porudzbina(id,satnica,dostavljeno,ocena,komentar,anonimanKomentar,arhiviranKomentar,kupac_id,stavka_id));
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return porudzbine;
+
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<Porudzbina> getPorudzbineNearhiviraniAnonimni(){
+        String sql = "select * from porudzbine where arhiviranKomentar=false and anonimanKomentar=true and komentar NOT LIKE 'Nije unesen'";
+        SQLiteDatabase MyDB = this.getReadableDatabase();
+        List<Porudzbina> porudzbine = new ArrayList<>();
+        Cursor cursor = MyDB.rawQuery(sql,null);
+        if(cursor.moveToFirst()){
+            do{
+                int id = Integer.parseInt(cursor.getString(0));
+                LocalDate satnica = LocalDate.parse(cursor.getString(1));
+                boolean dostavljeno = Boolean.parseBoolean(cursor.getString(2));
+                int ocena = cursor.getInt(3);
+                String komentar = cursor.getString(4);
+                boolean anonimanKomentar = Boolean.parseBoolean(cursor.getString(5));
+                boolean arhiviranKomentar = Boolean.parseBoolean(cursor.getString(6));
+                Integer kupac_id = cursor.getInt(7);
+                Integer stavka_id = cursor.getInt(8);
+                porudzbine.add(new Porudzbina(id,satnica,dostavljeno,ocena,komentar,anonimanKomentar,arhiviranKomentar,kupac_id,stavka_id));
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return porudzbine;
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<Porudzbina> getPorudzbine(){
+        String sql = "select * from porudzbine where dostavljeno=false";
         SQLiteDatabase MyDB = this.getReadableDatabase();
         List<Porudzbina> porudzbine = new ArrayList<>();
         Cursor cursor = MyDB.rawQuery(sql,null);
@@ -604,6 +655,13 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public void dostaviPorudzbinu(Porudzbina porudzbina){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("dostavljeno", porudzbina.isDostavljeno());
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        MyDB.update("porudzbine",contentValues, "id = ?", new String[] {String.valueOf(porudzbina.getId())});
+
+    }
 
 
     public void deleteArtikal(int id){

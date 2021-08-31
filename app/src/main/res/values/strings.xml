@@ -47,6 +47,9 @@
     <string name="ostavljanjeKomentara">Ostavite komentar</string>
     <string name="artikliIzabranog">Artikli izabranog prodavca</string>
     <string name="glavnaStranica">Glavna stranica</string>
+    <string name="anonimniKomentari">Anonimni komentari</string>
+    <string name="potvrdiPristiglost">Potvrdi pristiglost porudzbine</string>
+    <string name="resavanje">Resavanje pristiglih porudzbina</string>
 
 
 

@@ -25,6 +25,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.pmsuprojekat.activities.AkcijeActivity;
+import com.example.pmsuprojekat.activities.AnonimniKomentariActivity;
 import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
 import com.example.pmsuprojekat.activities.KomentarActivity;
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         categories.add("akcije");
         categories.add("Dodaj akciju");
         categories.add("Komentari");
+        categories.add("Anonimni komentari");
         categories.add("Artikli");
         //categories.add("Dodaj artikal");
 
@@ -171,6 +173,28 @@ public class MainActivity extends AppCompatActivity {
                     {
 
                         Intent intent = new Intent(MainActivity.this, KomentarActivity.class);
+                        Intent intent1 = getIntent();
+
+                        SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+                        String usernameProdavca = prefs.getString("userName", "No name defined");
+
+                        String username = intent1.getStringExtra("user");
+                        Prodavac prodavac = DB.findProdavac(usernameProdavca);
+                        int idProdavca = prodavac.getId();
+
+                        SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
+                        editor.putString("usernameProdavca", usernameProdavca);
+                        editor.putInt("idProdavca", idProdavca);
+                        editor.apply();
+
+                        intent.putExtra("idProdavca", idProdavca);
+                        intent.putExtra("user", username);
+                        startActivity(intent);
+                    }
+                    if(parent.getItemAtPosition(position).equals("Anonimni komentari"))
+                    {
+
+                        Intent intent = new Intent(MainActivity.this, AnonimniKomentariActivity.class);
                         Intent intent1 = getIntent();
 
                         SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);

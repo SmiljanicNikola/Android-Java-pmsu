@@ -61,6 +61,16 @@
             android:name=".activities.NovaAkcijaActivity">
         </activity>
         <activity
+            android:name=".activities.AnonimniKomentariActivity"
+            android:label="@string/anonimniKomentari">
+
+        </activity>
+        <activity
+            android:name=".activities.ResavanjePorudzbina"
+            android:label="@string/resavanje">
+
+        </activity>
+        <activity
             android:name=".activities.PotvrdaPorudzbineActivity"
             android:label="@string/Empty">
         </activity>

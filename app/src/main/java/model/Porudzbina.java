@@ -24,6 +24,13 @@ public class Porudzbina {
         this.arhiviranKomentar = arhiviranKomentar;
     }
 
+    public Porudzbina(int id, boolean dostavljeno) {
+        this.id = id;
+        this.dostavljeno = dostavljeno;
+    }
+
+
+
     public Porudzbina(Integer id, LocalDate satnica, boolean dostavljeno, int ocena, String komentar, boolean anonimanKomentar, boolean arhiviranKomentar, int kupac_id, int stavka_id) {
         this.id = id;
         this.satnica = satnica;
