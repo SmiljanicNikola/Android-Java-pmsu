@@ -62,15 +62,15 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
         //List<Akcija> akcije = dbHelper.getAkcije();
 
         holder.textViewID.setText(Integer.toString(porudzbina.getId()));
-        holder.textViewSatnica.setText("Satnica(Datum): "+porudzbina.getSatnica().toString());
-        holder.textViewKomentar.setText("Komentar: "+porudzbina.getKomentar());
+        holder.textViewSatnica.setText(porudzbina.getSatnica().toString());
+        holder.textViewKomentar.setText(porudzbina.getKomentar());
         int stavka_id = porudzbina.getStavka_id();
         Stavka stavka = dbHelper.findStavka(stavka_id);
         int artikal_id = stavka.getArtikal_id();
         Artikal artikal = dbHelper.findArtikal(artikal_id);
-        holder.textViewArtikal.setText("Naziv artikla: "+artikal.getNaziv());
-        holder.textViewKolicina.setText("Kolicina narucenih artikala: "+stavka.getKolicina());
-        holder.textViewCenaPojedinacno.setText("Cena artikla pojedinacno: "+artikal.getCena());
+        holder.textViewArtikal.setText(artikal.getNaziv());
+        holder.textViewKolicina.setText(String.valueOf(stavka.getKolicina()));
+        holder.textViewCenaPojedinacno.setText(String.valueOf(artikal.getCena()));
         /*for(Akcija akcija : akcije){
             if(akcija.getArtikal_id() == artikal.getId()){
                 int procenat = akcija.getProcenat();
@@ -83,7 +83,7 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
         }*/
         //holder.textViewCenaSaAkcijom.setText("Cena sa akcijom: "+artikal.getCena());
 
-        holder.textViewCenaUkupno.setText("Cena narudzbe ukupno:"+artikal.getCena()*stavka.getKolicina());
+        holder.textViewCenaUkupno.setText((String.valueOf(artikal.getCena()*stavka.getKolicina())));
         //holder.editText_putanja.setText(artikal.getPutanjaSlike());
         //holder.editText_prodavacId.setText(artikal.getProdavac_id());
 
@@ -147,7 +147,7 @@ public class PorudzbinaAdapterClass extends RecyclerView.Adapter<PorudzbinaAdapt
             textViewKolicina = itemView.findViewById(R.id.textViewKolicina);
             textViewCenaPojedinacno = itemView.findViewById(R.id.textViewCenaPojedinacno);
             textViewCenaUkupno = itemView.findViewById(R.id.textViewCenaUkupno);
-            textViewCenaSaAkcijom = itemView.findViewById(R.id.textViewCenaSaAkcijom);
+            //textViewCenaSaAkcijom = itemView.findViewById(R.id.textViewCenaSaAkcijom);
 
 
             editText_cena = itemView.findViewById(R.id.editText_cena);

@@ -18,18 +18,7 @@
         android:textSize="16dp"
         tools:text="" />
 
-    <!--<EditText
-        android:id="@+id/txtOdKad"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtProcenat"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="Unesite opis"
-        android:inputType="textPersonName"
-        android:textSize="16dp"
-        tools:text="" /> -->
+
 
     <TextView
         android:id="@+id/textView1"
@@ -54,18 +43,6 @@
         android:onClick="openDatePicker"/>
 
 
-    <!--<EditText
-        android:id="@+id/txtDoKad"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/datePickerButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="Unesite do kad traje"
-        android:inputType="textPersonName"
-        android:textSize="16dp"
-        tools:text="" /> -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -99,17 +76,6 @@
         android:textSize="16dp"
         tools:text="" />
 
-    <!--<EditText
-        android:id="@+id/txtArtikalId"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtTekst"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="Artikal Id"
-        android:textSize="16dp"
-        tools:text="" /> -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

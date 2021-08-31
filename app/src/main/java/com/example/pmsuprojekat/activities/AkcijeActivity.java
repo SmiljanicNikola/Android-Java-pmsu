@@ -45,7 +45,7 @@ public class AkcijeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.akcije_list);
-        dodajAkciju=findViewById(R.id.btnDodajAkciju);
+        dodajAkciju=findViewById(R.id.btn_dodajAkciju);
 
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

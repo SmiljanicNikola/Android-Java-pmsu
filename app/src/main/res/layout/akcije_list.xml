@@ -23,7 +23,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/purple_700" />
+            android:background="?attr/colorPrimary"
+            />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -38,104 +39,26 @@
 
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/dodajAkciju"
+        android:text="Dodaj novu akciju"
         android:layout_weight="2"
-        android:background="@color/purple_700"
-        android:layout_margin="2dp"
-        android:id="@+id/btnDodajAkciju"
-        android:layout_marginTop="30dp"
         android:layout_below="@id/appbar"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/btn_dodajAkciju"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/white"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnDodajAkciju"/>
-
-
-
-
-
-
-
-    <!-- <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:id="@+id/mainContentArtikal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <RelativeLayout
-            android:id="@+id/drawerPane"
-            android:layout_width="280dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start">
-
-            <RelativeLayout
-                android:id="@+id/profileBox"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/purple_200"
-                android:padding="8dp">
-
-                <ImageView
-                    android:id="@+id/avatar"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_action_person"
-                    />
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="42dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toRightOf="@+id/avatar"
-                    android:orientation="vertical">
-
-
-
-                </LinearLayout>
-            </RelativeLayout>
-
-             List of Actions (pages)
-            <ListView
-                android:id="@+id/navList"
-                android:layout_width="280dp"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/profileBox"
-                android:choiceMode="singleChoice"
-                android:background="#ffffffff"/>
-
-
-
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/btnNovi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:text="@string/dodajArtikal"
-            android:layout_marginTop="560dp"
-            tools:ignore="RtlCompat" />
-    </androidx.drawerlayout.widget.DrawerLayout> -->
-
-
-
+        android:layout_below="@id/btn_dodajAkciju"/>
 
 
 </RelativeLayout>

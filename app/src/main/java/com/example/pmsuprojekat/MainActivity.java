@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         categories.add("Dodaj akciju");
         categories.add("Komentari");
         categories.add("Artikli");
-        categories.add("Dodaj artikal");
+        //categories.add("Dodaj artikal");
 
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,categories);
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("user", username);
                         startActivity(intent);
                     }
-                    if(parent.getItemAtPosition(position).equals("Dodaj akciju"))
+                    /*if(parent.getItemAtPosition(position).equals("Dodaj akciju"))
                     {
                         Intent intent1 = getIntent();
                         String username = intent1.getStringExtra("user");
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("user", username);
                         startActivity(intent);
 
-                    }
+                    }*/
                 }
             }
 

@@ -364,7 +364,7 @@ public class  DBHelper extends SQLiteOpenHelper {
     public List<Porudzbina> getPorudzbineKupca(String kupacId){
         SQLiteDatabase MyDB = this.getReadableDatabase();
         List<Porudzbina> porudzbine = new ArrayList<>();
-        Cursor cursor = MyDB.rawQuery("select * from porudzbine where kupac_id=?", new String[] {kupacId});
+        Cursor cursor = MyDB.rawQuery("select * from porudzbine where kupac_id=? and komentar like 'Nije unesen'", new String[] {kupacId});
         if(cursor.moveToFirst()){
             do{
                 int id = Integer.parseInt(cursor.getString(0));
@@ -478,7 +478,7 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public List<Porudzbina> getPorudzbineNearhivirani(){
-        String sql = "select * from porudzbine where arhiviranKomentar=false ";
+        String sql = "select * from porudzbine where arhiviranKomentar=false and komentar NOT LIKE 'Nije unesen'";
         SQLiteDatabase MyDB = this.getReadableDatabase();
         List<Porudzbina> porudzbine = new ArrayList<>();
         Cursor cursor = MyDB.rawQuery(sql,null);
