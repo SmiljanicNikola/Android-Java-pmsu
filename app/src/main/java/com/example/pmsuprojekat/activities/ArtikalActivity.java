@@ -126,8 +126,8 @@ public class ArtikalActivity extends AppCompatActivity {
             editor.apply();
             /*Intent intent1 = getIntent();
             String username = intent1.getStringExtra("user");
-            intent.putExtra("user", username);
-            startActivity(intent);*/
+            intent.putExtra("user", username);*/
+            startActivity(intent);
             finish();
         }
         return true;

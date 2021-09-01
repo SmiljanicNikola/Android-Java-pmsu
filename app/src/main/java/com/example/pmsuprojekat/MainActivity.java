@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<String> categories = new ArrayList<>();
         categories.add(0, "Izaberi");
-        categories.add("akcije");
+        categories.add("Akcije");
         categories.add("Dodaj akciju");
         categories.add("Komentari");
         categories.add("Anonimni komentari");
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
 
-                    if(parent.getItemAtPosition(position).equals("akcije"))
+                    if(parent.getItemAtPosition(position).equals("Akcije"))
                     {
                         Intent intent = new Intent(MainActivity.this, AkcijeActivity.class);
                         Intent intent1 = getIntent();

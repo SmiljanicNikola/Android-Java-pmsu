@@ -88,11 +88,6 @@ public class AkcijeActivity extends AppCompatActivity {
                 //String idProdavca = String.valueOf(intent1.getIntExtra("idProdavca",0));
                 int idProdavca = intent1.getIntExtra("idProdavca",0);
                 Intent intent = new Intent(AkcijeActivity.this, NovaAkcijaActivity.class);
-                //Korisnik korisnik = DB.findKorisnik(username);
-
-                /*Prodavac prodavac = dbHelper.findProdavac(username);
-                int idProdavca = prodavac.getId();*/
-
                 intent.putExtra("id", idProdavca);
                 intent.putExtra("user", username);
                 startActivity(intent);

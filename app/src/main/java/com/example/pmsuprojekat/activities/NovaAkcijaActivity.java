@@ -124,14 +124,7 @@ public class NovaAkcijaActivity extends AppCompatActivity {
                     DBHelper DB = new DBHelper(NovaAkcijaActivity.this);
                     akcija = new Akcija(procenat, odKad, doKad, tekst, prodavac_id, artikal_id);
                     DB.insertAkcija(akcija);
-
-
-
-                    /*int akcijaId = akcija.getId();
-                    DB.updateArtikal(new Artikal(artikal.getId(),akcijaId));*/
-
                     Toast.makeText(NovaAkcijaActivity.this, "Uspesno ste dodali akciju", Toast.LENGTH_SHORT).show();
-
                     finish();
                     startActivity(getIntent());
                 }

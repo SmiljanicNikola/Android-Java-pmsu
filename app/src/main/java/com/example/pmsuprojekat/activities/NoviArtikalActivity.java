@@ -104,6 +104,7 @@ public class NoviArtikalActivity extends AppCompatActivity {
                 intent.putExtra("idProdavca", prodavacid);
                 intent.putExtra("user", username);
                 startActivity(intent);
+                finish();
             }
         });
 
