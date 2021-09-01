@@ -191,6 +191,10 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "You clicked share",
                         Toast.LENGTH_SHORT).show();
             }
+            if(id == R.id.logout){
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+            }
             return true;
         }
 

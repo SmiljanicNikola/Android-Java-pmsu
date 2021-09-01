@@ -42,6 +42,8 @@ public class ArtikalActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Button btnDodajArtikal;
+    private SharedPreferenceConfig sharedPreferenceConfig;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +130,10 @@ public class ArtikalActivity extends AppCompatActivity {
             String username = intent1.getStringExtra("user");
             intent.putExtra("user", username);*/
             startActivity(intent);
+            finish();
+        }
+        if(id == R.id.logout){
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
         return true;

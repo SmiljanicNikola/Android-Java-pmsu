@@ -47,8 +47,10 @@ import model.Stavka;
 
 public class KomentarActivity extends AppCompatActivity {
 
-
+    private SharedPreferenceConfig sharedPreferenceConfig;
     RecyclerView recyclerView;
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +126,10 @@ public class KomentarActivity extends AppCompatActivity {
         if(id == R.id.share){
             Intent intent = new Intent(KomentarActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
+        }
+        if(id == R.id.logout){
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
         return true;

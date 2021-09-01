@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Artikal {
+public class Artikal{
 
     private Integer id;
     private String naziv;

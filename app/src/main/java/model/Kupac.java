@@ -1,6 +1,6 @@
 package model;
 
-public class Kupac {
+public class Kupac{
 
     private Integer id;
     private String ime;

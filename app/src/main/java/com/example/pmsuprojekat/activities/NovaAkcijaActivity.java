@@ -119,9 +119,10 @@ public class NovaAkcijaActivity extends AppCompatActivity {
                 // LocalDate odKad = LocalDate.parse(getTodaysDate());
 
                 Akcija akcija = null;
-                if (procenat.equals("") || tekst.equals("") || doKad.equals("")) {
-                    Toast.makeText(NovaAkcijaActivity.this, "Unesite sva polja!", Toast.LENGTH_SHORT).show();
-                } else {
+                if (procenat.equals("") || tekst.equals("") || doKad.equals("") || LocalDate.parse(getTodaysDate()).isAfter(doKad)) {
+                    Toast.makeText(NovaAkcijaActivity.this, "Unesite sva polja i proverite datume!", Toast.LENGTH_LONG).show();
+                }
+                else {
                     DBHelper DB = new DBHelper(NovaAkcijaActivity.this);
                     int idAkcije = hashCode();
                     akcija = new Akcija(idAkcije,procenat, odKad, doKad, tekst, prodavac_id, artikal_id);

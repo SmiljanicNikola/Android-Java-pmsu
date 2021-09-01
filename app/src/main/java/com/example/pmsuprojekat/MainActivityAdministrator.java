@@ -258,7 +258,16 @@ public class MainActivityAdministrator extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id == R.id.logout){
+            sharedPreferenceConfig.login_status(false);
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
+        return true;
+    }
 
 
 

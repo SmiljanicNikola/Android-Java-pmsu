@@ -17,6 +17,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 
 import model.Porudzbina;
@@ -27,6 +28,8 @@ public class RecenzijaActivity extends AppCompatActivity {
     DBHelper dbHelper;
     Button submitClick;
     CheckBox checkBoxAnonimno;
+    private SharedPreferenceConfig sharedPreferenceConfig;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +86,16 @@ public class RecenzijaActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.layout.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id == R.id.logout){
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
         return true;
     }
 

@@ -43,6 +43,8 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
     ArrayList<String> listItem;
     ArrayAdapter adapter;
     DBHelper DB;
+    private SharedPreferenceConfig sharedPreferenceConfig;
+
     /*SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPref.edit();
     editor.putString("userName", userName);
@@ -117,6 +119,10 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
         if(id == R.id.share){
             Intent intent = new Intent(IzabraniProdavacActivity.this, MainActivityKupac.class);
             startActivity(intent);
+            finish();
+        }
+        if(id == R.id.logout){
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
         return true;

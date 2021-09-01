@@ -28,7 +28,9 @@ import model.Porudzbina;
 
 public class PorudzbinaActivity extends AppCompatActivity {
 
+    private SharedPreferenceConfig sharedPreferenceConfig;
     RecyclerView recyclerView;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,10 @@ public class PorudzbinaActivity extends AppCompatActivity {
         if(id == R.id.share){
             Intent intent = new Intent(PorudzbinaActivity.this, MainActivityKupac.class);
             startActivity(intent);
+            finish();
+        }
+        if(id == R.id.logout){
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
         return true;

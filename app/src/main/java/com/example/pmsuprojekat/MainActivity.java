@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -402,7 +403,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id == R.id.logout){
+            sharedPreferenceConfig.login_status(false);
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
+        return true;
+    }
 
 
 }
