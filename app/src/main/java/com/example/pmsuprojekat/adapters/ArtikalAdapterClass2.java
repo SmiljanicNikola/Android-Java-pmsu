@@ -37,6 +37,7 @@ import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.PotvrdaPorudzbineActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,7 +66,7 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
     private SharedPreferenceConfig sharedPreferenceConfig;
 
 
-    public ArtikalAdapterClass2(List<Artikal> artikli ,List<Akcija> akcije, Context context) {
+    public ArtikalAdapterClass2(List<Artikal> artikli,List<Akcija> akcije, Context context) {
         this.artikli = artikli;
         this.akcije = akcije;
         this.context = context;
@@ -86,11 +87,11 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Artikal artikal = artikli.get(position);
-
-
+        dbHelper = new DBHelper(context);
+        //final Akcija akcija = dbHelper.findAkcija(artikal.getAkcija_id());
+        //final List<Akcija> akcije = dbHelper.getAkcijeProdavca(String.valueOf(artikal.getProdavac_id()));
 
             holder.textViewID.setText(Integer.toString(artikal.getId()));
-
             byte[] recordImage = artikal.getImage();
             Bitmap bitmap = BitmapFactory.decodeByteArray(recordImage, 0, recordImage.length);
             holder.imgIcon.setImageBitmap(bitmap);
@@ -99,21 +100,28 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
             holder.textViewOpis.setText("Opis: " + artikal.getOpis());
             holder.textViewCena.setText(Double.toString(artikal.getCena()));
 
+            /*int akcijaId = artikal.getAkcija_id();
+            //Akcija akcija = dbHelper.findAkcija(akcijaId);
+            if(akcija != null) {
+                double stotiDeo = artikal.getCena() / 100;
+                holder.textViewAkcijskaCena.setText(String.valueOf(artikal.getCena() - (stotiDeo * akcija.getProcenat())));
+            }else{
+                holder.textViewAkcijskaCena.setText("Nema");
 
-            //List<Akcija> akcije = dbHelper.getAkcije();
-for(Akcija akcija1 : akcije) {
-    if (position < akcije.size()) {
-        Akcija akcija = akcije.get(position);
+            }*/
 
-        if (akcija.getArtikal_id() == artikal.getId() && akcija.getProdavac_id() == artikal.getProdavac_id()) {
-            double stotiDeo = artikal.getCena() / 100;
-            holder.textViewAkcijskaCena.setText(String.valueOf(artikal.getCena() - (stotiDeo * akcija.getProcenat())));
-        }
-    }
-    else {
-        holder.textViewAkcijskaCena.setText("Nema akcije");
-    }
-}
+            if (position < akcije.size()) {
+                Akcija akcija = akcije.get(position);
+                if (akcija.getArtikal_id() == artikal.getId() && akcija.getProdavac_id() == artikal.getProdavac_id()) {
+                    double stotiDeo = artikal.getCena() / 100;
+                    holder.textViewAkcijskaCena.setText(String.valueOf(artikal.getCena() - (stotiDeo * akcija.getProcenat())));
+                } else {
+                    holder.textViewAkcijskaCena.setText("Nema akcije");
+                }
+            }else{
+                holder.textViewAkcijskaCena.setText("Nema akcije");
+            }
+
         /*for(Akcija akcija : akcije) {
             if (akcija.getArtikal_id() == artikal.getId()) {
                 double stotiDeo = artikal.getCena()/100;
@@ -125,7 +133,6 @@ for(Akcija akcija1 : akcije) {
         }*/
         //holder.editText_putanja.setText(artikal.getPutanjaSlike());
         //holder.editText_prodavacId.setText(artikal.getProdavac_id());
-
 
         holder.btn_poruci.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)

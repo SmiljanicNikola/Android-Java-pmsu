@@ -37,6 +37,7 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
     private TextView textViewNaziv,textViewKolicina,textViewCenaPojedinacno,textViewCenaUkupno,textViewCenaSaAkcijom;
     private Button btnPotvrdiPorudzbinu;
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,19 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
             textViewCenaSaAkcijom = findViewById(R.id.textView5);
             textViewCenaSaAkcijom.setText(String.valueOf(cenaArtikla*akcija.getProcenat()));
         }*/
-        List<Akcija> akcije = dbHelper.getAkcijeProdavca(String.valueOf(artikal.getProdavac_id()));
+
+        int akcijaId = artikal.getAkcija_id();
+        Akcija akcija = dbHelper.findAkcija(akcijaId);
+        if(akcija != null) {
+            textViewCenaSaAkcijom = findViewById(R.id.textView5);
+            double stotiDeo = artikal.getCena() / 100;
+            textViewCenaSaAkcijom.setText(String.valueOf((artikal.getCena() - (stotiDeo * akcija.getProcenat()))*kolicina));
+        }else{
+            textViewCenaSaAkcijom = findViewById(R.id.textView5);
+            textViewCenaSaAkcijom.setText("Trenutno nema aktivne akcije");
+        }
+
+        /*List<Akcija> akcije = dbHelper.getAkcijeProdavca(String.valueOf(artikal.getProdavac_id()));
         for(Akcija akcija : akcije) {
             if (akcija.getArtikal_id() == artikal_id && akcija.getProdavac_id()==artikal.getProdavac_id()) {
                 textViewCenaSaAkcijom = findViewById(R.id.textView5);
@@ -103,7 +116,7 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
                 textViewCenaSaAkcijom = findViewById(R.id.textView5);
                 textViewCenaSaAkcijom.setText("Trenutno nema aktivne akcije");
             }
-        }
+        }*/
 
         textViewCenaUkupno = findViewById(R.id.textView4);
         textViewCenaUkupno.setText(String.valueOf(cenaArtikla * kolicina));

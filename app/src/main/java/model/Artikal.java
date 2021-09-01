@@ -11,7 +11,7 @@ public class Artikal {
     private String putanjaSlike;
     private int prodavac_id;
     private byte[] image;
-    private List<Akcija> akcije;
+    private int akcija_id;
 
 
     public Artikal(){
@@ -40,6 +40,11 @@ public class Artikal {
         this.putanjaSlike = putanjaSlike;
         this.prodavac_id = prodavac_id;
         this.image = image;
+    }
+
+    public Artikal(Integer id, Integer akcija_id) {
+        this.id = id;
+        this.akcija_id = akcija_id;
     }
 
     public Artikal(String naziv, String opis, double cena) {
@@ -79,6 +84,17 @@ public class Artikal {
         this.cena = cena;
         this.putanjaSlike = putanjaSlike;
         this.prodavac_id = prodavac_id;
+    }
+
+    public Artikal(Integer id, String naziv, String opis, double cena, String putanjaSlike, int prodavac_id, byte[] image, int akcija_id) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.cena = cena;
+        this.putanjaSlike = putanjaSlike;
+        this.prodavac_id = prodavac_id;
+        this.image = image;
+        this.akcija_id = akcija_id;
     }
 
     public Integer getId() {
@@ -137,12 +153,12 @@ public class Artikal {
         this.image = image;
     }
 
-    public List<Akcija> getAkcije() {
-        return akcije;
+    public int getAkcija_id() {
+        return akcija_id;
     }
 
-    public void setAkcije(List<Akcija> akcije) {
-        this.akcije = akcije;
+    public void setAkcija_id(int akcija_id) {
+        this.akcija_id = akcija_id;
     }
 
     @Override

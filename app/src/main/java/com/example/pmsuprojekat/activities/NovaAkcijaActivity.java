@@ -31,6 +31,7 @@ import java.util.List;
 
 import model.Akcija;
 import model.Artikal;
+import model.Korisnik;
 import model.Prodavac;
 
 public class NovaAkcijaActivity extends AppCompatActivity {
@@ -122,8 +123,12 @@ public class NovaAkcijaActivity extends AppCompatActivity {
                     Toast.makeText(NovaAkcijaActivity.this, "Unesite sva polja!", Toast.LENGTH_SHORT).show();
                 } else {
                     DBHelper DB = new DBHelper(NovaAkcijaActivity.this);
-                    akcija = new Akcija(procenat, odKad, doKad, tekst, prodavac_id, artikal_id);
+                    int idAkcije = hashCode();
+                    akcija = new Akcija(idAkcije,procenat, odKad, doKad, tekst, prodavac_id, artikal_id);
                     DB.insertAkcija(akcija);
+
+                    DB.postaviAkciju(new Artikal(artikal_id, idAkcije));
+
                     Toast.makeText(NovaAkcijaActivity.this, "Uspesno ste dodali akciju", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(getIntent());
