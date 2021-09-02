@@ -57,11 +57,19 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (3,'nenad','nenadovic','nenadn','123','prodavac',false)");
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (4,'ivan','ivanovic','ivani','123','prodavac',0)");
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (5,'predrag','predragovic','predragp','123','prodavac',0)");
+        MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (6,'miodrag','miodragovic','miodragm','123','prodavac',0)");
+        MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (7,'stefan','stefanovic','stefans','123','kupac',0)");
+
+
+
+        MyDB.execSQL("Insert into kupci(id,ime,prezime,username,password, adresa) VALUES (1,'stefan','stefanovic','stefans','123','nenadska 50')");
 
 
         MyDB.execSQL("Insert into prodavci(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv) VALUES (1,'nenad','nenadovic','nenadn','123','2021-04-04','nenad@nenadovic.com','nenadska 50','Fruity')");
         MyDB.execSQL("Insert into prodavci(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv) VALUES (2,'predrag','predragovic','predragp','123','2021-05-05','predrag@predragovic.com','fruskogorska 32','GlassDOO')");
         MyDB.execSQL("Insert into prodavci(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv) VALUES (3,'ivan','ivanovic','ivani','123','2021-03-04','ivan@ivanovic.com','ivanoviceva 40','Shop&GO')");
+        MyDB.execSQL("Insert into prodavci(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv) VALUES (4,'miodrag','miodragovic','miodragm','123','2021-04-06','miodragovic@miki.com','Miodragska 32','Shuffler')");
+
 
         //MyDB.execSQL(CREATE_TABLEArtikli);
         MyDB.execSQL("create Table artikli(id INTEGER PRIMARY KEY AUTOINCREMENT, naziv TEXT, opis TEXT, cena DOUBLE, putanja TEXT,prodavac_id INTEGER, image BLOB, akcija_id INTEGER, FOREIGN KEY (prodavac_id) REFERENCES prodavci (id))");
@@ -661,6 +669,14 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public void skiniAkciju(Artikal artikal){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("akcija_id", (Integer) null);
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        MyDB.update("akcije",contentValues, "id = ?", new String[] {String.valueOf(artikal.getId())});
+
+    }
+
         public void updateKorisnik(Korisnik korisnik){
         ContentValues contentValues = new ContentValues();
         contentValues.put("blokiran", korisnik.isBlokiran());
@@ -687,6 +703,8 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
+
+
     public void dostaviPorudzbinu(Porudzbina porudzbina){
         ContentValues contentValues = new ContentValues();
         contentValues.put("dostavljeno", porudzbina.isDostavljeno());
@@ -696,10 +714,17 @@ public class  DBHelper extends SQLiteOpenHelper {
     }
 
 
+
+
     public void deleteArtikal(int id){
             SQLiteDatabase MyDB = this.getWritableDatabase();
             MyDB.delete("artikli", "id = ?", new String[] {String.valueOf(id)});
         }
+
+    public void deleteAkcija(int id){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        MyDB.delete("akcije", "id = ?", new String[] {String.valueOf(id)});
+    }
 
         public Cursor viewData(){
             SQLiteDatabase MyDB = this.getReadableDatabase();

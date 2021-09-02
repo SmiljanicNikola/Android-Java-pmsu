@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -46,8 +49,10 @@ public class AkcijaAdapterClass extends RecyclerView.Adapter<AkcijaAdapterClass.
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        dbHelper = new DBHelper(context);
         final Akcija akcija = akcije.get(position);
         holder.textViewID.setText(Integer.toString(akcija.getId()));
         //holder.editText_naziv.setText(Integer.toString(akcija.getProcenat()));
@@ -56,6 +61,14 @@ public class AkcijaAdapterClass extends RecyclerView.Adapter<AkcijaAdapterClass.
 
         holder.textViewOdKad.setText("Akcija traje od: "+akcija.getOdKad().toString());
         //holder.editText_cena.setText(akcija.getDoKad().toString());
+        if(LocalDate.parse(getTodaysDate()).isAfter(akcija.getDoKad())){
+            dbHelper.deleteAkcija(akcija.getId());
+            Artikal artikal = dbHelper.findArtikal(akcija.getArtikal_id());
+            dbHelper.skiniAkciju(artikal);
+            akcije.remove(position);
+            notifyDataSetChanged();
+        }
+
         holder.textViewDoKad.setText("Akcija traje do: "+akcija.getDoKad().toString());
 
         Artikal artikal = dbHelper.findArtikal(akcija.getArtikal_id());
@@ -148,6 +161,165 @@ public class AkcijaAdapterClass extends RecyclerView.Adapter<AkcijaAdapterClass.
 
 
         }
+    }
+
+    private String getTodaysDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day,month,year);
+    }
+
+    private String makeDateString(int day, int month, int year) {
+        return year + "-" + getMonthFormat(month) + "-" + getDayFormat(day);
+    }
+
+    private String getMonthFormat(int month) {
+
+        if(month==1){
+            return "0";
+        }
+        if(month==2){
+            return "01";
+        }
+        if(month==3){
+            return "02";
+        }
+        if(month==4){
+            return "03";
+        }
+        if(month==5){
+            return "04";
+        }
+        if(month==6){
+            return "06";
+        }
+        if(month==7){
+            return "07";
+        }
+        if(month==8){
+            return "08";
+        }
+        if(month==9){
+            return "09";
+        }
+        if(month==10){
+            return "10";
+        }
+        if(month==11){
+            return "11";
+        }
+        if(month==12){
+            return "11";
+        }
+        return "8";
+
+    }
+
+
+    private String getDayFormat(int day) {
+
+        if(day==1){
+            return "01";
+        }
+        if(day==2){
+            return "02";
+        }
+        if(day==3){
+            return "03";
+        }
+        if(day==4){
+            return "04";
+        }
+        if(day==5){
+            return "05";
+        }
+        if(day==6){
+            return "06";
+        }
+        if(day==7){
+            return "07";
+        }
+        if(day==8){
+            return "08";
+        }
+        if(day==9){
+            return "09";
+        }
+        if(day==10){
+            return "10";
+        }
+        if(day==11){
+            return "11";
+        }
+        if(day==12){
+            return "12";
+        }
+        if(day==13){
+            return "13";
+        }
+        if(day==14){
+            return "14";
+        }
+        if(day==15){
+            return "15";
+        }
+        if(day==16){
+            return "16";
+        }
+        if(day==17){
+            return "17";
+        }
+        if(day==18){
+            return "18";
+        }
+        if(day==18){
+            return "18";
+        }
+        if(day==19){
+            return "19";
+        }
+        if(day==20){
+            return "20";
+        }
+        if(day==21){
+            return "21";
+        }
+        if(day==22){
+            return "22";
+        }
+        if(day==23){
+            return "23";
+        }
+        if(day==24){
+            return "24";
+        }
+        if(day==25){
+            return "25";
+        }
+        if(day==26){
+            return "26";
+        }
+        if(day==27){
+            return "27";
+        }
+        if(day==28){
+            return "28";
+        }
+        if(day==29){
+            return "29";
+        }
+        if(day==30){
+            return "30";
+        }
+        if(day==31){
+            return "31";
+        }
+        return "3";
+
     }
 
 }
