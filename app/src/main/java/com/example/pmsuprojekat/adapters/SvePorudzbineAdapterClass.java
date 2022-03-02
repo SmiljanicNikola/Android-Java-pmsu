@@ -2,7 +2,6 @@ package com.example.pmsuprojekat.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,19 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
-import com.example.pmsuprojekat.activities.RecenzijaActivity;
-
 import java.util.List;
-
 import model.Artikal;
-import model.Korisnik;
 import model.Porudzbina;
 import model.Stavka;
 
@@ -53,7 +46,6 @@ public class SvePorudzbineAdapterClass extends RecyclerView.Adapter<SvePorudzbin
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Porudzbina porudzbina = porudzbine.get(position);
-        //List<Akcija> akcije = dbHelper.getAkcije();
 
         holder.textViewID.setText(Integer.toString(porudzbina.getId()));
         holder.textViewSatnica.setText(porudzbina.getSatnica().toString());
@@ -67,7 +59,6 @@ public class SvePorudzbineAdapterClass extends RecyclerView.Adapter<SvePorudzbin
         holder.textViewCenaPojedinacno.setText(String.valueOf(artikal.getCena()));
         holder.textViewCenaUkupno.setText((String.valueOf(artikal.getCena()*stavka.getKolicina())));
 
-
         //Izmena
         holder.btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,16 +71,8 @@ public class SvePorudzbineAdapterClass extends RecyclerView.Adapter<SvePorudzbin
                 ((Activity) context).finish();
                 context.startActivity(((Activity) context).getIntent());
 
-
-                //dbHelper.updateArtikal(new Artikal(artikal.getId(),naziv,opis,cena,putanja));
-                /*notifyDataSetChanged();
-                ((Activity) context).finish();
-                context.startActivity(((Activity) context).getIntent());*/
-
             }
         });
-
-
     }
 
     @Override
@@ -107,7 +90,6 @@ public class SvePorudzbineAdapterClass extends RecyclerView.Adapter<SvePorudzbin
         TextView textViewCenaUkupno;
         TextView textViewCenaSaAkcijom;
 
-
         EditText editText_cena;
         EditText editText_putanja;
         EditText editText_prodavacId;
@@ -124,15 +106,12 @@ public class SvePorudzbineAdapterClass extends RecyclerView.Adapter<SvePorudzbin
             textViewKolicina = itemView.findViewById(R.id.textViewKolicina);
             textViewCenaPojedinacno = itemView.findViewById(R.id.textViewCenaPojedinacno);
             textViewCenaUkupno = itemView.findViewById(R.id.textViewCenaUkupno);
-            //textViewCenaSaAkcijom = itemView.findViewById(R.id.textViewCenaSaAkcijom);
-
 
             editText_cena = itemView.findViewById(R.id.editText_cena);
             editText_putanja = itemView.findViewById(R.id.editText_putanja);
             editText_prodavacId = itemView.findViewById(R.id.editText_prodavacId);
             btn_edit = itemView.findViewById(R.id.btn_edit);
             imgIcon = itemView.findViewById(R.id.imgIcon);
-
 
         }
     }

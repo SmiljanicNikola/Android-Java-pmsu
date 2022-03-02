@@ -6,21 +6,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.MainActivityAdministrator;
 import com.example.pmsuprojekat.R;
-import com.example.pmsuprojekat.adapters.ArtikalAdapterClass;
 import com.example.pmsuprojekat.adapters.KorisnikAdapterClass;
-
 import java.util.List;
-
-import model.Artikal;
 import model.Korisnik;
 
 public class SviKorisniciActivity extends AppCompatActivity {
@@ -58,6 +52,7 @@ public class SviKorisniciActivity extends AppCompatActivity {
         }
 
     }
+
     @Override
     protected void onResume() {
         // TODO Auto-generated method stub

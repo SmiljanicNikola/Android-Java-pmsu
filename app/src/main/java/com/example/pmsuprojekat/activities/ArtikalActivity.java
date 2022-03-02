@@ -3,40 +3,22 @@ package com.example.pmsuprojekat.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.adapters.ArtikalAdapterClass;
-/*import com.example.pmsuprojekat.fragments.MyFragment;
-import com.example.pmsuprojekat.fragments.MyFragmentArtikal;*/
-import com.example.pmsuprojekat.tools.FragmentTransition;
-import com.example.pmsuprojekat.tools.FragmentTransitionArtikli;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import model.Artikal;
-import model.NavItem;
 
 public class ArtikalActivity extends AppCompatActivity {
 
@@ -57,15 +39,16 @@ public class ArtikalActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
         Intent intent = getIntent();
 
-        //SHAREDRPEFERENCES NACIN ------------------------
+        //SHAREDRPEFERENCES NACIN ---
         SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
         int idProdavca = prefs.getInt("idProdavca", 0);
-        String idProdavcaa = String.valueOf(idProdavca);//SHARED NACIN BREEEE
+        String idProdavcaa = String.valueOf(idProdavca); //SHARED NACIN ---
         String usernameProdavca = prefs.getString("usernameProdavca", "No name defined");
 
-        //INTENT NACIN ---------------------------
+        //INTENT NACIN ---
         String username = intent.getStringExtra("user");
         String prodavacId = String.valueOf(intent.getIntExtra("idProdavca",0));//OVO
+
         //Dobavljanje artikala pojedinacnog prodavca
         List<Artikal> artikli = dbHelper.getArtikliProdavca(idProdavcaa);
 
@@ -84,8 +67,6 @@ public class ArtikalActivity extends AppCompatActivity {
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
-            /*actionBar.setIcon(R.drawable.ic_launcher);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);*/
             actionBar.setHomeButtonEnabled(true);
         }
 
@@ -122,13 +103,12 @@ public class ArtikalActivity extends AppCompatActivity {
         if(id == R.id.share){
             Intent intent = new Intent(ArtikalActivity.this, MainActivity.class);
             SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
+
             String usernameProdavca = prefs.getString("userName", "No name defined");
             SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
             editor.putString("usernameProdavca", usernameProdavca);
             editor.apply();
-            /*Intent intent1 = getIntent();
-            String username = intent1.getStringExtra("user");
-            intent.putExtra("user", username);*/
+
             startActivity(intent);
             finish();
         }

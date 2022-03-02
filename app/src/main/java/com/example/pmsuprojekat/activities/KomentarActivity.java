@@ -3,45 +3,29 @@ package com.example.pmsuprojekat.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pmsuprojekat.MainActivity;
-import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 /*import com.example.pmsuprojekat.fragments.MyFragmentArtikal;
 import com.example.pmsuprojekat.fragments.MyFragmentKomentar;*/
-import com.example.pmsuprojekat.adapters.ArtikalAdapterClass;
 import com.example.pmsuprojekat.adapters.KomentarAdapterClass;
-import com.example.pmsuprojekat.tools.FragmentTransitionArtikli;
-import com.example.pmsuprojekat.tools.FragmentTransitionKomentari;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Artikal;
-import model.Komentar;
-import model.NavItem;
 import model.Porudzbina;
 import model.Stavka;
 

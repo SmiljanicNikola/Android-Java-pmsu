@@ -3,18 +3,13 @@ package com.example.pmsuprojekat.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
-
 import java.time.LocalDate;
 import java.util.Calendar;
 
@@ -37,7 +32,6 @@ public class RegisterActivityProdavac extends AppCompatActivity {
         eemail = (EditText) findViewById(R.id.email);
         nnaziv = (EditText) findViewById(R.id.naziv);
 
-
         repassword = (EditText) findViewById(R.id.repassword);
         registerClick = (TextView) findViewById(R.id.textView1);
         loginClick = (TextView) findViewById(R.id.textView2);
@@ -47,8 +41,6 @@ public class RegisterActivityProdavac extends AppCompatActivity {
         loginClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                // startActivity(intent);
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
 
@@ -59,8 +51,6 @@ public class RegisterActivityProdavac extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                // startActivity(intent);
                 String ime = name.getText().toString();
                 String prezime = lastname.getText().toString();
                 String user = username.getText().toString();
@@ -81,7 +71,6 @@ public class RegisterActivityProdavac extends AppCompatActivity {
                             Boolean insert2 = DB.insertProdavci(ime, prezime, user, pass, LocalDate.parse(getTodaysDate()), email, adresa, naziv);
 
                             if (insert == true) {
-                                //DBKupci.insertKupci(ime, prezime, user, pass, adresa);
                                 Toast.makeText(RegisterActivityProdavac.this, "Uspesno ste se registrovali", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(intent);
@@ -111,6 +100,7 @@ public class RegisterActivityProdavac extends AppCompatActivity {
         month = month+1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day,month,year);
+
     }
 
     private String makeDateString(int day, int month, int year) {
@@ -156,7 +146,6 @@ public class RegisterActivityProdavac extends AppCompatActivity {
             return "11";
         }
         return "8";
-
     }
 
 

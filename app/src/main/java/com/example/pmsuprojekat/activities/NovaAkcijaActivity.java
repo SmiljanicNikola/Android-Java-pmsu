@@ -50,22 +50,15 @@ public class NovaAkcijaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dodaj_akciju);
 
-
-
         txtProcenat = findViewById(R.id.txtProcenat);
-        //txtOdKad = findViewById(R.id.);
-        ////txtDoKad = findViewById(R.id.txtDoKad);
         txtTekst = findViewById(R.id.txtTekst);
-
         textViewDodaj = findViewById(R.id.textViewDodaj);
 
         initDatePicker();
         initDatePicker1();
-        //dateButton = findViewById(R.id.datePickerButton);
         dateTextView = findViewById(R.id.datePickerButton);
         dateTextView1 = findViewById(R.id.datePickerButton1);
 
-        //dateButton.setText(getTodaysDate());
         dateTextView1.setText(getTodaysDate());
         dateTextView.setText(getTodaysDate());
         DB = new DBHelper(this);
@@ -101,22 +94,12 @@ public class NovaAkcijaActivity extends AppCompatActivity {
 
                 Integer procenat = Integer.valueOf(txtProcenat.getText().toString());
                 String tekst = txtTekst.getText().toString();
-                //String odKad = dateButton.getText().toString();
-                /*SimpleDateFormat simpleDateFormat=new SimpleDateFormat("MM-DD-YYYY");
-                Date dutyDay = (Date) dateButton.getText();
-                try {
-                    dutyDay = (Date) simpleDateFormat.parse(odKad);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }*/
                 LocalDate odKad = LocalDate.parse(dateTextView.getText().toString());
                 LocalDate doKad = LocalDate.parse(dateTextView1.getText().toString());
                 Integer prodavac_id = prodavacid;
-                //Integer artikal_id = Integer.valueOf(txtArtikalId.getText().toString());
                 Integer artikal_id = Integer.valueOf(spinner.getSelectedItem().toString());
 
                 Artikal artikal = DB.findArtikal(artikal_id);
-                // LocalDate odKad = LocalDate.parse(getTodaysDate());
 
                 Akcija akcija = null;
                 if (procenat.equals("") || tekst.equals("") || doKad.equals("") || LocalDate.parse(getTodaysDate()).isAfter(doKad)) {
@@ -135,25 +118,13 @@ public class NovaAkcijaActivity extends AppCompatActivity {
                     startActivity(getIntent());
                 }
 
-                /*Artikal artikal1 = DB.findArtikal(artikal_id);
-                List<Akcija> akcije = artikal1.getAkcije();
-                akcije.add(akcija);*/
-
                 Intent intent = new Intent(NovaAkcijaActivity.this, AkcijeActivity.class);
                 Intent intent1 = getIntent();
-                //String username = intent1.getStringExtra("user");
                 Integer prodavacid = intent1.getIntExtra("id", 0);
-                //Korisnik korisnik = DB.findKorisnik(username);
-                //Prodavac prodavac = DB.findProdavac(username);
-                //int idProdavca = prodavac.getId();
                 intent.putExtra("idProdavca", prodavacid);
-                //intent.putExtra("user", username);
                 startActivity(intent);
             }
         });
-
-
-
     }
 
     public void getSelectedArtikal(View v){

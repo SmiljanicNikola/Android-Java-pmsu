@@ -7,27 +7,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Akcija;
 import model.Artikal;
-import model.Stavka;
 
 public class PotvrdaPorudzbineActivity extends AppCompatActivity {
 
@@ -48,9 +42,6 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int kupacId = intent.getIntExtra("idKupca",0);
-        //int stavkaId = intent.getIntExtra("stavkaId",0);
-        //String stavkaId = String.valueOf(intent.getIntExtra("stavkaId",0));
-        //String artikalId = String.valueOf(intent.getIntExtra("artikalId",0));
 
         int stavkaId = intent.getIntExtra("stavkaId",0);
         int kolicina = intent.getIntExtra("kolicina",0);
@@ -60,9 +51,6 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
         Double cenaArtikla = artikal.getCena();
         String naziv = artikal.getNaziv();
 
-        /*Stavka stavka = dbHelper.findStavka(stavkaOznaka);
-        int kolicina2 = stavka.getKolicina();*/
-        //MY_CLASS class = (MY_CLASS) intent.getExtras().getSerializable("KEY");
         spinner = findViewById(R.id.aSpinnerToolBar);
 
         List<String> categories = new ArrayList<>();
@@ -73,7 +61,6 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
         categories.add(String.valueOf(stavkaId));
         categories.add(String.valueOf(kolicina));
         categories.add(String.valueOf(artikal_id));
-
 
 
         ArrayAdapter<String> dataAdapter;
@@ -88,12 +75,6 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
         textViewCenaPojedinacno = findViewById(R.id.textView3);
         textViewCenaPojedinacno.setText(String.valueOf(cenaArtikla));
 
-        /*List<Akcija> akcije = artikal.getAkcije();
-        for(Akcija akcija : akcije){
-            textViewCenaSaAkcijom = findViewById(R.id.textView5);
-            textViewCenaSaAkcijom.setText(String.valueOf(cenaArtikla*akcija.getProcenat()));
-        }*/
-
         int akcijaId = artikal.getAkcija_id();
         Akcija akcija = dbHelper.findAkcija(akcijaId);
         if(akcija != null) {
@@ -105,18 +86,6 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
             textViewCenaSaAkcijom.setText("Trenutno nema aktivne akcije");
         }
 
-        /*List<Akcija> akcije = dbHelper.getAkcijeProdavca(String.valueOf(artikal.getProdavac_id()));
-        for(Akcija akcija : akcije) {
-            if (akcija.getArtikal_id() == artikal_id && akcija.getProdavac_id()==artikal.getProdavac_id()) {
-                textViewCenaSaAkcijom = findViewById(R.id.textView5);
-                double stotiDeo = cenaArtikla/100;
-                textViewCenaSaAkcijom.setText(String.valueOf((cenaArtikla-(stotiDeo*akcija.getProcenat()))*kolicina));
-            }
-            else{
-                textViewCenaSaAkcijom = findViewById(R.id.textView5);
-                textViewCenaSaAkcijom.setText("Trenutno nema aktivne akcije");
-            }
-        }*/
 
         textViewCenaUkupno = findViewById(R.id.textView4);
         textViewCenaUkupno.setText(String.valueOf(cenaArtikla * kolicina));
@@ -130,42 +99,10 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
 
 
                 v.getContext().startActivity(myIntent);
-
             }
-            });
+        });
 
-        /*dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinner.setAdapter(dataAdapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (parent.getItemAtPosition(position).equals("Izaberi")) {
-                } else {
-                    String item = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
-                    if (parent.getItemAtPosition(position).equals("Artikli")) {
-                        Intent intent = new Intent(PotvrdaPorudzbineActivity.this, ArtikalActivity.class);
-                        startActivity(intent);
-                    }
-                    if (parent.getItemAtPosition(position).equals("Dodaj artikal")) {
-                        Intent intent = new Intent(PotvrdaPorudzbineActivity.this, NoviArtikalActivity.class);
-                        startActivity(intent);
-                    }
-                    if (parent.getItemAtPosition(position).equals("Svi korisnici")) {
-                        Intent intent = new Intent(PotvrdaPorudzbineActivity.this, SviKorisniciActivity.class);
-                        startActivity(intent);
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
@@ -181,7 +118,7 @@ public class PotvrdaPorudzbineActivity extends AppCompatActivity {
         public boolean onCreateOptionsMenu(Menu menu){
             getMenuInflater().inflate(R.layout.menu, menu);
             return true;
-        }
+    }
 
         @Override
         public boolean onOptionsItemSelected(MenuItem item){

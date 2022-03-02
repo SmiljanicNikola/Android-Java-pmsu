@@ -2,28 +2,21 @@ package com.example.pmsuprojekat.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
-import com.example.pmsuprojekat.adapters.ArtikalAdapterClass;
 import com.example.pmsuprojekat.adapters.PorudzbinaAdapterClass;
-
 import java.util.List;
-
-import model.Artikal;
 import model.Porudzbina;
 
 public class PorudzbinaActivity extends AppCompatActivity {
@@ -49,7 +42,6 @@ public class PorudzbinaActivity extends AppCompatActivity {
         String kupacId = String.valueOf(intent.getIntExtra("idKupca",0));
         //Dobavljanje pourdzbina pojedinacnog kupca koji ih je obavio
         List<Porudzbina> porudzbine = dbHelper.getPorudzbineKupca(kupacId);
-
 
         if(porudzbine.size() > 0){
             PorudzbinaAdapterClass porudzbinaAdapterClass = new PorudzbinaAdapterClass(porudzbine,PorudzbinaActivity.this);

@@ -1,22 +1,14 @@
 package com.example.pmsuprojekat.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     TextView registerClick, loginClick;
@@ -28,8 +20,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
-       /* Spinner aSpinner = findViewById(R.id.aSpinner);
-        aSpinner.setOnItemSelectedListener(this); */
 
 
         name = (EditText) findViewById(R.id.name);
@@ -48,8 +38,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         loginClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-               // startActivity(intent);
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
 
@@ -59,8 +47,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         registerClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                // startActivity(intent);
                 String ime = name.getText().toString();
                 String prezime = lastname.getText().toString();
                 String user = username.getText().toString();
@@ -101,10 +87,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-
     @Override
     public void onItemSelected (AdapterView < ? > adapterView, View view,int position, long id){
-        //Toast.makeText(this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
 
     }
 

@@ -13,46 +13,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.pmsuprojekat.MainActivity;
-import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
-import com.example.pmsuprojekat.activities.LoginActivity;
-import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.PotvrdaPorudzbineActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
-
-import java.lang.reflect.Array;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
 import model.Akcija;
 import model.Artikal;
 import model.Kupac;
-import model.NavItem;
 import model.Porudzbina;
-import model.Prodavac;
 import model.Stavka;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterClass2.ViewHolder> {
 
@@ -63,9 +40,7 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
     DBHelper dbHelper;
     ImageView imgIcon;
 
-
     private SharedPreferenceConfig sharedPreferenceConfig;
-
 
     public ArtikalAdapterClass2(List<Artikal> artikli,List<Akcija> akcije, Context context) {
         this.artikli = artikli;
@@ -80,8 +55,6 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
         View view = layoutInflater.inflate(R.layout.artikal_item_list2, parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -89,8 +62,6 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Artikal artikal = artikli.get(position);
         dbHelper = new DBHelper(context);
-        //final Akcija akcija = dbHelper.findAkcija(artikal.getAkcija_id());
-        //final List<Akcija> akcije = dbHelper.getAkcijeProdavca(String.valueOf(artikal.getProdavac_id()));
 
             holder.textViewID.setText(Integer.toString(artikal.getId()));
             byte[] recordImage = artikal.getImage();
@@ -101,15 +72,6 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
             holder.textViewOpis.setText("Opis: " + artikal.getOpis());
             holder.textViewCena.setText(Double.toString(artikal.getCena()));
 
-            /*int akcijaId = artikal.getAkcija_id();
-            //Akcija akcija = dbHelper.findAkcija(akcijaId);
-            if(akcija != null) {
-                double stotiDeo = artikal.getCena() / 100;
-                holder.textViewAkcijskaCena.setText(String.valueOf(artikal.getCena() - (stotiDeo * akcija.getProcenat())));
-            }else{
-                holder.textViewAkcijskaCena.setText("Nema");
-
-            }*/
 
             if (position < akcije.size()) {
                 Akcija akcija = akcije.get(position);
@@ -123,17 +85,6 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                 holder.textViewAkcijskaCena.setText("Nema akcije");
             }
 
-        /*for(Akcija akcija : akcije) {
-            if (akcija.getArtikal_id() == artikal.getId()) {
-                double stotiDeo = artikal.getCena()/100;
-                holder.textViewAkcijskaCena.setText(String.valueOf(artikal.getCena()-(stotiDeo*akcija.getProcenat())));
-            }
-            else{
-                holder.textViewAkcijskaCena.setText("Nema akcije");
-            }
-        }*/
-        //holder.editText_putanja.setText(artikal.getPutanjaSlike());
-        //holder.editText_prodavacId.setText(artikal.getProdavac_id());
 
         holder.btn_poruci.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -144,24 +95,19 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
                 String naziv = holder.textViewNaziv.getText().toString();
                 String opis = holder.textViewOpis.getText().toString();
                 Double cena = Double.valueOf(holder.textViewCena.getText().toString());
-                //int prodavac_id = Integer.valueOf(holder.editText_prodavacId.getText().toString());
                 if(holder.editText_kolicina.getText().toString().equals("")){
                     Toast.makeText(v.getContext(), "Morate uneti kolicinu koju zelite da narucite!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     int kolicina = Integer.valueOf(holder.editText_kolicina.getText().toString());
 
-
-                    //int id = hashCode();
                     int idStavke = hashCode();
                     Stavka stavka = new Stavka(idStavke, kolicina, artikal_id);
                     int stavkaId = stavka.getId();
                     dbHelper.insertStavke(stavka);
 
-
                     SharedPreferences sharedPref = context.getSharedPreferences("My pref", Context.MODE_PRIVATE);
                     String usernameKupca = sharedPref.getString("userName", "No name defined");
-                    //String usernameKupca = intent.getStringExtra("user"); ZAKOMENTARISAO REAL
                     Kupac kupac = dbHelper.findKupca(usernameKupca);
                     int idKupca = kupac.getId();
 
@@ -183,8 +129,6 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
 
                 }
             }
-
-
         });
     }
 
@@ -215,15 +159,10 @@ public class ArtikalAdapterClass2 extends RecyclerView.Adapter<ArtikalAdapterCla
             textViewAkcijskaCena = itemView.findViewById(R.id.textViewAkcijskaCena);
 
             editText_kolicina = itemView.findViewById(R.id.editText_kolicina);
-            //editText_putanja = itemView.findViewById(R.id.editText_putanja);
-            //editText_prodavacId = itemView.findViewById(R.id.editText_prodavacId);
             btn_poruci = itemView.findViewById(R.id.btn_poruci);
             imgIcon = itemView.findViewById(R.id.imgIcon);
-
         }
     }
-
-
 
     private String getTodaysDate() {
 

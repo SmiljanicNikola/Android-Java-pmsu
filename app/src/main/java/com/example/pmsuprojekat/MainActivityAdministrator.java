@@ -15,33 +15,24 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
 import com.example.pmsuprojekat.activities.LoginActivity;
-import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.ResavanjePorudzbina;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
 import com.example.pmsuprojekat.activities.SviKorisniciActivity;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
-import com.example.pmsuprojekat.adapters.SvePorudzbineAdapterClass;
-//import com.example.pmsuprojekat.fragments.MyFragment;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Korisnik;
 import model.NavItem;
 
 public class MainActivityAdministrator extends AppCompatActivity {
-
 
     private SharedPreferenceConfig sharedPreferenceConfig;
     private DrawerLayout mDrawerLayout;
@@ -62,8 +53,6 @@ public class MainActivityAdministrator extends AppCompatActivity {
         DB = new DBHelper(this);
         Intent intent = getIntent();
         String username = intent.getStringExtra("user");
-        //Korisnik korisnik = DB.findKorisnik(username);
-
 
         prepareMenu(mNavItems);
 
@@ -178,10 +167,6 @@ public class MainActivityAdministrator extends AppCompatActivity {
         mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }*/
 
     @SuppressLint("ResourceType")
     @Override
@@ -190,15 +175,6 @@ public class MainActivityAdministrator extends AppCompatActivity {
         return true;
     }
 
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -209,7 +185,7 @@ public class MainActivityAdministrator extends AppCompatActivity {
 
     private void selectItemFromDrawer(int position) {
         if (position == 0) {
-            //FragmentTransition.to(MyFragment.newInstance(), this, false);
+
         } else if (position == 1) {
             //..
         } else if (position == 2) {
@@ -268,7 +244,4 @@ public class MainActivityAdministrator extends AppCompatActivity {
         }
         return true;
     }
-
-
-
 }

@@ -1,10 +1,7 @@
 package com.example.pmsuprojekat.activities;
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import com.example.pmsuprojekat.R;
 
 public class SharedPreferenceConfig {

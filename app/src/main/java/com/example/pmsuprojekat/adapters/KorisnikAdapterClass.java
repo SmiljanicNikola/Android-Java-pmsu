@@ -6,18 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
-import com.example.pmsuprojekat.activities.SviKorisniciActivity;
-
 import java.util.List;
-
 import model.Korisnik;
 
 public class KorisnikAdapterClass extends RecyclerView.Adapter<KorisnikAdapterClass.ViewHolder> {
@@ -47,11 +41,9 @@ public class KorisnikAdapterClass extends RecyclerView.Adapter<KorisnikAdapterCl
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Korisnik korisnik = korisnici.get(position);
 
-        //holder.textViewID.setText(Integer.toString(korisnik.getId()));
         holder.textViewKorisnickoIme.setText("Username: "+korisnik.getUsername());
         holder.textViewIme.setText("Ime: "+korisnik.getIme());
         holder.textViewPrezime.setText("Prezime: "+korisnik.getPrezime());
-        //holder.editText_putanja.setText(artikal.getPutanjaSlike());
 
         //Izmena
         holder.btn_blokiraj.setOnClickListener(new View.OnClickListener() {
@@ -59,16 +51,13 @@ public class KorisnikAdapterClass extends RecyclerView.Adapter<KorisnikAdapterCl
             public void onClick(View v) {
 
                 String username = holder.textViewKorisnickoIme.getText().toString();
-                //String putanja = holder.editText_putanja.getText().toString();
 
                 dbHelper.updateKorisnik(new Korisnik(korisnik.getId(),true));
                 notifyDataSetChanged();
                 ((Activity) context).finish();
                 context.startActivity(((Activity) context).getIntent());
-
             }
         });
-
 
     }
 
@@ -90,9 +79,7 @@ public class KorisnikAdapterClass extends RecyclerView.Adapter<KorisnikAdapterCl
             textViewPrezime = itemView.findViewById(R.id.textViewPrezime);
 
             textViewKorisnickoIme = itemView.findViewById(R.id.textViewKorisnickoIme);
-            //editText_putanja = itemView.findViewById(R.id.editText_putanja);
             btn_blokiraj = itemView.findViewById(R.id.btn_blokiraj);
-
 
         }
     }

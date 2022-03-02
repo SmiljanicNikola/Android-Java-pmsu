@@ -1,37 +1,27 @@
 package com.example.pmsuprojekat.activities;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
-import com.example.pmsuprojekat.adapters.ArtikalAdapterClass;
 import com.example.pmsuprojekat.adapters.ArtikalAdapterClass2;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Akcija;
 import model.Artikal;
 
@@ -45,10 +35,6 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
     DBHelper DB;
     private SharedPreferenceConfig sharedPreferenceConfig;
 
-    /*SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPref.edit();
-    editor.putString("userName", userName);
-    editor.commit();*/
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -74,12 +60,8 @@ public class IzabraniProdavacActivity extends AppCompatActivity {
 
         textView_idKupca = findViewById(R.id.text_idKupca);
 
-
         SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
         String usernameKupca = prefs.getString("usernameKupca", "No name defined");
-        //int idKupca = prefs.getInt("idKupca", 0);
-        /*int idProdavca = prefs.getInt("id", 0);
-        String prodavacId = String.valueOf(idProdavca);*/
         String prodavacId = String.valueOf(intent.getIntExtra("id",0));
 
         //Dobavljanje artikala pojedinacnog prodavca

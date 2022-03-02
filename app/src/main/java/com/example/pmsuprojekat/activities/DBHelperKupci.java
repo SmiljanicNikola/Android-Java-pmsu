@@ -40,6 +40,4 @@ public class DBHelperKupci extends SQLiteOpenHelper {
 
     }
 
-
-
 }

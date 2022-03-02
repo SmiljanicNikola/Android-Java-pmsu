@@ -1,10 +1,6 @@
 package com.example.pmsuprojekat.adapters;
 
-import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,18 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
-
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
-
 import model.Akcija;
 import model.Artikal;
 

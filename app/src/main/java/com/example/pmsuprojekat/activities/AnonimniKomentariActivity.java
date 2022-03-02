@@ -8,22 +8,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.adapters.AnonimanKomentarAdapterClass;
-import com.example.pmsuprojekat.adapters.KomentarAdapterClass;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Artikal;
 import model.Porudzbina;
 import model.Stavka;
@@ -45,10 +40,10 @@ public class AnonimniKomentariActivity extends AppCompatActivity {
 
         DBHelper dbHelper = new DBHelper(this);
 
-        //SHAREDRPEFERENCES NACIN ------------------------
+        //SHAREDRPEFERENCES NACIN ---
         SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
         int idProdavca = prefs.getInt("idProdavca", 0);
-        String idProdavcaa = String.valueOf(idProdavca);//SHARED NACIN BREEEE
+        String idProdavcaa = String.valueOf(idProdavca); //SHARED NACIN
         String usernameProdavca = prefs.getString("usernameProdavca", "No name defined");
 
         Intent intent = getIntent();
@@ -70,13 +65,11 @@ public class AnonimniKomentariActivity extends AppCompatActivity {
             }
         }
 
-
         //Dobavljanje komentara pojedinacnog prodavca
-
         if(porudzbineProdavca.size() > 0){
             AnonimanKomentarAdapterClass anonimniKomentarAdapterClass = new AnonimanKomentarAdapterClass(porudzbineProdavca,AnonimniKomentariActivity.this);
             recyclerView.setAdapter(anonimniKomentarAdapterClass);
-        }else{
+        }else {
             Toast.makeText(AnonimniKomentariActivity.this, "Nema anonimnih komentara za ovog prodavca u bazi podataka!", Toast.LENGTH_SHORT).show();
 
         }
@@ -89,8 +82,6 @@ public class AnonimniKomentariActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setHomeButtonEnabled(true);
         }
-
-
 
     }
 

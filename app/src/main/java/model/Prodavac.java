@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Prodavac implements Serializable {
+
     private Integer id;
     private String ime;
     private String prezime;

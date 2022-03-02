@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import com.example.pmsuprojekat.R;
-
 import model.NavItem;
 
 public class DrawerListAdapter extends BaseAdapter {

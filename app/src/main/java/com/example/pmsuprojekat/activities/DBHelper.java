@@ -26,23 +26,9 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     public static final String DBNAME="Login.db";
 
-    /*private static final String TABLE_NAMEArtikli = "artikli";
-
-    public static final String id="id";
-    public static final String naziv="naziv";
-    public static final String opis="opis";
-    public static final String cena= "cena";
-    public static final String putanja="putanja";
-
-    private static final String CREATE_TABLEArtikli = "create table" + TABLE_NAMEArtikli + "(" + id +
-            "INTEGER PRIMARY KEY AUTOINCREMENT," + naziv + "TEXT," + opis + "TEXT,"
-            + cena + "Double," + putanja + "TEXT );";*/
-
-
     public DBHelper(Context context) {
         super(context, "Login.db", null, 1);
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
@@ -60,18 +46,13 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (6,'miodrag','miodragovic','miodragm','123','prodavac',0)");
         MyDB.execSQL("Insert into users(id,ime,prezime,username,password,uloga,blokiran) VALUES (7,'stefan','stefanovic','stefans','123','kupac',0)");
 
-
-
         MyDB.execSQL("Insert into kupci(id,ime,prezime,username,password, adresa) VALUES (1,'stefan','stefanovic','stefans','123','nenadska 50')");
-
 
         MyDB.execSQL("Insert into prodavci(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv) VALUES (1,'nenad','nenadovic','nenadn','123','2021-04-04','nenad@nenadovic.com','nenadska 50','Fruity')");
         MyDB.execSQL("Insert into prodavci(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv) VALUES (2,'predrag','predragovic','predragp','123','2021-05-05','predrag@predragovic.com','fruskogorska 32','GlassDOO')");
         MyDB.execSQL("Insert into prodavci(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv) VALUES (3,'ivan','ivanovic','ivani','123','2021-03-04','ivan@ivanovic.com','ivanoviceva 40','Shop&GO')");
         MyDB.execSQL("Insert into prodavci(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv) VALUES (4,'miodrag','miodragovic','miodragm','123','2021-04-06','miodragovic@miki.com','Miodragska 32','Shuffler')");
 
-
-        //MyDB.execSQL(CREATE_TABLEArtikli);
         MyDB.execSQL("create Table artikli(id INTEGER PRIMARY KEY AUTOINCREMENT, naziv TEXT, opis TEXT, cena DOUBLE, putanja TEXT,prodavac_id INTEGER, image BLOB, akcija_id INTEGER, FOREIGN KEY (prodavac_id) REFERENCES prodavci (id))");
 
         MyDB.execSQL("create Table porudzbine(id INTEGER PRIMARY KEY AUTOINCREMENT, satnica LocalDate, dostavljeno boolean, ocena INTEGER, komentar TEXT, anonimanKomentar boolean, arhiviranKomentar boolean, " +
@@ -84,16 +65,10 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("drop Table if exists users");
         MyDB.execSQL("drop Table if exists kupci");
         MyDB.execSQL("drop Table if exists prodavci");
-        //MyDB.execSQL("drop Table if exists " + TABLE_NAMEArtikli);
         MyDB.execSQL("drop Table if exists artikli");
         MyDB.execSQL("drop Table if exists akcije");
         MyDB.execSQL("drop Table if exists stavke");
         MyDB.execSQL("drop Table if exists porudzbine");
-
-
-
-        //MyDB.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-        //onCreate(MyDB);
 
     }
 
@@ -152,7 +127,6 @@ public class  DBHelper extends SQLiteOpenHelper {
         contentValues.put("kupac_id", porudzbina.getKupac_id());
         contentValues.put("stavka_id", porudzbina.getStavka_id());
 
-
         MyDB.insert("porudzbine", null, contentValues);
 
     }
@@ -206,7 +180,7 @@ public class  DBHelper extends SQLiteOpenHelper {
         MyDB.insert("akcije", null, contentValues);
 
     }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public Korisnik findKorisnik(String usernamee){
         SQLiteDatabase MyDB = this.getReadableDatabase();
         Cursor cursor = MyDB.rawQuery("select * from users where username=?", new String[] {usernamee});
@@ -229,7 +203,6 @@ public class  DBHelper extends SQLiteOpenHelper {
         }
 
     }
-
 
     public Kupac findKupca(String username){
         SQLiteDatabase MyDB = this.getReadableDatabase();
@@ -274,28 +247,6 @@ public class  DBHelper extends SQLiteOpenHelper {
         }
 
     }
-
-
-    /*public Stavka findStavka(String stavkaOznaka){
-        SQLiteDatabase MyDB = this.getReadableDatabase();
-        Cursor cursor = MyDB.rawQuery("select * from stavke where id=?", new String[] {stavkaOznaka});
-        if(cursor.getCount() == 1){
-            cursor.moveToFirst();
-            Integer id = Integer.parseInt(cursor.getString(0));
-            Integer kolicina = cursor.getInt(1);
-            Integer artikal_id = cursor.getInt(2);
-
-
-
-            Stavka stavka = new Stavka(id,kolicina,artikal_id);
-
-            return stavka;
-        }
-        else{
-            return null;
-        }
-
-    }*/
 
     public Artikal findArtikal(Integer artikalId){
         SQLiteDatabase MyDB = this.getReadableDatabase();
@@ -374,12 +325,10 @@ public class  DBHelper extends SQLiteOpenHelper {
             String prezime = cursor.getString(2);
             String usernamee = cursor.getString(3);
             String password = cursor.getString(4);
-            //LocalDate poslujeOd = LocalDate.parse(cursor.getColumnIndexOrThrow("poslujeOd"));
             LocalDate poslujeOd = LocalDate.parse(cursor.getString(5));
             String email = cursor.getString(6);
             String adresa = cursor.getString(7);
             String naziv = cursor.getString(8);
-           // boolean blokiran = Boolean.parseBoolean(cursor.getString(6));
 
             Prodavac prodavac = new Prodavac(id,ime,prezime,username,password,poslujeOd,email,adresa,naziv);
 
@@ -414,9 +363,6 @@ public class  DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return porudzbine;
     }
-
-
-
 
     public List<Artikal> getArtikliProdavca(String prodavacId){
         //String sql = "select * from artikli where prodavac_id=?";
@@ -482,11 +428,9 @@ public class  DBHelper extends SQLiteOpenHelper {
         else
             return false;
 
-
         }
 
-
-        //CRUD OPERACIJE ZA ARTIKLE -----------------------------------------------------------------
+        //CRUD OPERACIJE ZA ARTIKLE ---
 
         public List<Artikal> getArtikli(){
             String sql = "select * from artikli ";
@@ -559,6 +503,7 @@ public class  DBHelper extends SQLiteOpenHelper {
 
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public List<Porudzbina> getPorudzbine(){
         String sql = "select * from porudzbine where dostavljeno=false";
@@ -627,6 +572,7 @@ public class  DBHelper extends SQLiteOpenHelper {
             return korisnici;
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public List<Akcija> getAkcije(){
         String sql = "select * from akcije";
@@ -650,16 +596,16 @@ public class  DBHelper extends SQLiteOpenHelper {
     }
 
 
-        public void updateArtikal(Artikal artikal){
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("naziv", artikal.getNaziv());
-            contentValues.put("opis", artikal.getOpis());
-            contentValues.put("cena", artikal.getCena());
-            contentValues.put("putanja", artikal.getPutanjaSlike());
-            SQLiteDatabase MyDB = this.getWritableDatabase();
-            MyDB.update("artikli",contentValues, "id = ?", new String[] {String.valueOf(artikal.getId())});
+    public void updateArtikal(Artikal artikal){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("naziv", artikal.getNaziv());
+        contentValues.put("opis", artikal.getOpis());
+        contentValues.put("cena", artikal.getCena());
+        contentValues.put("putanja", artikal.getPutanjaSlike());
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        MyDB.update("artikli",contentValues, "id = ?", new String[] {String.valueOf(artikal.getId())});
 
-        }
+    }
 
     public void postaviAkciju(Artikal artikal){
         ContentValues contentValues = new ContentValues();
@@ -693,7 +639,7 @@ public class  DBHelper extends SQLiteOpenHelper {
             SQLiteDatabase MyDB = this.getWritableDatabase();
             MyDB.update("porudzbine",contentValues, "id = ?", new String[] {String.valueOf(porudzbina.getId())});
 
-        }
+    }
 
         public void arhivirajKomentar(Porudzbina porudzbina){
             ContentValues contentValues = new ContentValues();
@@ -702,7 +648,6 @@ public class  DBHelper extends SQLiteOpenHelper {
             MyDB.update("porudzbine",contentValues, "id = ?", new String[] {String.valueOf(porudzbina.getId())});
 
     }
-
 
 
     public void dostaviPorudzbinu(Porudzbina porudzbina){
@@ -714,12 +659,10 @@ public class  DBHelper extends SQLiteOpenHelper {
     }
 
 
-
-
     public void deleteArtikal(int id){
             SQLiteDatabase MyDB = this.getWritableDatabase();
             MyDB.delete("artikli", "id = ?", new String[] {String.valueOf(id)});
-        }
+    }
 
     public void deleteAkcija(int id){
         SQLiteDatabase MyDB = this.getWritableDatabase();
@@ -731,6 +674,7 @@ public class  DBHelper extends SQLiteOpenHelper {
             String query = "Select * from prodavci";
             Cursor cursor = MyDB.rawQuery(query, null);
             return cursor;
-        }
+    }
+
 
 }

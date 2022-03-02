@@ -3,8 +3,6 @@ package com.example.pmsuprojekat.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 
 import java.util.Timer;

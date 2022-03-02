@@ -15,24 +15,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.MainActivity;
-import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.adapters.AkcijaAdapterClass;
-
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
+
 import model.Akcija;
-import model.Prodavac;
 
 public class AkcijeActivity extends AppCompatActivity {
 
@@ -57,7 +53,6 @@ public class AkcijeActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
         Intent intent = getIntent();
         String username = intent.getStringExtra("user");
-        //String prodavacId = String.valueOf(intent.getIntExtra("idProdavca",0));
 
         SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
         int prodavacId = prefs.getInt("idProdavca", 0);
@@ -93,7 +88,6 @@ public class AkcijeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent1 = getIntent();
                 String username = intent1.getStringExtra("user");
-                //String idProdavca = String.valueOf(intent1.getIntExtra("idProdavca",0));
                 int idProdavca = intent1.getIntExtra("idProdavca",0);
                 Intent intent = new Intent(AkcijeActivity.this, NovaAkcijaActivity.class);
                 intent.putExtra("id", idProdavca);
@@ -104,11 +98,9 @@ public class AkcijeActivity extends AppCompatActivity {
 
         sensor = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor.registerListener(sensorListener, sensor.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-
         acelVal = SensorManager.GRAVITY_EARTH;
         acelLast = SensorManager.GRAVITY_EARTH;
         shake = 0.00f;
-
     }
 
     private final SensorEventListener sensorListener = new SensorEventListener(){
@@ -127,14 +119,10 @@ public class AkcijeActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "NE MUCKAJ!", Toast.LENGTH_SHORT);
                 toast.show();
                 Intent intent1 = getIntent();
+
                 String username = intent1.getStringExtra("user");
-                //String idProdavca = String.valueOf(intent1.getIntExtra("idProdavca",0));
                 int idProdavca = intent1.getIntExtra("idProdavca",0);
                 Intent intent = new Intent(AkcijeActivity.this, NovaAkcijaActivity.class);
-                //Korisnik korisnik = DB.findKorisnik(username);
-
-                /*Prodavac prodavac = dbHelper.findProdavac(username);
-                int idProdavca = prodavac.getId();*/
 
                 intent.putExtra("id", idProdavca);
                 intent.putExtra("user", username);
@@ -150,7 +138,6 @@ public class AkcijeActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        // TODO Auto-generated method stub
         super.onResume();
     }
 
@@ -167,14 +154,11 @@ public class AkcijeActivity extends AppCompatActivity {
 
         if(id == R.id.share){
             Intent intent = new Intent(AkcijeActivity.this, MainActivity.class);
-            //Intent intent1 = getIntent();
             SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
             String usernameProdavca = prefs.getString("userName", "No name defined");
             SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
             editor.putString("usernameProdavca", usernameProdavca);
             editor.apply();
-            /*String username = intent1.getStringExtra("user");
-            intent.putExtra("user", username);*/
             startActivity(intent);
             finish();
         }
@@ -190,6 +174,7 @@ public class AkcijeActivity extends AppCompatActivity {
         month = month+1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day,month,year);
+
     }
 
     private String makeDateString(int day, int month, int year) {

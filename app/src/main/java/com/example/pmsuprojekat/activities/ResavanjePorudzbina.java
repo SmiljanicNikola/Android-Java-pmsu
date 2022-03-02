@@ -7,22 +7,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.MainActivityAdministrator;
-import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
-import com.example.pmsuprojekat.adapters.PorudzbinaAdapterClass;
 import com.example.pmsuprojekat.adapters.SvePorudzbineAdapterClass;
-
 import java.util.List;
-
 import model.Porudzbina;
 
 public class ResavanjePorudzbina extends AppCompatActivity {
@@ -41,6 +35,7 @@ public class ResavanjePorudzbina extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         DBHelper dbHelper = new DBHelper(this);
+
         //Dobavljanje svih porudzbina
         List<Porudzbina> porudzbine = dbHelper.getPorudzbine();
 

@@ -1,7 +1,5 @@
 package com.example.pmsuprojekat.activities;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,20 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.KeyCycleOscillator;
-
 import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.MainActivityAdministrator;
 import com.example.pmsuprojekat.MainActivityKupac;
 import com.example.pmsuprojekat.R;
-import com.example.pmsuprojekat.activities.RegisterActivity;
-
-
-import java.util.Timer;
-import java.util.TimerTask;
-
 import model.Korisnik;
 
 public class LoginActivity extends AppCompatActivity {
@@ -41,11 +30,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login);
 
         sharedPreferenceConfig = new SharedPreferenceConfig(getApplicationContext());
-        /*if(sharedPreferenceConfig.read_login_status()){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
-        }*/
-
 
         username = (EditText) findViewById(R.id.username1);
         password = (EditText) findViewById(R.id.password1);
@@ -89,8 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                             if(korisnik.getUloga().equals("kupac")) {
                                 Toast.makeText(LoginActivity.this, "Uspesno ste se ulogovali kao kupac", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivityKupac.class);
-                                /*intent.putExtra("user", user);
-                                intent.putExtra("id", id);*/
+
                                 SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
                                 editor.putString("userName", user);
                                 editor.apply();
@@ -116,8 +99,6 @@ public class LoginActivity extends AppCompatActivity {
                             else{
                                 Toast.makeText(LoginActivity.this, "Uspesno ste se ulogovali kao admin", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivityAdministrator.class);
-                                //intent.putExtra("user", user);
-                                //intent.putExtra("id", id);
                                 SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
                                 editor.putString("userName", user);
                                 editor.putInt("id",id);
@@ -131,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Blokirani ste!", Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            Toast.makeText(LoginActivity.this, "NISTA!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Nista!", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -143,10 +124,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
 
-
         });
-
-
 
     }
 }

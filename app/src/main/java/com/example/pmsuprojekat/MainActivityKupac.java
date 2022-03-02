@@ -16,10 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -27,26 +25,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.example.pmsuprojekat.activities.ArtikalActivity;
 import com.example.pmsuprojekat.activities.DBHelper;
 import com.example.pmsuprojekat.activities.IzabraniProdavacActivity;
 import com.example.pmsuprojekat.activities.LoginActivity;
-import com.example.pmsuprojekat.activities.NoviArtikalActivity;
 import com.example.pmsuprojekat.activities.PorudzbinaActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
-import com.example.pmsuprojekat.activities.SviKorisniciActivity;
 import com.example.pmsuprojekat.adapters.DrawerListAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Korisnik;
 import model.Kupac;
 import model.NavItem;
 import model.Prodavac;
 
 public class MainActivityKupac extends AppCompatActivity {
+
     private SharedPreferenceConfig sharedPreferenceConfig;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -72,7 +65,6 @@ public class MainActivityKupac extends AppCompatActivity {
         sharedPreferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         DB = new DBHelper(this);
         Intent intent = getIntent();
-        //Korisnik korisnik = DB.findKorisnik(username);
 
         listItem = new ArrayList<>();
         userList = findViewById(R.id.prodavciListView);
@@ -93,12 +85,7 @@ public class MainActivityKupac extends AppCompatActivity {
                 int idKupca = kupac.getId();
                 Prodavac prodavac = DB.findProdavac(username);
                 int idProdavca = prodavac.getId();
-                /*SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
-                editor.putInt("id", idProdavca);
-                editor.putInt("idKupca", idKupca);
-                editor.putString("username", username);
-                editor.putString("usernameKupca", usernameKupca);
-                editor.apply();OOOOOOOOOO*/
+
                 intent1.putExtra("id", idProdavca);
                 intent1.putExtra("usernameKupca", usernameKupca);
                 intent1.putExtra("idKupca", idKupca);
@@ -190,7 +177,7 @@ public class MainActivityKupac extends AppCompatActivity {
                         Kupac kupac = DB.findKupca(usernameKupca);
                         int idKupca = kupac.getId();
 
-                        //SHARED NACIN---------------------------------------------
+                        //SHARED NACIN---
                         SharedPreferences.Editor editor = getSharedPreferences("My pref", MODE_PRIVATE).edit();
                         editor.putString("usernameKupca", usernameKupca);
                         editor.putInt("idKupca", idKupca);
@@ -209,9 +196,6 @@ public class MainActivityKupac extends AppCompatActivity {
             }
 
         });
-
-
-
     }
 
     private void viewData(){
@@ -236,10 +220,6 @@ public class MainActivityKupac extends AppCompatActivity {
     }
 
     private void prepareMenu(ArrayList<NavItem> mNavItems) {
-        /*Intent intent = getIntent();
-        String username = intent.getStringExtra("user");*/
-        /*SharedPreferences sharedPref = MainActivityKupac.this.getPreferences(Context.MODE_PRIVATE);
-        String userName = sharedPref.getString("userName", "");*/
         SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
         String userName = prefs.getString("userName", "No name defined");//"No name defined" is the default value.
         Korisnik korisnik = DB.findKorisnik(userName);
@@ -255,20 +235,6 @@ public class MainActivityKupac extends AppCompatActivity {
         mNavItems.add(new NavItem(getString(R.string.logOut), getString(R.string.logOut), R.drawable.ic_action_username));
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }*/
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -345,5 +311,4 @@ public class MainActivityKupac extends AppCompatActivity {
         }
         return true;
     }
-
 }

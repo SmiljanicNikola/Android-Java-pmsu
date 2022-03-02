@@ -8,15 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
-
 import java.util.List;
-
 import model.Kupac;
 import model.Porudzbina;
 
@@ -30,7 +26,6 @@ public class AnonimanKomentarAdapterClass extends RecyclerView.Adapter<AnonimanK
         this.porudzbineProdavca = porudzbineProdavca;
         this.context = context;
         dbHelper = new DBHelper(context);
-
 
     }
 

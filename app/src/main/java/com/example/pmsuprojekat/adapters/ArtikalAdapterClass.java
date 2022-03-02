@@ -2,10 +2,8 @@ package com.example.pmsuprojekat.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,24 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
-import com.example.pmsuprojekat.activities.NoviArtikalActivity;
-import com.example.pmsuprojekat.activities.RecenzijaActivity;
 import com.example.pmsuprojekat.activities.SharedPreferenceConfig;
-
-import java.sql.Blob;
 import java.util.List;
-
 import model.Artikal;
-import model.Prodavac;
 
 public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClass.ViewHolder>{
+
     private SharedPreferenceConfig sharedPreferenceConfig;
     List<Artikal> artikli;
     Context context;
@@ -61,7 +51,6 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
         holder.editText_opis.setText(artikal.getOpis());
         holder.editText_cena.setText(Double.toString(artikal.getCena()));
         holder.editText_putanja.setText(artikal.getPutanjaSlike());
-        //holder.editText_prodavacId.setText(artikal.getProdavac_id());
 
         byte[] recordImage = artikal.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(recordImage, 0, recordImage.length);
@@ -76,7 +65,6 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
                 String opis = holder.editText_opis.getText().toString();
                 Double cena = Double.valueOf(holder.editText_cena.getText().toString());
                 String putanja = holder.editText_putanja.getText().toString();
-                //int prodavac_id = Integer.valueOf(holder.editText_prodavacId.getText().toString());
 
                 dbHelper.updateArtikal(new Artikal(artikal.getId(),naziv,opis,cena,putanja));
                 notifyDataSetChanged();
@@ -95,16 +83,6 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
                 notifyDataSetChanged();
             }
         });
-
-        /*holder.btn_dodajArtikal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int prodavacId = artikal.getProdavac_id();
-                Intent myIntent = new Intent(v.getContext(), NoviArtikalActivity.class);
-                myIntent.putExtra("id", prodavacId);
-                v.getContext().startActivity(myIntent);
-            }
-        });*/
 
     }
 
@@ -138,7 +116,6 @@ public class ArtikalAdapterClass extends RecyclerView.Adapter<ArtikalAdapterClas
             btn_edit = itemView.findViewById(R.id.btn_edit);
             btn_dodajArtikal = itemView.findViewById(R.id.btn_dodajArtikal);
             imgIcon = itemView.findViewById(R.id.imgIcon);
-
 
         }
     }

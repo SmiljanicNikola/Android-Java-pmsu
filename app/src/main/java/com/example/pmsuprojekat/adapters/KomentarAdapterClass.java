@@ -1,6 +1,5 @@
 package com.example.pmsuprojekat.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.pmsuprojekat.R;
 import com.example.pmsuprojekat.activities.DBHelper;
-
 import java.util.List;
-
-import model.Akcija;
-import model.Artikal;
 import model.Kupac;
 import model.Porudzbina;
 
@@ -33,7 +26,6 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
         this.porudzbineProdavca = porudzbineProdavca;
         this.context = context;
         dbHelper = new DBHelper(context);
-
 
     }
 
@@ -61,9 +53,6 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
             }
             holder.textViewKomentar.setText("Komentar: "+porudzbina.getKomentar());
 
-
-            //holder.editText_prodavacId.setText(artikal.getProdavac_id());
-
             holder.btn_arhiviraj.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -72,21 +61,9 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
                     porudzbineProdavca.remove(position);
 
                     notifyDataSetChanged();
-                /*((Activity) context).finish();
-                context.startActivity(((Activity) context).getIntent());*/
 
                 }
             });
-
-        /*//Brisanje
-        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dbHelper.deleteArtikal(akcija.getId());
-                akcije.remove(position);
-                notifyDataSetChanged();
-            }
-        });*/
 
     }
 
@@ -129,7 +106,6 @@ public class KomentarAdapterClass extends RecyclerView.Adapter<KomentarAdapterCl
             btn_delete = itemView.findViewById(R.id.btn_delete);
             btn_arhiviraj = itemView.findViewById(R.id.btn_arhiviraj);
             imgIcon = itemView.findViewById(R.id.imgIcon);
-
 
         }
     }

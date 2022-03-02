@@ -1,36 +1,27 @@
 package com.example.pmsuprojekat.activities;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
-import com.example.pmsuprojekat.MainActivity;
 import com.example.pmsuprojekat.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
-
 import java.io.ByteArrayOutputStream;
-
 import model.Artikal;
-import model.Prodavac;
 
 public class NoviArtikalActivity extends AppCompatActivity {
 
@@ -38,7 +29,6 @@ public class NoviArtikalActivity extends AppCompatActivity {
     TextView textViewDodaj;
     DBHelper DB;
     ImageView imageViewSlika;
-
     final int REQEUST_CODE_GALLERY = 999;
 
     @Override
@@ -67,10 +57,10 @@ public class NoviArtikalActivity extends AppCompatActivity {
 
         textViewDodaj = findViewById(R.id.textViewDodaj);
 
-        //SHAREDRPEFERENCES NACIN ------------------------
+        //SHAREDRPEFERENCES NACIN ---
         SharedPreferences prefs = getSharedPreferences("My pref",MODE_PRIVATE);
         int idProdavca = prefs.getInt("idProdavca", 0);
-        String idProdavcaa = String.valueOf(idProdavca);//SHARED NACIN BREEEE
+        String idProdavcaa = String.valueOf(idProdavca); //SHARED NACIN ---
         String usernameProdavca = prefs.getString("usernameProdavca", "No name defined");
 
         Intent intent = getIntent();
@@ -107,7 +97,6 @@ public class NoviArtikalActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
     }
 
