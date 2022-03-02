@@ -80,8 +80,6 @@
                     android:layout_marginLeft="15dp"
                     android:layout_toRightOf="@+id/avatar"
                     android:orientation="vertical">
-
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -95,7 +93,6 @@
                 android:background="#ffffffff"/>
 
         </RelativeLayout>
-
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

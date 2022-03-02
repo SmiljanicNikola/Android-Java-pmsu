@@ -139,7 +139,6 @@
             android:layout_marginTop="30dp"
             android:textColor="@color/holo_blue" />
 
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="40dp"

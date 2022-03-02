@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     >
 
-
-
     <ImageView
         android:id="@+id/item_icon"
         android:layout_width="70dp"
@@ -14,11 +12,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/linLay"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/autor"
             android:layout_width="wrap_content"
@@ -33,24 +33,20 @@
             android:layout_toEndOf="@+id/item_icon"
             />
 
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:gravity="center_vertical"
-            android:textColor="#000"
-            android:textStyle="normal"
-            android:layout_marginLeft="65dp"
-            android:id="@+id/tekst"/>
-
-
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="#000"
+                android:textStyle="normal"
+                android:layout_marginLeft="65dp"
+                android:id="@+id/tekst"/>
 
         </LinearLayout>
 
@@ -61,9 +57,6 @@
             android:layout_marginLeft="310dp"
             />
 
-
-
     </LinearLayout>
-
 
 </RelativeLayout>

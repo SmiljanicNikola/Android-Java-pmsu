@@ -11,7 +11,6 @@
     >
 
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -37,7 +36,6 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <Button
@@ -59,6 +57,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_dodajAkciju"/>
-
 
 </RelativeLayout>

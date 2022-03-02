@@ -5,8 +5,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_margin="10dp"
@@ -70,16 +68,6 @@
         android:id="@+id/editText_putanja"
         android:visibility="invisible"/>
 
-   <!-- <EditText
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:text="Cena"
-        android:layout_margin="5dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:id="@+id/editText_prodavacId"
-        android:visibility="invisible"/> -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,7 +97,6 @@
             android:layout_margin="2dp"
             />
     </LinearLayout>
-
 
     <View
         android:layout_width="match_parent"

@@ -35,10 +35,8 @@
                 android:layout_centerHorizontal="true"
                 android:ems="10"
                 android:textColor="@color/white"/>
+
         </androidx.appcompat.widget.Toolbar>
-
-
-
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -94,9 +92,7 @@
                 android:layout_below="@+id/profileBox"
                 android:choiceMode="singleChoice"
                 android:background="#ffffffff"/>
-
         </RelativeLayout>
-
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

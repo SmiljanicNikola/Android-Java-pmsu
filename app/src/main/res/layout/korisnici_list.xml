@@ -6,8 +6,6 @@
     android:background="@drawable/gradient"
     android:orientation="vertical">
 
-
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -22,11 +20,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
         </androidx.appcompat.widget.Toolbar>
-
-
-
-
-
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
@@ -69,8 +62,6 @@
                     android:layout_toRightOf="@+id/avatar"
                     android:orientation="vertical">
 
-
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -85,12 +76,6 @@
 
         </RelativeLayout>
 
-
     </androidx.drawerlayout.widget.DrawerLayout>
-
-
-
-
-
 
 </LinearLayout>

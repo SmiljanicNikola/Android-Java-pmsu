@@ -23,15 +23,7 @@
         android:layout_gravity="center"
         android:visibility="invisible"/>
 
-    <!--<EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Naziv"
-        android:layout_margin="5dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:id="@+id/editText_naziv"/>-->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_marginLeft="5dp"
@@ -43,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,6 +67,7 @@
             android:layout_margin="10dp"
             android:id="@+id/btn_arhiviraj"/>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

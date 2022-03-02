@@ -1,38 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!--<com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="7dp"
-        android:theme="@style/AppTheme.NoActionBar">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/purple_700" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:logo="@drawable/ic_check"
-            app:popupTheme="@style/AppTheme.NoActionBar"
-            app:title="Toolbar demo"
-            app:titleMarginStart="40dp">
-
-
-
-        </androidx.appcompat.widget.Toolbar>
-
-     </com.google.android.material.appbar.AppBarLayout>-->
 
     <TextView
         android:layout_width="1dp"
@@ -178,10 +149,12 @@
             android:id="@+id/btn_poruci"/>
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#C5C5C5"
         android:layout_margin="5dp"/>
+
 
 </RelativeLayout>

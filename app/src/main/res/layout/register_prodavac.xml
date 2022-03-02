@@ -118,21 +118,6 @@
         android:textSize="16dp"
         tools:text="" />
 
-    <!-- <Spinner
-        android:id="@+id/aSpinner"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/repassword"
-        android:layout_margin="20dp"
-        android:entries="@array/Spinner_items"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="uloga"
-        android:textColor="@color/black"
-        /> -->
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -153,8 +138,6 @@
                 android:layout_centerInParent="true"
                 android:text="@string/register"
                 android:textColor="#fff" />
-
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

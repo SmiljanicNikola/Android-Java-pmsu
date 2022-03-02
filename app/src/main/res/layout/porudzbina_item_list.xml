@@ -5,8 +5,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
-
     <TextView
         android:layout_width="1dp"
         android:layout_height="1dp"
@@ -64,7 +62,6 @@
         android:id="@+id/textViewKomentar"/>
 
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,6 +75,7 @@
         android:layout_below="@id/textView2"
         android:id="@+id/textView3"/>
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,7 +86,6 @@
         android:textColor="#000"
         android:layout_gravity="center"
         android:id="@+id/textViewArtikal"/>
-
 
 
     <TextView
@@ -104,6 +101,7 @@
         android:layout_below="@id/textView3"
         android:id="@+id/textView4"/>
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -115,6 +113,7 @@
         android:layout_gravity="center"
         android:id="@+id/textViewKolicina"
         />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -129,6 +128,7 @@
         android:layout_below="@id/textView4"
         android:id="@+id/textView5"/>
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,16 +141,7 @@
         android:id="@+id/textViewCenaPojedinacno"
         />
 
-    <!--<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:layout_gravity="center"
-        android:id="@+id/textViewCenaSaAkcijom"
-        /> -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -176,8 +167,6 @@
         android:id="@+id/textViewCenaUkupno"
         />
 
-
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -189,8 +178,5 @@
         android:layout_marginRight="75dp"
         android:layout_marginLeft="75dp"
         android:id="@+id/btn_edit"/>
-
-
-
 
 </RelativeLayout>

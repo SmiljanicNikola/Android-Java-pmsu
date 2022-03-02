@@ -68,9 +68,8 @@
                 android:text="@string/login"
                 android:textColor="#fff" />
 
-
-
         </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
 
     <TextView

@@ -68,7 +68,6 @@
         tools:text="" />
 
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1"
         android:layout_width="300dp"
@@ -92,7 +91,7 @@
                 android:textColor="#fff" />
 
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
